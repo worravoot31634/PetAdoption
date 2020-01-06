@@ -303,7 +303,7 @@
                         readable.
                     </p>
                     <div>
-
+                          <button class="btnEdit" style="margin: 5px;">รายละเอียดกิจกรรม</button>
                     </div>
             </a></div><!-- end of text -->
     </div> <!-- end of row  half left side-->
@@ -340,7 +340,7 @@
                     readable.
                 </p>
                 <div>
-
+                      <button class="btnEdit" style="margin: 5px;">รายละเอียดกิจกรรม</button>
                 </div>
         </a></div><!-- end of text -->
 </div> <!-- end of row  half right side-->

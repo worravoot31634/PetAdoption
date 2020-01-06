@@ -183,7 +183,7 @@
                                 </div>
                                 </td>
                                 <td style="width: 100%;">
-                                    <a href="login"><button class="btnEdit">บริจาค</button></a>
+                                    <a href="login.php"><button class="btnEdit">บริจาค</button></a>
                                 </td>
                                 </tr>
                             </table>
@@ -230,7 +230,7 @@
                               </div>
                               </td>
                               <td style="width: 100%;">
-                              <a href="login"><button class="btnEdit">บริจาค</button></a>
+                              <a href="login.php"><button class="btnEdit">บริจาค</button></a>
                               </td>
                             </tr>
                         </table>
@@ -285,7 +285,7 @@
                                 </div>
                                 </td>
                                 <td style="width: 100%;">
-                                    <a href="login"><button class="btnEdit">บริจาค</button></a>
+                                    <a href="login.php"><button class="btnEdit">บริจาค</button></a>
                                 </td>
                                 </tr>
                             </table>
@@ -332,7 +332,7 @@
                               </div>
                               </td>
                               <td style="width: 100%;">
-                              <a href="login"><button class="btnEdit">บริจาค</button></a>
+                              <a href="login.php"><button class="btnEdit">บริจาค</button></a>
                               </td>
                             </tr>
                         </table>
@@ -386,7 +386,7 @@
                         </div>
                         </td>
                         <td style="width: 100%;">
-                        <a href="login"><button class="btnEdit">บริจาค</button></a>
+                        <a href="login.php"><button class="btnEdit">บริจาค</button></a>
                         </td>
                         </tr>
                     </table>
@@ -433,7 +433,7 @@
                       </div>
                       </td>
                       <td style="width: 100%;">
-                      <a href="login"><button class="btnEdit">บริจาค</button></a>
+                      <a href="login.php"><button class="btnEdit">บริจาค</button></a>
                       </td>
                     </tr>
                 </table>

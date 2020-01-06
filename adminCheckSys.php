@@ -90,7 +90,7 @@
     <!--content-->
     <div class="w3-container" style="margin-top: 80px;left: 2%;position:relative">
         <div style="display:inline-block">
-            <p style="font-size: 28px;font-weight: bold;">การบริจาค</p>
+            <p style="font-size: 28px;font-weight: bold;">รายชื่อ</p>
         </div>
     </div>
 

@@ -58,7 +58,7 @@
 <?php
     include('NavbarOrganization.html');
     ?>
-   
+
 
 
 <!-------------------------------------------------->
@@ -303,7 +303,7 @@
                         readable.
                     </p>
                     <div>
-
+                          <button class="btnEdit" style="margin: 5px;">รายละเอียดกิจกรรม</button>
                     </div>
             </a></div><!-- end of text -->
     </div> <!-- end of row  half left side-->
@@ -340,7 +340,7 @@
                     readable.
                 </p>
                 <div>
-
+                      <button class="btnEdit" style="margin: 5px;">รายละเอียดกิจกรรม</button>
                 </div>
         </a></div><!-- end of text -->
 </div> <!-- end of row  half right side-->
@@ -384,7 +384,7 @@
               </td>
             </tr>
           </table>
-          
+
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
