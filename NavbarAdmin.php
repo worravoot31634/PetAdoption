@@ -16,7 +16,7 @@
         <div class="w3-dropdown-hover" style="font-size: 20px;">
           <button class=" w3-button"><b><?php echo $_SESSION['UserFirstname'] . ' ' . $_SESSION['UserLastname'];?></b></button>
           <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a href="index.php" class="w3-bar-item w3-button"><b>ออกจากระบบ</b></a>
+            <a href="logout.php" class="w3-bar-item w3-button"><b>ออกจากระบบ</b></a>
           </div>
         </div>
         <a href="#" style="font-size:18px; margin-right: 10px;" onclick="hideNav()"

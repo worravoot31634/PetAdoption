@@ -24,7 +24,7 @@
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     <a href="myPost.php" class="w3-bar-item w3-button"><b>โพสต์ของฉัน</b></a>
                     <a href="chatMessage.php" class="w3-bar-item w3-button"><b>ประวัติแชท</b></a>
-                    <a href="index.php" class="w3-bar-item w3-button"><b>ออกจากระบบ</b></a>
+                    <a href="logout.php" class="w3-bar-item w3-button"><b>ออกจากระบบ</b></a>
                 </div>
             </div>
             <a href="#" style="font-size:18px; margin-right: 10px;" onclick="hideNav()"
