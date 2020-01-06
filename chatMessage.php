@@ -2,7 +2,7 @@
 session_start();
 $_SESSION["userIDLogin"] = "1";
 
-    include('NavbarOrganization.html');
+    include('NavbarOrganization.php');
     include('connectDB.php');
 
     

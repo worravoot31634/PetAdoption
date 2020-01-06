@@ -109,7 +109,7 @@
 
    
 <?php
-    include('NavbarOrganization.html');
+    include('NavbarOrganization.php');
     ?>
 
 

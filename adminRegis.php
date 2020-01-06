@@ -148,7 +148,7 @@
 
 
 <?php
-    include('NavbarAdmin.html');
+    include('NavbarAdmin.php');
     ?>
 
 

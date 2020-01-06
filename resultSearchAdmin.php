@@ -85,7 +85,7 @@
 
 
 <?php
-    include('NavbarAdmin.html');
+    include('NavbarAdmin.php');
     ?>
     <!--content-->
     <div class="w3-container" style="margin-top: 80px;left: 2%;position:relative">

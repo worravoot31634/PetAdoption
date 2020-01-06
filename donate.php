@@ -79,7 +79,7 @@
 
   
 <?php
-    include('NavbarNonMember.html');
+    include('NavbarNonMember.php');
     ?>
 
 
@@ -243,7 +243,7 @@
                                             <td  style='width: 60%;'>
                                         <div class='container' >
                                             <div class='progress' style='height: 0.6cm;'>
-                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='".$presen."% ;'>
+                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
                                                   ".$row2['sumDonate']." บาท
                                                 </div>
                                               </div>

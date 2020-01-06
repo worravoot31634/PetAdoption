@@ -106,7 +106,7 @@
 <body id="myPage">
 
 <?php
-    include('NavbarMember.html');
+    include('NavbarMember.php');
     ?>
     
     <!--Content-->
