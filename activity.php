@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
 <meta charset="UTF-8">
@@ -42,6 +42,11 @@
 <?php
     include('NavbarNonMember.html');
     ?>
+
+    <?php
+        include('connectDB.php');
+        ?>
+
     <!--Content-->
 
     <!--header text and image of activity-->
@@ -56,130 +61,31 @@
     <!--end header text and image of activity-->
 
 
-    <div class="w3-container ">
-
-        <!--row of half content activity-->
-
-        <div class="w3-row">
-            <!--row  half left side-->
-
-            <div class="w3-half" style="padding: 10px;">
-                <a href="activityDetail" class="activity-content-link">
-                    <div class="w3-half colorActivity" style="height: 210px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
-                    </div> <!-- end of img -->
 
 
-                    <div class="w3-half colorActivity" style="height: 210px;">
-
-                        <!--img and text side by side-->
-                        <div style="margin-top: 5px;float: left;">
-                            <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                    style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                            </div>
-                        </div><!-- end of img and text side by side-->
-
-                        <p style="font-size: 1em;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
-                            distribution of letters, as opposed to using 'Content here, content here', making it look
-                            like
-                            readable.
-                        </p>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half left side-->
-
-        <!--row  half right side-->
-
-        <div class="w3-half" style="padding: 10px;">
-            <a href="activityDetail" class="activity-content-link">
-                <div class="w3-half colorActivity" style="height: 210px;">
-                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
-                </div> <!-- end of img -->
-
-
-                <div class="w3-half colorActivity" style="height: 210px;">
-
-                    <!--img and text side by side-->
-                    <div style="margin-top: 5px;float: left;">
-                        <div style="display:inline-block">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                        </div>
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                        </div>
-                    </div><!-- end of img and text side by side-->
-
-                    <p style="font-size: 1em;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-                        distribution of letters, as opposed to using 'Content here, content here', making it look
-                        like
-                        readable.
-                    </p>
-            </a></div><!-- end of text -->
-    </div> <!-- end of row  half right side-->
-
-    </div>
-    <!--end of row of half content activity-->
-    </div>
-    </div>
-    <!--end of container-->
 
     <div class="w3-container ">
 
         <!--row of half content activity-->
 
-        <div class="w3-row">
-            <!--row  half left side-->
-
-            <div class="w3-half" style="padding: 10px;">
-                <a href="activityDetail" class="activity-content-link">
-                    <div class="w3-half colorActivity" style="height: 210px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
-                    </div> <!-- end of img -->
-
-
-                    <div class="w3-half colorActivity" style="height: 210px;">
-
-                        <!--img and text side by side-->
-                        <div style="margin-top: 5px;float: left;">
-                            <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                    style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                            </div>
-                        </div><!-- end of img and text side by side-->
-
-                        <p style="font-size: 1em;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
-                            distribution of letters, as opposed to using 'Content here, content here', making it look
-                            like
-                            readable.
-                        </p>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half left side-->
 
         <!--row  half right side-->
+<?php
 
-        <div class="w3-half" style="padding: 10px;">
-            <a href="activityDetail" class="activity-content-link">
+$sql="SELECT * FROM activity";
+$rs=$conn->query($sql);
+
+
+while($row = $rs->fetch_assoc()) {
+
+	$id = $row['activityID'];
+
+
+
+        echo'<div class="w3-half" style="padding: 10px;">
+            <a href= "activityDetail?id='.$id.'" class="activity-content-link">
                 <div class="w3-half colorActivity" style="height: 210px;">
-                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
+                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
                 </div> <!-- end of img -->
 
 
@@ -187,113 +93,25 @@
 
                     <!--img and text side by side-->
                     <div style="margin-top: 5px;float: left;">
+
                         <div style="display:inline-block">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                        </div>
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
+                            <h6 class="w3-left" style="font-size: 14px;">'. $row['topic'] .'</h6>
                         </div>
                     </div><!-- end of img and text side by side-->
 
-                    <p style="font-size: 1em;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-                        distribution of letters, as opposed to using 'Content here, content here', making it look
-                        like
-                        readable.
-                    </p>
-            </a></div><!-- end of text -->
-    </div> <!-- end of row  half right side-->
+                    <p style="font-size: 1em;clear: both;">'. $row['details'] .'</p>
+            </a></div>
+    </div>'; }
+
+
+    ?>
 
     </div>
     <!--end of row of half content activity-->
     </div>
-    </div>
-    <!--end of container-->
-
-    <div class="w3-container">
-
-        <!--row of half content activity-->
-
-        <div class="w3-row">
-            <!--row  half left side-->
-
-            <div class="w3-half" style="padding: 10px;">
-                <a href="activityDetail" class="activity-content-link">
-                    <div class="w3-half colorActivity" style="height: 210px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
-                    </div> <!-- end of img -->
 
 
-                    <div class="w3-half colorActivity" style="height: 210px;">
 
-                        <!--img and text side by side-->
-                        <div style="margin-top: 5px;float: left;">
-                            <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                    style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                            </div>
-                        </div><!-- end of img and text side by side-->
-
-                        <p style="font-size: 1em;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
-                            distribution of letters, as opposed to using 'Content here, content here', making it look
-                            like
-                            readable.
-                        </p>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half left side-->
-
-        <!--row  half right side-->
-
-        <div class="w3-half" style="padding: 10px;">
-            <a href="activityDetail" class="activity-content-link">
-                <div class="w3-half colorActivity" style="height: 210px;">
-                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
-                </div> <!-- end of img -->
-
-
-                <div class="w3-half colorActivity" style="height: 210px;">
-
-                    <!--img and text side by side-->
-                    <div style="margin-top: 5px;float: left;">
-                        <div style="display:inline-block">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                        </div>
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                        </div>
-                    </div><!-- end of img and text side by side-->
-
-                    <p style="font-size: 1em;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-                        distribution of letters, as opposed to using 'Content here, content here', making it look
-                        like
-                        readable.
-                    </p>
-            </a></div><!-- end of text -->
-    </div> <!-- end of row  half right side-->
-
-    </div>
-    <!--end of row of half content activity-->
-    </div>
-    </div>
-    <!--end of container-->
-
-    <!--end Content-->
     <style>
     .w3-8c71c0 {
     background-color: #8c71c0;
@@ -328,7 +146,7 @@
               </td>
             </tr>
           </table>
-          
+
         <p><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></p>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
@@ -387,6 +205,8 @@
 
         }
     </script>
+
+
 
 </body>
 
