@@ -18,7 +18,31 @@ session_start();
     $result = $conn->query($sql);
     echo "SELECT * FROM account where username = '" . $_POST["username"] . "'and password = '" . $_POST["password"] . "'";
     if ($result->num_rows > 0) {
-        header("Location: homeLogin.php");
+        if($result["roles"]=="member"){
+            $sqlMember = "SELECT * FROM member where accountID = '".$result["accountID"]."'";
+            $resultMember = $conn->query($sqlMember);
+                $_SESSION['accountID'] = $resultMember["accountID"];
+                $_SESSION['fname'] = $resultMember["firstname"];
+                $_SESSION['lname'] = $resultMember["lastname"];
+            header("Location: homeLogin.php");
+
+        }elseif($result["roles"]=="organization"){
+            $sqlOrganization = "SELECT * FROM organization where accountID = '".$result["accountID"]."'";
+            $resultOrganization = $conn->query($sqlMember);
+                $_SESSION['accountID'] = $resultMember["accountID"];
+                $_SESSION['fname'] = $resultMember["firstname"];
+                $_SESSION['lname'] = $resultMember["lastname"];
+            header("Location: homeOrganization.php");
+
+        }elseif($result["roles"]=="admin"){
+            $sqlMember = "SELECT * FROM admin where accountID = '".$result["accountID"]."'";
+            $resultAdmin = $conn->query($sqlMember);
+                $_SESSION['accountID'] = $resultMember["accountID"];
+                $_SESSION['fname'] = $resultMember["firstname"];
+                $_SESSION['lname'] = $resultMember["lastname"];
+            header("Location: adminHome.php");
+        }
+        
     } else {
         $_SESSION['message'] = 'Login Fail';
         header("Location: login.php");

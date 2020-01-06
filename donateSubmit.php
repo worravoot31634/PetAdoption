@@ -1,5 +1,4 @@
 <?php
-
 include("connectDB.php");
 
     $donate=$_POST["donate"];
