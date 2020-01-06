@@ -283,7 +283,7 @@
                  </td>
                  <td style="width: 50%;">
                      <div  class="w3-container w3-light-grey">
-                                    <form action="donateSubmit.php" id="from1" method="post">
+                                    <form action="donateSubmitOrganization.php" id="from1" method="post">
                                         <br>
                                         <p style="font-size: 18px;left: 10%;position:relative;">ชื่อ-นามสกุล</p>
                                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="donateName"></center>
@@ -301,6 +301,7 @@
                                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="donate"></center>
                                         <br>
                                         <input type="hidden" name="donateID" value="<?php echo $row['donateID']; ?>">
+                                        <input type="hidden" name="organizationID" value="<?php echo $_SESSION["organizationID"]; ?>">
                                         
                         <div class="w3-container w3-padding">
                             <button class="btnEdit w3-right " onclick="document.getElementById('<?php echo $row['donateID']; ?>').style.display='none'" style="height: 1cm;">ยกเลิก</button>

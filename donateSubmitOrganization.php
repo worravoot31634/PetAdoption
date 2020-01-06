@@ -87,17 +87,17 @@
                     <img width="50" src="./Images/icon/catIcon1.png">&nbsp;ขอบคุณ
                 </p>
                 <p style="font-weight: bold; margin-top:70px;font-size: 30px;">ขอบคุณสำหรับการบริจาค การบริจาคของคุณได้ช่วยให้น้องๆสุนัขและแมวได้มีชีวิตที่ดีขึ้น ^^ </p>
-                <br><br><p><a href="donateLogin.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">กลับไปหน้าบริจาค</button></a></p>
+                <br><br><p><a href="donateOrganization.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">กลับไปหน้าบริจาค</button></a></p>
             </center>
 </div>
 <?php
 include("connectDB.php");
 
     $donate=$_POST["donate"];
-    $name="Test";
+    $name=$_POST["donateName"];
     $creditCard=$_POST["creditCard"];
     $CVV=$_POST["CVV"];
-    $accountID="0";
+    $accountID=$_POST["organizationID"];
     $donateID=$_POST["donateID"];
     $sqlInsert = "INSERT INTO donatedetails(donateMoney,donaterName,cardID,cvv,accountID,donateID)
     VALUES('$donate','$name','$creditCard','$CVV','$accountID','$donateID')";

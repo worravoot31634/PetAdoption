@@ -30,6 +30,7 @@
 
 <?php
         include("connectDB.php");
+        session_start();
   ?>
   .city {display:none}
   </style>
@@ -302,6 +303,7 @@
                                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="donate"></center>
                                         <br>
                                         <input type="hidden" name="donateID" value="<?php echo $row['donateID']; ?>">
+                                        <input type="hidden" name="memberID" value="<?php echo $_SESSION["memberID"]; ?>">
                                         
                         <div class="w3-container w3-padding">
                             <button class="btnEdit w3-right " onclick="document.getElementById('<?php echo $row['donateID']; ?>').style.display='none'" style="height: 1cm;">ยกเลิก</button>
