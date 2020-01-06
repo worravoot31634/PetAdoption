@@ -80,7 +80,7 @@
 
 
             echo'<div class="w3-half" style="padding: 10px;">
-                  <a href= "activityDetailOrganization?id='.$id.'" class="activity-content-link">
+                  <a href= "activityDetailOrganization.php?id='.$id.'" class="activity-content-link">
                     <div class="w3-half colorActivity" style="height: 210px;">
                         <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
                     </div> <!-- end of img -->

@@ -112,7 +112,7 @@
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin"><button class="btnEdit">แก้ไข</button></a>
+                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
                         <a style="background-color: red;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
@@ -122,7 +122,7 @@
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin"><button class="btnEdit">แก้ไข</button></a>
+                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
                         <a style="background-color: green;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
@@ -132,7 +132,7 @@
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin"><button class="btnEdit">แก้ไข</button></a>
+                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
 
                         <a style="background-color: yellow;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
@@ -143,19 +143,19 @@
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin"><button class="btnEdit">แก้ไข</button></a>
+                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
                         <a style="background-color: green;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
                 </div>
             </div>
 
-        
+
             <div style="padding:10px;" class="w3-quarter w3-container">
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin"><button class="btnEdit">แก้ไข</button></a>
+                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
                         <a style="background-color: red;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
@@ -165,7 +165,7 @@
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin"><button class="btnEdit">แก้ไข</button></a>
+                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
                         <a style="background-color: green;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
@@ -175,7 +175,7 @@
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin"><button class="btnEdit">แก้ไข</button></a>
+                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
 
                         <a style="background-color: yellow;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
@@ -186,7 +186,7 @@
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                        <a href="editAddPetLogin"><button class="btnEdit">แก้ไข</button></a>
+                        <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
                         <a style="background-color: green;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
@@ -234,7 +234,7 @@
             </td>
           </tr>
         </table>
-       
+
         <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
             class="fa fa-facebook "></i></a>
         <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
