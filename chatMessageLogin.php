@@ -1,12 +1,25 @@
+<?php
+session_start();
+$_SESSION["userIDLogin"] = "1";
+
+    include('NavbarMember.html');
+    include('connectDB.php');
+
+
+    ?>
+
+
 <!DOCTYPE html>
+
+
 <html>
 <title>Pet Adoption</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./CSS/W3S/w3.css">
-<link rel="stylesheet" href="./CSS/W3S/w3-theme-black.css">
+<link rel="stylesheet" href="CSS/W3S/w3.css">
+<link rel="stylesheet" href="CSS/W3S/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="CSS/Bootstrap/css/bootstrap.min.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -75,7 +88,7 @@ body {
 }
 
 #frame {
-  
+
   width: 95%;
   min-width: 360px;
   max-width: 1000px;
@@ -558,7 +571,7 @@ body {
   }
 }
 #frame .content {
-  
+
   float: right;
   width: 60%;
   height: 100%;
@@ -567,10 +580,10 @@ body {
 }
 @media screen and (max-width: 735px) {
   #frame .content {
-    
+
     width: calc(100% - 58px);
     min-width: 300px !important;
-    
+
   }
 }
 @media screen and (min-width: 900px) {
@@ -736,18 +749,73 @@ body {
 </style>
 <body id="myPage">
 
-<?php
-    include('NavbarMember.html');
-    ?>
+
 <!--Content-->
+
+              <?php
+
+                    // get results from database
+                    $sqlGetAllContacts ="SELECT * FROM chat";
+                    $rsChat=$conn->query($sqlGetAllContacts);
+
+                    $i=0;
+                    $j=0;
+
+                    while($row = $rsChat->fetch_assoc()) {
+                      if($row['toUserID'] == $_SESSION["userIDLogin"]){
+
+                        $contactFrom[$i++] = $row['fromUserID'];
+                      }else{
+                        $contactSend[$j++] = $row['toUserID'];
+                      }
+
+
+
+                    }
+
+
+
+
+                    //Check Contact Lists
+                    $tempContact = array_merge($contactFrom,$contactSend);
+                    $tempContact = array_unique($tempContact);
+
+
+
+                    ?>
+
+                    <!--Fetch Image of User-->
+<?php
+$rowCheckImage = "SELECT * FROM member WHERE memberID = " . $_SESSION["userIDLogin"];
+$rsImage=$conn->query($rowCheckImage);
+
+while($rowCheckImages = $rsImage->fetch_assoc()) {
+
+    $imageUser = $rowCheckImages['Image'];
+
+
+}
+
+?>
 
 <div  id="frame" style="padding-top: 30px;">
   <div id="sidepanel">
       <div id="profile">
           <div class="wrap">
-              <img id="profile-img" src="./Images/userPic.png" class="online" alt="" />
-              <p style="font-size: 18px; font-weight: bold;">Logan</p>
-              
+              <img id="profile-img" src="./Images/<?php echo $imageUser ?>" class="online" alt="" />
+              <?php
+
+                    // get results from database
+                    $sqlFetchUserLogin="SELECT * FROM member WHERE memberID = " . $_SESSION["userIDLogin"];
+                    $rs=$conn->query($sqlFetchUserLogin);
+                    while($row = $rs->fetch_assoc()) {
+
+                      echo   '<p style="font-size: 18px; font-weight: bold;">'. $row['firstname'] .' ' . $row['lastname'] .'</p>';
+                    }
+              ?>
+
+
+
               <div id="status-options">
                   <ul>
                       <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
@@ -772,170 +840,141 @@ body {
       </div>
       <div id="contacts">
           <ul>
-              <li id="contact1" class="contact"  onclick="showChat(1)">
-                  <div class="wrap">
-                      <span class="contact-status online"></span>
-                      <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                      <div class="meta">
-                          <p class="name">Louis Litt</p>
-                          <p class="preview">You just got LITT up, Mike.</p>
-                      </div>
-                  </div>
-              </li>
-              <li id = "contact2" class="contact active" onclick="showChat(2)">
-                  <div class="wrap">
-                      <span class="contact-status busy"></span>
-                      <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                      <div class="meta">
-                          <p class="name">แม่ซื้อ</p>
-                          <p class="preview"><span>คุณ:</span> คริคริคริ</p>
-                      </div>
-                  </div>
-              </li>
-              <li id = "contact3" class="contact"  onclick="showChat(3)">
-                  <div class="wrap">
-                      <span class="contact-status away""></span>
-                      <img src="http://emilcarlsson.se/assets/rachelzane.png" alt="" />
-                      <div class="meta">
-                          <p class="name">Rachel Zane</p>
-                          <p class="preview">I was thinking that we could have chicken tonight, sounds good?</p>
-                      </div>
-                  </div>
-              </li>
-             
-              <li id = "contact4" class="contact"  onclick="showChat(4)">
-                  <div class="wrap">
-                      <span class="contact-status"></span>
-                      <img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
-                      <div class="meta">
-                          <p class="name">Jonathan Sidwell</p>
-                          <p class="preview"><span>You:</span> That's bullshit. This deal is solid.</p>
-                      </div>
-                  </div>
-              </li>
-          </ul>
+          <!--Fetch ContactList li-->
+          <?php
+
+          $countContactList = 1;
+                    //Get Data Contact
+                    foreach($tempContact as $value){
+
+                        $sqlGetContactList = "SELECT * FROM member WHERE memberID = " . $value;
+                        $rs=$conn->query($sqlGetContactList);
+
+                        while($row = $rs->fetch_assoc()) {
+
+
+                      echo'
+                        <li id="contact'. $countContactList .'" class="contact"  onclick="showChat('.$countContactList.');setFromUserID('.$row['memberID'].')">
+                        <div class="wrap">
+                            <span class="contact-status online"></span>
+                            <img src="./Images/'. $row['Image'] .'" alt="" />
+                            <div class="meta">
+                                <p class="name">'. $row['firstname'].' ' .$row['lastname'] .'</p>
+                                <p id = "preview'. $countContactList .'" class="preview"><span>คุณ:</span>';
+
+
+                                $rowLastestChat = "SELECT * FROM chat WHERE toUserID = ". $row['memberID'] ." OR fromUserID = ". $row['memberID']   . " ORDER BY timestamp DESC LIMIT 1";
+                                $rs2=$conn->query($rowLastestChat);
+
+                              while($rowLastestChat = $rs2->fetch_assoc()) {
+
+
+
+                                echo  ' '.$rowLastestChat['message'].'</p>';
+
+                            }
+
+
+
+                      echo '
+                            </div>
+                        </div>
+                    </li>
+                        ';
+                      }
+                        $countContactList++;
+                    }
+
+              ?>
+
+                  </ul>
       </div>
+
       <div id="bottom-bar">
           <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
           <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
       </div>
   </div>
-  <!--Content Chat1-->
-  <div id="Chat1" class="content"  style="display: none;">
-    <div class="contact-profile">
-        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-        <p style="font-size: 18px; font-weight: bold;">Louis Litt</p>
-        <div class="social-media">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-             <i class="fa fa-instagram" aria-hidden="true"></i>
-        </div>
-    </div>
-    <div class="messages" id="message1">
-        <ul>
-            <li class="sent">
-                <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                <p>ทักๆ คราฟ นายมีหมาใช่ไหม</p>
-            </li>
-            <li class="replies">
-                <img src="./Images/userPic.png" alt="" />
-                <p>ใช่แน้ววว</p>
-            </li>
-            <li class="replies">
-                <img src="./Images/userPic.png" alt="" />
-                <p> รู้วได้งาย</p>
-            </li>
-            <li class="sent">
-                <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                <p>ก้อเทอปุกาดงาย</p>
-            </li>
-            <li class="replies">
-                <img src="./Images/userPic.png" alt="" />
-                <p>ประกาดขำๆ จ้าา</p>
-            </li>
-           
-            <li class="sent">
-                <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                <p>แงงๆ เส้าจาง</p>
-            </li>
-           
-        </ul>
-    </div>
-    <div class="message-input">
-        <div class="wrap">
-        <input type="text" placeholder="พิมพ์ข้อความ..." />
-        
-        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-        </div>
-    </div>
-</div>
+
+<!--Chat Message Fetch-->
+  <?php
+
+          $countContactList = 1;
+          //Get Data Contact
+          foreach($tempContact as $value){
+
+              $sqlGetContactList = "SELECT * FROM member WHERE memberID = " . $value;
+              $rs=$conn->query($sqlGetContactList);
+
+
+              while($row = $rs->fetch_assoc()) {
+                echo '<div id="Chat'. $countContactList .'" class="content"  style="display: none;">
+                <div class="contact-profile">
+                    <img src="./Images/'. $row['Image']  .'" alt="" />
+                    <p style="font-size: 18px; font-weight: bold;">'. $row['firstname'].' ' .$row['lastname'] .'</p>
+                    <div class="social-media">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                         <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="messages" id="message'. $countContactList .'">
+                    <ul>';
 
 
 
 
-  <!--Content Chat2-->
-  <div id="Chat2" class="content"  style="display: block;">
-      <div class="contact-profile">
-          <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-          <p style="font-size: 18px; font-weight: bold;">แม่ซื้อ</p>
-          <div class="social-media">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-               <i class="fa fa-instagram" aria-hidden="true"></i>
-          </div>
-      </div>
-      <div class="messages" id="message2">
-          <ul>
-              <li class="sent">
-                  <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                  <p>ทักๆ คราฟ นายมีหมาใช่ไหม</p>
-              </li>
-              <li class="replies">
-                  <img src="./Images/userPic.png" alt="" />
-                  <p>ใช่แน้ววว</p>
-              </li>
-              <li class="replies">
-                  <img src="./Images/userPic.png" alt="" />
-                  <p> รู้วได้งาย</p>
-              </li>
-              <li class="sent">
-                  <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                  <p>ก้อเทอปุกาดงาย</p>
-              </li>
-              <li class="replies">
-                  <img src="./Images/userPic.png" alt="" />
-                  <p>ประกาดขำๆ จ้าา</p>
-              </li>
-              <li class="replies">
-                  <img src="./Images/userPic.png" alt="" />
-                  <p>งงเลยดิ55555+</p>
-              </li>
-              <li class="sent">
-                  <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                  <p>แงงๆ เส้าจาง</p>
-              </li>
-              <li class="replies">
-                  <img src="./Images/userPic.png" alt="" />
-                  <p>คริคริคริ</p>
-              </li>
-          </ul>
-      </div>
-      <div class="message-input" id="inputMessage2">
-          <div class="wrap">
-          <input type="text" placeholder="พิมพ์ข้อความ..." />
-          
-          <button class="submit" id="submit2"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-          </div>
-      </div>
-  </div>
+
+
+
+                      //Get Chat Message
+                      $sqlGetAllContacts ="SELECT * FROM chat";
+                      $rsChat=$conn->query($sqlGetAllContacts);
+                    while($rowChat = $rsChat->fetch_assoc()) {
+
+                      if($rowChat['fromUserID'] == $row['memberID']){
+                          echo '<li class="replies">
+                          <img src="./Images/'. $imageUser  .'" alt="" />
+                          <p>'. $rowChat['message'] .'</p>
+                      </li>';
+                      }else if ($rowChat['toUserID'] == $row['memberID']){
+                        echo '<li class="sent">
+                        <img src="./Images/'. $row['Image']  .'" alt="" />
+                          <p>'. $rowChat['message'] .'</p>
+                      </li>';
+                      }
+                    }
+
+
+
+                   echo' </ul>
+                </div>
+                <div class="message-input" id="inputMessage'. $countContactList .'">
+                    <div class="wrap">
+                    <input type="text" placeholder="พิมพ์ข้อความ..." />
+
+                    <button class="submit" id = "submit'. $countContactList .'"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>';
+
+              }
+              $countContactList++;
+            }
+
+
+
+?>
+
+
 
   </div>
 
 
 
 
-   
-  
+
+
 
 </body>
 
@@ -1019,35 +1058,98 @@ document.getElementById("btnChat").style.display = "block"
 <script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
 
+//Check User from
+var tempfromUserID=0;
+function setFromUserID(idUser){
+  tempfromUserID = idUser;
+}
 
 
-function newMessage() {
-	message = $("#inputMessage2 input").val();
+
+function newMessage(idInput,idNum) {
+	message = $(idInput).val();
 	if($.trim(message) == '') {
 		return false;
   }
   console.log(message);
-	$('<li class="replies"><img src="./Images/userPic.png" alt="" /><p>' + message + '</p></li>').appendTo($('#message2 ul'));
-  $('#inputMessage2 input').val(null);
+$append = "#message" + idNum + " ul";
+
+	$('<li class="replies"><img src="./Images/userPic.png" alt="" /><p>' + message + '</p></li>').appendTo($($append));
+  $(idInput).val(null);
+
 	$('.contact.active .preview').html('<span>คุณ: </span>' + message);
-	$("#message2").animate({ scrollTop: $(document).height() }, "fast");
+	$("#message" + idNum ).animate({ scrollTop: $(document).height() }, "fast");
+
+
+  var toUserID = <?php echo $_SESSION["userIDLogin"];?>;
+  var fromUserID = tempfromUserID;
+  var message = message;
+
+
+  var userdata = {'toUserID':toUserID,'fromUserID':fromUserID,'message':message};
+  console.log(userdata);
+
+  $.ajax({
+            type: "POST",
+            url: "addChatPHP.php",
+            data: userdata,
+            success: function(data){
+                console.log(data);
+            }
+            });
+
+
+
+
+
 };
 
-$('#submit2').click(function() {
-  newMessage();
-  
-});
 
-$(window).on('keydown', function(e) {
-  if (e.which == 13) {
-    newMessage();
-    return false;
-  }
-});
-//# sourceURL=pen.js
+<?php
+
+          $e = 1;
+          //Get Data Contact
+          foreach($tempContact as $value){
+
+              $sqlGetContactList = "SELECT * FROM member WHERE memberID = " . $value;
+              $rs=$conn->query($sqlGetContactList);
+
+              while($row = $rs->fetch_assoc()) {
+                echo "$('#submit". $e."').click(function() {
+                  newMessage('#inputMessage". $e ." input',". $e .");
+                });";
+
+                echo " $('#InputMessage".$e." input').on('keyup', function(e) {
+                  if (e.which == 13) {
+
+                    newMessage('#inputMessage". $e ." input',". $e .");
+                    return false;
+                  }
+                });
+                ";
+
+                $e++;
+              }
+            }
+?>
+
+
+
+
+     /* $(window).on('keydown', function(e) {
+        if (e.which == 13) {
+          newMessage();
+          return false;
+        }
+      });
+      # sourceURL=pen.js*/
 
 
 function showChat(id){
+
+
+
+
   switch(id) {
   case 1:
     document.getElementById('contact1').classList.add('active');
@@ -1095,7 +1197,7 @@ function showChat(id){
   default:
     // code block
 }
-  
-  
+
+
 }
 </script>
