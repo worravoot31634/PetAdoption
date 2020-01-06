@@ -16,7 +16,7 @@
     crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>-->
+    crossorigin="anonymous"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
@@ -40,7 +40,7 @@
 <body id="myPage">
 
 <?php
-    include('NavbarNonMember.html');
+    include('NavbarNonMember.php');
     ?>
 
     <?php
@@ -51,7 +51,7 @@
 
     <!--header text and image of activity-->
     <center>
-        <div class="w3-container" style="margin-top:40px;display:inline-block">
+        <div class="w3-container" style="margin-top:60px;display:inline-block">
             <img src="./Images/icon/cat.png" alt="" srcset="" width="50px">
             <div style="display:inline-block;">
                 <p style="font-size: 30px;font-weight:bold;vertical-align: middle;">กิจกรรม</p>
