@@ -7,16 +7,13 @@
 <link rel="stylesheet" href="./CSS/W3S/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>-->
+<?php
+// Start the session
+session_start();
+?>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
@@ -47,16 +44,43 @@
 
 <body id="myPage">
 
-<?php
+    <?php
+
     include('NavbarNonMember.html');
     ?>
-    
-    <!--Content-->
-    <div class="w3-container w3-hide-medium w3-hide-small" style="margin-top: 150px;margin-bottom: 100px;">
-        <div class="w3-row  w3-right"
-            style="width: 25%;border-radius: 5px;background-color: #726292;margin-right: 10%;">
-            <div class="w3-row">
-                <br>
+    <form name="form1" method="post" action="check_login.php">
+        <!--Content-->
+        <div class="w3-container w3-hide-medium w3-hide-small" style="margin-top: 150px;margin-bottom: 100px;">
+            <div class="w3-row  w3-right" style="width: 25%;border-radius: 5px;background-color: #726292;margin-right: 10%;">
+                <div class="w3-row">
+                    <br>
+                    <center>
+                        <p style="font-size: 30px;color:white;font-weight: bold;">เข้าสู่ระบบ</p>
+                    </center>
+                    <form action="">
+                        <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">ชื่อผู้ใช้</p>
+                        <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="username" id="username">
+                        </center>
+                        <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">รหัสผ่าน</p>
+                        <center><input type="password" style="width:80%;border: none;border-radius: 2px;" name="password" id="password">
+                        </center>
+                        <br>
+                        <?php
+                        if (isset($_SESSION['message'])) {
+                            echo "<center>"."<p style='font-size: 18px;position:relative;color: #FFFFFF;'>".$_SESSION['message']."</p>"."</center>";  
+                            unset($_SESSION['message']);
+                        } ?>
+                        <center><button type="submit" name="login" style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
+                        </center>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w3-container w3-hide-large" style="margin-top: 50px;">
+            <div class="w3-row " style="border-radius: 5px;background-color: #726292;">
                 <center>
                     <p style="font-size: 30px;color:white;font-weight: bold;">เข้าสู่ระบบ</p>
                 </center>
@@ -68,34 +92,12 @@
                     <center><input type="password" style="width:80%;border: none;border-radius: 2px;" name="password">
                     </center>
                     <br>
-                    <center><button type="submit" name="login"
-                            style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
+                    <center><button type="submit" name="login" style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
                     </center>
                 </form>
             </div>
         </div>
-    </div>
-
-
-    <div class="w3-container w3-hide-large" style="margin-top: 50px;">
-        <div class="w3-row " style="border-radius: 5px;background-color: #726292;">
-            <center>
-                <p style="font-size: 30px;color:white;font-weight: bold;">เข้าสู่ระบบ</p>
-            </center>
-            <form action="">
-                <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">ชื่อผู้ใช้</p>
-                <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="username">
-                </center>
-                <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">รหัสผ่าน</p>
-                <center><input type="password" style="width:80%;border: none;border-radius: 2px;" name="password">
-                </center>
-                <br>
-                <center><button type="submit" name="login"
-                        style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
-                </center>
-            </form>
-        </div>
-    </div>
+    </form>
 
     <!--Hidden small medium-->
 
