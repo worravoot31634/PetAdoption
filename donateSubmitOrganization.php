@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
 <meta charset="UTF-8">
@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
 
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -16,12 +17,47 @@
     crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>-->
+    crossorigin="anonymous"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="CSS/CustomCss.css">
+<link rel="stylesheet" href="./CSS/CustomCss.css">
 
+<link rel="stylesheet" href="/lib/bootstrap.min.css">
+  <script src="/lib/jquery-1.12.2.min.js"></script>
+  <script src="/lib/bootstrap.min.js"></script>
+  <?php
+        include("connectDB.php");
+  ?>
 <style>
+.statusCircle {
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+</style>
+<style>
+    .statusCircle {
+        height: 30px;
+        width: 30px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .btnEdit {
+        width: 40%;
+        border-radius: 3px;
+        border: none;
+        background-color: #786898;
+        color: #ffffff;
+    }
+
+    .btnEdit:hover {
+        background-color: #373143;
+    }
+
     .activity-content-link {
         text-decoration: none;
         color: black;
@@ -31,14 +67,9 @@
         color: black;
     }
 
-    .contentCenter {
-        margin: auto;
-        width: 60%;
+    .colorActivity {
+        background-color: #E2E0E0;
 
-    }
-
-    .pragraph {
-        font-size: 20px;
     }
 </style>
 
@@ -48,60 +79,39 @@
 <?php
     include('NavbarOrganization.php');
     ?>
-    
-    <?php
-        include('connectDB.php');
-        ?>
-    <!--Content-->
+  
 
+<center>
+                <br>
+                <p style="font-weight: bold; margin-top:70px;font-size: 30px;">
+                    <img width="50" src="./Images/icon/catIcon1.png">&nbsp;ขอบคุณ
+                </p>
+                <p style="font-weight: bold; margin-top:70px;font-size: 30px;">ขอบคุณสำหรับการบริจาค การบริจาคของคุณได้ช่วยให้น้องๆสุนัขและแมวได้มีชีวิตที่ดีขึ้น ^^ </p>
+                <br><br><p><a href="donateLogin.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">กลับไปหน้าบริจาค</button></a></p>
+            </center>
+</div>
 <?php
+include("connectDB.php");
 
+    $donate=$_POST["donate"];
+    $name="Test";
+    $creditCard=$_POST["creditCard"];
+    $CVV=$_POST["CVV"];
+    $accountID="0";
+    $donateID=$_POST["donateID"];
+    $sqlInsert = "INSERT INTO donatedetails(donateMoney,donaterName,cardID,cvv,accountID,donateID)
+    VALUES('$donate','$name','$creditCard','$CVV','$accountID','$donateID')";
 
-$id = $_GET["id"];
-
-$sql="SELECT * FROM activity Where activityID = $id";
-
-$rs=$conn->query($sql);
-
-while($row = $rs->fetch_assoc()) {
-
-
-
-    echo'<center>
-        <h1 style="margin-top: 50px;">'. $row['topic'] .'</h1>
-        <br>
-        <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="80%">
-    </center>
-
-
-    <div style="width: 80%;display: table;width: 80%;" class="contentCenter">
-
-        <p class="pragraph">
-          '. $row['details'] .'
-        </p>
-
-
-    </div>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div>
-            </div>
-            <div>
-            </div>
-          <div>
-            </div>
-        </div>
-    </div>'; }
-
+if ($conn->query($sqlInsert) === TRUE) {
+  
+} else {
+    echo "Error: " . $sqlInsert . "<br>" . $conn->error;
+}
+    
 ?>
-    <br>
-    <!--end Content-->
 
 
-
-
-    <style>
+<style>
     .w3-8c71c0 {
     background-color: #8c71c0;
     }
@@ -135,6 +145,7 @@ while($row = $rs->fetch_assoc()) {
               </td>
             </tr>
           </table>
+          
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
@@ -146,6 +157,7 @@ while($row = $rs->fetch_assoc()) {
                     <i class="fa fa-chevron-circle-up "></i></span></a>
         </div>
     </footer>
+
     <script>
         // Script for side navigation
         function w3_open() {

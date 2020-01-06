@@ -37,7 +37,7 @@
 
 
 <?php
-    include('NavbarMember.html');
+    include('NavbarMember.php');
     ?>
 
     <!--Fix 80 percent Screen-->

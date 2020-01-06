@@ -149,7 +149,7 @@ background-color: #373143;
 
 
 <?php
-    include('NavbarOrganization.html');
+    include('NavbarOrganization.php');
     ?>
     <!--Content-->
 

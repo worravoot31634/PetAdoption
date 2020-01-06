@@ -144,7 +144,7 @@
 <body id="myPage">
 
 
-    <?php include('NavbarOrganization.html') ?>
+    <?php include('NavbarOrganization.php') ?>
 
     <!--Content-->
 

@@ -83,7 +83,7 @@
 
 
 <?php
-    include('NavbarMember.html');
+    include('NavbarMember.php');
     ?>
 
 
@@ -138,7 +138,9 @@
                             
                         
                         
-                    
+<?php
+    $sql ="SELECT";
+?>            
                 
 <br>
 <div class="w3-container">
@@ -171,7 +173,6 @@
                         }else{
                             $presen = 100;
                         }
-                        
                     if($i%2==0){
                         echo "<div class='w3-row' style='width: 100%;margin:auto'>";
                         echo "<!--row  half right side-->
@@ -246,7 +247,7 @@
                                             <td  style='width: 60%;'>
                                         <div class='container' >
                                             <div class='progress' style='height: 0.6cm;'>
-                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='".$presen."% ;'>
+                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100'  style='width:".$presen."% ;''>
                                                   ".$row2['sumDonate']." บาท
                                                 </div>
                                               </div>
@@ -283,7 +284,7 @@
                  </td>
                  <td style="width: 50%;">
                      <div  class="w3-container w3-light-grey">
-                                    <form action="donateSubmit.php" id="from1" method="post">
+                                    <form action="donateSubmitLogin.php" id="from1" method="post">
                                         <br>
                                         <p style="font-size: 18px;left: 10%;position:relative;">ชื่อ-นามสกุล</p>
                                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="donateName"></center>
