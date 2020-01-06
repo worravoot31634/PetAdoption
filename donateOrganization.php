@@ -449,8 +449,6 @@
         </div>
         
     </div>
-    border: 2px solid red;
-    border-radius: 12px;
      <!----Popup box---->
      <div id="id01" class="w3-modal">
         

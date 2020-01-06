@@ -25,6 +25,9 @@
 <link rel="stylesheet" href="/lib/bootstrap.min.css">
   <script src="/lib/jquery-1.12.2.min.js"></script>
   <script src="/lib/bootstrap.min.js"></script>
+  <?php
+        include("connectDB.php");
+  ?>
 <style>
 .statusCircle {
   height: 30px;
@@ -74,7 +77,7 @@
 
 
 
-
+  
 <?php
     include('NavbarNonMember.html');
     ?>
@@ -131,318 +134,141 @@
                         </div>
 
 
-
-
+  
 
 
 <br>
 <div class="w3-container">
-
-        <div class="w3-container w3-border" style="margin: 1%; position:relative">
-
+        
+        <div class="w3-container " style="margin: 1%; position:relative">
+<!---------------------------------------------------------------------->
             <!--row of half content activity-->
+            <?php
+                $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID , organization.firstname as fname,organization.lastname as lname
+                FROM donate
+                join organization 
+                on donate.organizationID = organization.organizationID";
+                
+                $rs = $conn->query($sql);
+                $i=0;
+                while ($row = $rs->fetch_assoc()) {
+                    $sql2 = "SELECT SUM(donateMoney) as sumDonate
+                        FROM donate
+                        join organization 
+                        on donate.organizationID = organization.organizationID
+                        join donateDetails 
+                        on donateDetails.donateID = donate.donateID
+                        WHERE donate.donateID =".$row['donateID']."";
 
-            <div class="w3-row" style="width: 100%;margin:auto">
-                        <!--row  half right side-->
+                        $rs2 = $conn->query($sql2);
+                        $row2 = $rs2;
+                        $row2 = $rs2->fetch_assoc();
+                        if($row2['sumDonate'] < $row['donateRequired']){
+                            $presen = $row2['sumDonate']/($row['donateRequired']/100);
+                        }else{
+                            $presen = 100;
+                        }
+                        
+                    if($i%2==0){
+                        echo "<div class='w3-row' style='width: 100%;margin:auto'>";
+                        echo "<!--row  half right side-->
+                                <div class='w3-half' style='padding: 10px;'>
+                                    <div class='w3-half colorActivity' style='height: 220px;'>
+                                        <img src='./Images/".$row['DImage']."' alt='' srcset='' width='100%'' height='auto' style='height: 220px;'>
+                                    </div> <!-- end of img -->
 
-                    <div class="w3-half" style="padding: 10px;">
-                        <div class="w3-half colorActivity" style="height: 220px;">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                        </div> <!-- end of img -->
+                                    <div class='w3-half colorActivity' style='height: 220px;'>
+
+                                        <!--img and text side by side-->
+                                        <div style='margin-top: 5px;float: left;''>
+                                            <div style='display:inline-block'>
+                                                <img src='./Images/".$row['OImage']."' alt='' srcset='' width='100%'
+                                                    style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>
+                                            </div>
+                                            <div style='display:inline-block'>
+                                                <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
+                                            </div>
+                                        </div><!-- end of img and text side by side-->
+
+                                        <p style='font-size: 1vw;clear: both;'>".$row['details']."
+
+                                        </p>
+                                        <table style='width: 100%;'>
+                                            <tr>
+                                                <td  style='width: 60%;'>
+                                            <div class='container' >
+                                                <div class='progress' style='height: 0.6cm;'>
+                                                    <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
+                                                    ".$row2['sumDonate']." บาท
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </td>
+                                            <td style='width: 40%;'>
+                                                <a href='login.php'><button class='btnEdit' style='width:80%'>บริจาค</button></a>
+                                            </td>
+                                            </tr>
+                                        </table>
+                                </a></div><!-- end of text -->
+                        </div> <!-- end of row  half right side-->";
 
 
-                        <div class="w3-half colorActivity" style="height: 220px;">
+                    }else{
+                        echo " <!--row  half right side-->
 
-                            <!--img and text side by side-->
-                            <div style="margin-top: 5px;float: left;">
-                                <div style="display:inline-block">
-                                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                        style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                                </div>
-                                <div style="display:inline-block">
-                                    <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                                </div>
-                            </div><!-- end of img and text side by side-->
-
-                            <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                                distracted by the
-                                readable content of a page
-                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                normal
-
-                            </p>
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td  style="width: 65%;">
-                                <div class="container" >
-                                    <div class="progress" style="height: 0.6cm;">
-                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                        2000 บาท
+                        <div class='w3-half' style='padding: 10px;'>
+                                <div class='w3-half colorActivity' style='height: 220px;'>
+                                    <img src='./Images/".$row['DImage']."' srcset='' width='100%' height='auto' style='height: 220px;'>
+                                </div> <!-- end of img -->
+            
+            
+                                <div class='w3-half colorActivity' style='height: 220px;'>
+            
+                                <!--img and text side by side-->
+                                <div style='margin-top: 5px;float: left;''>
+                                    <div style='display:inline-block'>
+                                        <img src='./Images/".$row['OImage']."' alt='' srcset='' width='100%'
+                                            style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>
+                                    </div>
+                                        <div style='display:inline-block'>
+                                            <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
                                         </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td style="width: 100%;">
-                                    <a href="login.php"><button class="btnEdit">บริจาค</button></a>
-                                </td>
-                                </tr>
-                            </table>
-                    </a></div><!-- end of text -->
-            </div> <!-- end of row  half right side-->
-
-            <!--row  half right side-->
-
-            <div class="w3-half" style="padding: 10px;">
-                    <div class="w3-half colorActivity" style="height: 220px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                    </div> <!-- end of img -->
-
-
-                    <div class="w3-half colorActivity" style="height: 220px;">
-
-                        <!--img and text side by side-->
-                        <div style="margin-top: 5px;float: left;">
-                            <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                    style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                            </div>
-                        </div><!-- end of img and text side by side-->
-
-                        <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
-
-                        </p>
-                        <table style="width: 100%;">
-                            <tr>
-                                <td  style="width: 65%;">
-                            <div class="container" >
-                                <div class="progress" style="height: 0.6cm;">
-                                    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                      2000 บาท
-                                    </div>
-                                  </div>
-                              </div>
-                              </td>
-                              <td style="width: 100%;">
-                              <a href="login.php"><button class="btnEdit">บริจาค</button></a>
-                              </td>
-                            </tr>
-                        </table>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half right side-->
+                                    </div><!-- end of img and text side by side-->
+            
+                                    <p style='font-size: 1vw;clear: both;'>".$row['details']."
+            
+                                    </p>
+                                    <table style='width: 100%;''>
+                                        <tr>
+                                            <td  style='width: 60%;'>
+                                        <div class='container' >
+                                            <div class='progress' style='height: 0.6cm;'>
+                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='".$presen."% ;'>
+                                                  ".$row2['sumDonate']." บาท
+                                                </div>
+                                              </div>
+                                          </div>
+                                          </td>
+                                          <td style='width: 40%;'>
+                                          <a href='login.php'><button class='btnEdit' style='width:80%'>บริจาค</button></a>
+                                          </td>
+                                        </tr>
+                                    </table>
+                            </a></div><!-- end of text -->
+                    </div> <!-- end of row  half right side-->";
+                   
+                    }
+                     $i=$i+1;
+                }
+            ?>
 
         </div>
-
-
-
-        <!---row 2 --->
-            <!--row of half content activity-->
-
-            <div class="w3-row" style="width: 100%;margin:auto">
-                        <!--row  half right side-->
-
-                    <div class="w3-half" style="padding: 10px;">
-                        <div class="w3-half colorActivity" style="height: 220px;">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                        </div> <!-- end of img -->
-
-
-                        <div class="w3-half colorActivity" style="height: 220px;">
-
-                            <!--img and text side by side-->
-                            <div style="margin-top: 5px;float: left;">
-                                <div style="display:inline-block">
-                                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                        style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                                </div>
-                                <div style="display:inline-block">
-                                    <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                                </div>
-                            </div><!-- end of img and text side by side-->
-
-                            <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                                distracted by the
-                                readable content of a page
-                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                normal
-
-                            </p>
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td  style="width: 65%;">
-                                <div class="container" >
-                                    <div class="progress" style="height: 0.6cm;">
-                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                        2000 บาท
-                                        </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td style="width: 100%;">
-                                    <a href="login.php"><button class="btnEdit">บริจาค</button></a>
-                                </td>
-                                </tr>
-                            </table>
-                    </a></div><!-- end of text -->
-            </div> <!-- end of row  half right side-->
-
-            <!--row  half right side-->
-
-            <div class="w3-half" style="padding: 10px;">
-                    <div class="w3-half colorActivity" style="height: 220px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                    </div> <!-- end of img -->
-
-
-                    <div class="w3-half colorActivity" style="height: 220px;">
-
-                        <!--img and text side by side-->
-                        <div style="margin-top: 5px;float: left;">
-                            <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                    style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                            </div>
-                        </div><!-- end of img and text side by side-->
-
-                        <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
-
-                        </p>
-                        <table style="width: 100%;">
-                            <tr>
-                                <td  style="width: 65%;">
-                            <div class="container" >
-                                <div class="progress" style="height: 0.6cm;">
-                                    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                      2000 บาท
-                                    </div>
-                                  </div>
-                              </div>
-                              </td>
-                              <td style="width: 100%;">
-                              <a href="login.php"><button class="btnEdit">บริจาค</button></a>
-                              </td>
-                            </tr>
-                        </table>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half right side-->
-
-        </div>
-        <!-----END row2----->
-
-        <!---row 3 --->
-            <!--row of half content activity-->
-
-            <div class="w3-row" style="width: 100%;margin:auto">
-                <!--row  half right side-->
-
-            <div class="w3-half" style="padding: 10px;">
-                <div class="w3-half colorActivity" style="height: 220px;">
-                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                </div> <!-- end of img -->
-
-
-                <div class="w3-half colorActivity" style="height: 220px;">
-
-                    <!--img and text side by side-->
-                    <div style="margin-top: 5px;float: left;">
-                        <div style="display:inline-block">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                        </div>
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                        </div>
-                    </div><!-- end of img and text side by side-->
-
-                    <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-
-                    </p>
-                    <table style="width: 100%;">
-                        <tr>
-                            <td  style="width: 65%;">
-                        <div class="container" >
-                            <div class="progress" style="height: 0.6cm;">
-                                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                2000 บาท
-                                </div>
-                            </div>
-                        </div>
-                        </td>
-                        <td style="width: 100%;">
-                        <a href="login.php"><button class="btnEdit">บริจาค</button></a>
-                        </td>
-                        </tr>
-                    </table>
-            </a></div><!-- end of text -->
-    </div> <!-- end of row  half right side-->
-
-    <!--row  half right side-->
-
-    <div class="w3-half" style="padding: 10px;">
-            <div class="w3-half colorActivity" style="height: 220px;">
-                <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-            </div> <!-- end of img -->
-
-
-            <div class="w3-half colorActivity" style="height: 220px;">
-
-                <!--img and text side by side-->
-                <div style="margin-top: 5px;float: left;">
-                    <div style="display:inline-block">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                            style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                    </div>
-                    <div style="display:inline-block">
-                        <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                    </div>
-                </div><!-- end of img and text side by side-->
-
-                <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                    distracted by the
-                    readable content of a page
-                    when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                    normal
-
-                </p>
-                <table style="width: 100%;">
-                    <tr>
-                        <td  style="width: 65%;">
-                    <div class="container" >
-                        <div class="progress" style="height: 0.6cm;">
-                            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                              2000 บาท
-                            </div>
-                          </div>
-                      </div>
-                      </td>
-                      <td style="width: 100%;">
-                      <a href="login.php"><button class="btnEdit">บริจาค</button></a>
-                      </td>
-                    </tr>
-                </table>
-        </a></div><!-- end of text -->
-</div> <!-- end of row  half right side-->
-
-</div>
-<!-----END row3----->
          <!--end of row of half content activity-->
+
+
+
+
+
         </div>
 
     </div>
@@ -494,8 +320,8 @@
               </td>
             </tr>
           </table>
-
-        <p><a href="register.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
+          
+        <p><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></p>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
