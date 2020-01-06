@@ -98,7 +98,7 @@
                             </p>
                         </div>
                 </form>
-                
+
                 <div class="w3-container w3-quarter" style="padding-bottom: 5px;">
                     <div class="w3-half" style="padding: 2px;width: 50%;">
                         <a style="font-weight: bold; font-size: 20px;">สายพันธ์</a>
@@ -225,17 +225,8 @@
                 <div class="w3-container">
 
                     <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "petadoption";
 
-                    // Create connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                include('connectDB.php');
 
                     $sql = "SELECT petID, petStatus, pet.image,firstname,member.image as mimage FROM pet join member on posterID=memberID";
                     $result = $conn->query($sql);
@@ -252,7 +243,7 @@
                                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
                                         <img width="35px" src="./Images/<?php echo $row["mimage"] ?>">
                                         <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;"><?php echo $row["firstname"] ?></a>
-                                        <a style="background-color: 
+                                        <a style="background-color:
                                     <?php if ($row["petStatus"] == 0) {
                                                 echo "green";
                                             } elseif ($row["petStatus"] == 1) {
