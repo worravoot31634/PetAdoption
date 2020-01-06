@@ -25,7 +25,7 @@
 
 
 <?php
-    include('NavbarNonMember.html');
+    include('NavbarNonMember.php');
     ?>
 
 
