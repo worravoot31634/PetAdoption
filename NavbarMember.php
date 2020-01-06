@@ -14,7 +14,7 @@
             <a href="activityLogin.php" style="font-size: 20px;"
                 class="w3-bar-item w3-button w3-hide-medium w3-hide-small"><b>กิจกรรม</b></a>
             <div class="w3-dropdown-hover" style="font-size: 20px;">
-                <button class=" w3-button"><b>Jame Logan</b></button>
+                <button class=" w3-button"><b><Jame Logan></b></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     <a href="myPostLogin.php" class="w3-bar-item w3-button"><b>โพสต์ของฉัน</b></a>
                     <a href="chatMessageLogin.php" class="w3-bar-item w3-button"><b>ประวัติแชท</b></a>
