@@ -46,7 +46,7 @@ session_start();
 
     <?php
 
-    include('NavbarNonMember.html');
+    include('NavbarNonMember.php');
     ?>
     <form name="form1" method="post" action="check_login.php">
         <!--Content-->
