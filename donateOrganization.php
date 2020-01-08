@@ -310,7 +310,7 @@ if(!$_SESSION['loginStatus']){
                                         <br>
                                         <input type="hidden" name="donateID" value="<?php echo $row['donateID']; ?>">
                                         <input type="hidden" name="organizationID" value="<?php echo $_SESSION["organizationID"]; ?>">
-                                        
+                                        <p name="search"></p>
                         <div class="w3-container w3-padding">
                             <button class="btnEdit w3-right " onclick="document.getElementById('<?php echo $row['donateID']; ?>').style.display='none'" style="height: 1cm;">ยกเลิก</button>
                             <button class="btnEdit w3-left  " type="submit"  style="height: 1cm;">บริจาค</button>

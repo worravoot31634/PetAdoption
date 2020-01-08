@@ -33,8 +33,10 @@ if(!$_SESSION['loginStatus']){
 <link rel="stylesheet" href="/lib/bootstrap.min.css">
   <script src="/lib/jquery-1.12.2.min.js"></script>
   <script src="/lib/bootstrap.min.js"></script>
+  <script src="searchDonate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <style>
-
+  
 
 <?php
         include("connectDB.php");
@@ -116,49 +118,63 @@ if(!$_SESSION['loginStatus']){
                   
                         
                         <div style="width: 100%; ">
+                        <form name="donateSearch"  >
                         <table align=center style="width: 70%;">
                             <tr style="width: 100%;" >
                                 <td style="width: 50%;"> 
-                                    <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" />
+                                    <input class="advanceSearch" name="donateTitle" id="fromText"  placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" />
                                 </td>
                                 <td >
                                     <a style="font-weight: bold; font-size: 20px;">จังหวัด&nbsp;&nbsp;</a>
                                 </td>
                                 <td style="width: 50%;" >
                                     <div style="font-size: 20px;" class="w3-half" >
-                                                        <select class="w3-border w3-rest  w3-select" name="option" >
+                                                        <select class="w3-border w3-rest  w3-select" name="province" id="fromSelect">
                                                             <option style="font-size: 20px;" value="0">all</option>
-                                                            <option style="font-size: 20px;" value="1">นครราชสีมา</option>
-                                                            <option style="font-size: 20px;" value="2">บุรีรัมย์</option>
+                                                            <option style="font-size: 20px;" value="นครราชสีมา">นครราชสีมา</option>
+                                                            <option style="font-size: 20px;" value="บุรีรัมย์">บุรีรัมย์</option>
                                                         </select>
                                                         </div>  
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="#" style="font-size:18px; background-color: #726292; color: white;" 
-                                                        class="w3-button w3-circle" title="Search"><i class="fa fa-search"></i></a>
+                                                        <a href="#" id="bntSearch"  type="submit" style="font-size:18px; background-color: #726292; color: white;" 
+                                                        class="w3-button w3-circle "title="Search"><i class="fa fa-search"></i></a>
 
                                 </td>
-                                
-                               
-                                
                             </tr>
                         </table>
+                        </form>
                         </div>
                                                                        
                             
-                        
-                        
+<script>
+    $("#fromSelect").change(function() {
+    fromSelect = $(this).val();
+    });
+
+    $("#fromText").change(function() {
+    fromText = $(this).val();
+    });
+    $("#bntSearch").click(function() {
+        alert("The paragraph was clicked.");
+        showHint(fromText,fromSelect);
+        $(".reset").empty();
+    });
+
+
+</script>
+
 <?php
     $sql ="SELECT";
 ?>            
                 
 <br>
-<div class="w3-container">
+<div class="w3-container" id="popup">
     
-        <div class="w3-container w3-border" style="margin: 1%; position:relative">
+        <div class="w3-container w3-border reset" style="margin: 1%; position:relative" id="search" >
 
             <!--row of half content activity-->
             <?php
-                $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID , organization.firstname as fname,organization.lastname as lname
+                $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID , organization.firstname as fname,organization.lastname as lname,donateTitle
                 FROM donate
                 join organization 
                 on donate.organizationID = organization.organizationID";
@@ -202,10 +218,10 @@ if(!$_SESSION['loginStatus']){
                                                 <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
                                             </div>
                                         </div><!-- end of img and text side by side-->
+                                        <p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p>
+                                        <p style='font-size: 1vw;clear: both;'>".$row['details']."</p>
 
-                                        <p style='font-size: 1vw;clear: both;'>".$row['details']."
-
-                                        </p>
+                                        
                                         <table style='width: 100%;'>
                                             <tr>
                                                 <td  style='width: 60%;'>
@@ -247,10 +263,9 @@ if(!$_SESSION['loginStatus']){
                                             <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
                                         </div>
                                     </div><!-- end of img and text side by side-->
+                                    <p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p>
+                                    <p style='font-size: 1vw;clear: both;'>".$row['details']."</p>
             
-                                    <p style='font-size: 1vw;clear: both;'>".$row['details']."
-            
-                                    </p>
                                     <table style='width: 100%;''>
                                         <tr>
                                             <td  style='width: 60%;'>
@@ -276,7 +291,7 @@ if(!$_SESSION['loginStatus']){
                     
      <!----Popup box---->
     
-     <div id="<?php echo $row['donateID']; ?>" class="w3-modal">
+     <div id="<?php echo $row['donateID']; ?>" class="w3-modal popup" >
      
         <div class="w3-modal-content w3-card-4 w3-animate-zoom">
          <header class="w3-container w3-8c71c0"> 
@@ -288,7 +303,7 @@ if(!$_SESSION['loginStatus']){
              <tr style="width: 100%;">
                  <td style="width: 30%;">
                     <div class="w3-half "  style="width: 100%;">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="100%">
+                            <img src="./Images/<?php echo $row['DImage']; ?>" alt="" srcset="" width="100%" height="100%">
                     </div> <!-- end of img -->
                  </td>
                  <td style="width: 50%;">
