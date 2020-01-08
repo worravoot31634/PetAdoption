@@ -26,9 +26,15 @@ session_start();
                         $sqlMember = "SELECT * FROM member WHERE accountID = '".$row["accountID"]."'";
                         $rsMember = $conn->query($sqlMember);
 
+                        
+
                         while($rowMember = $rsMember->fetch_assoc()) {
 
-                            $_SESSION['memberID']= $rowMember['memberID'];
+                            //Update Login Status Online
+                            $sqlUpdateStatusLogin = $conn->query("UPDATE account SET statusLogin = 1 WHERE accountID = " . $rowMember['accountID'] ); 
+
+
+                            $_SESSION['accountID']= $rowMember['memberID'];
                             $_SESSION['UserFirstname'] = $rowMember['firstname'];
                             $_SESSION['UserLastname']= $rowMember['lastname'];
                             $_SESSION['Image']= $rowMember['Image'];
@@ -43,7 +49,7 @@ session_start();
 
                         while($rowrOrganize = $rsOrganize->fetch_assoc()) {
 
-                            $_SESSION['organizationID']= $rowrOrganize['organizationID'];
+                            $_SESSION['accountID']= $rowrOrganize['organizationID'];
                             $_SESSION['UserFirstname'] = $rowrOrganize['firstname'];
                             $_SESSION['UserLastname']= $rowrOrganize['lastname'];
                             $_SESSION['UserAddress']= $rowrOrganize['address'];
@@ -54,12 +60,12 @@ session_start();
                         break;
 
                     case "admin":
-                        $sqlAdmin = "SELECT * FROM admin where accountID = '".$result["accountID"]."'";
+                        $sqlAdmin = "SELECT * FROM admin where accountID = '".$row["accountID"]."'";
                         $rsAdmin= $conn->query($sqlAdmin);
 
                         while($rowAdmin = $rsAdmin->fetch_assoc()) {
 
-                            $_SESSION['adminID']= $rowAdmin['adminID'];
+                            $_SESSION['accountID']= $rowAdmin['adminID'];
                             $_SESSION['UserFirstname'] = $rowAdmin['firstname'];
                             $_SESSION['UserLastname']= $rowAdmin['lastname'];
                             $_SESSION['Image']= $rowAdmin['Image'];
