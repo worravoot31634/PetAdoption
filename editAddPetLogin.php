@@ -1,11 +1,13 @@
 <?php
 // Start the session
 session_start();
+$_SESSION['ID'] = $_GET['id'];
 if(!$_SESSION['loginStatus']){
   $_SESSION['message'] = 'Please login first';
   header("Location: login.php");
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -186,6 +188,7 @@ background-color: #373143;
     </div>
 
 </div>
+<form action="editPetdata.php" method="post" enctype="multipart/form-data">
         <div class="w3-half" style="background-color: #E2E0E0;height: 600px;">
 
             <div class="w3-container" style="padding:10px;background-color: #373143; color: white;">
@@ -213,7 +216,7 @@ background-color: #373143;
                         <a style="padding-left: 4px ;font-size: 1.2em;font-weight: bold;">ชนิดสัตว์เลี้ยง: </a>
                     </div>
                     <div class="w3-twothird">
-                        <select class="w3-border w3-rest  w3-select" name="option" required>
+                        <select class="w3-border w3-rest  w3-select" name="type" required>
                             <option style="font-size: 20px;" value="1">Dogs</option>
                             <option style="font-size: 20px;" value="2">Cats</option>
                         </select>
@@ -226,7 +229,7 @@ background-color: #373143;
                         <a style="padding-left: 4px ;font-size: 1.2em;font-weight: bold;">สายพันธู์: </a>
                     </div>
                     <div class="w3-twothird">
-                        <select class="w3-border w3-rest  w3-select" name="option" required>
+                        <select class="w3-border w3-rest  w3-select" name="species" required>
                             <option style="font-size: 20px;" value="1">บีเกิล</option>
                             <option style="font-size: 20px;" value="2">บางแก้ว</option>
                         </select>
@@ -328,7 +331,7 @@ background-color: #373143;
                         <a style="padding-left: 4px ;font-size: 1.2em;font-weight: bold;">หมายเลขโทรศัพท์: </a>
                     </div>
                     <div class="w3-twothird">
-                        <input class="w3-input" type="text" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required/>
+                        <input name="phoneNumber" class="w3-input" type="text" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required/>
                     </div>
 
                 </div>
@@ -337,16 +340,15 @@ background-color: #373143;
                 </div>
                 <div class="w3-row w3-padding">
                     <div class="w3-row w3-padding" style="border: 2px solid whitesmoke;border-radius: 12px;">
-                        <textarea class="w3-input" rows="4" cols="50" required></textarea>
+                        <textarea name="details" class="w3-input" rows="4" cols="50" required></textarea>
                     </div>
                 </div>
 
 
                 <div class="w3-row w3-padding">
-                    <button class="open-button w3-right" style="border-radius: 14px;" id="btnChat" onclick="openForm()"><img width="20px" src="./Images/icon/sendIcon.png">
+                    <button type="submit" class="open-button w3-right" style="border-radius: 14px;" id="btnChat" onclick="openForm()"><img width="20px" src="./Images/icon/sendIcon.png">
                         <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">บันทึก</a></button>
-
-
+                        </form>
                     </div>
                 </div>
                     <br>
