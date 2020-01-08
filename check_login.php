@@ -17,7 +17,7 @@ session_start();
 
         
 
-        
+                $_SESSION['username'] = $_POST["username"];
                 $_SESSION['accountID'] = $row['accountID'];
                 $_SESSION['loginStatus'] = true;
                 switch ($row['roles']) {
