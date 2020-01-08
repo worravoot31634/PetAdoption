@@ -19,7 +19,7 @@ session_start();
 
         
                 $_SESSION['accountID'] = $row['accountID'];
-
+                $_SESSION['loginStatus'] = true;
                 switch ($row['roles']) {
 
                     case "member":
