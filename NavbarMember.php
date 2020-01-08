@@ -1,4 +1,10 @@
-<?php session_start();?>
+<?php 
+
+
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} ?>
     <!-- Navbar -->
    <div id="menu" class="w3-top" style="display: block;">
     <div class="w3-white w3-card">
