@@ -128,7 +128,7 @@ if (!$_SESSION['loginStatus']) {
                 <div class="w3-card-4 test" style="height:300px; width:100%;max-width:300px;">
                     <img src="./Images/<?php echo $row["Image"]; ?>" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                        <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
+                        <a href="editAddPetLogin.php?id=<?php echo $row["petID"]?>"><button class="btnEdit">แก้ไข</button></a>
                         <a style="background-color: 
                         <?php if($row["petStatus"]==0) {
                             echo "green";
