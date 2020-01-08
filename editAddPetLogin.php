@@ -181,14 +181,15 @@ background-color: #373143;
     <div class="w3-container" style=" margin-left: auto;
     margin-right: auto;width: 80%;padding: 10px;" height="200px">
 <!--Left side of Page-->
+<form action="editPetdata.php" method="post" enctype="multipart/form-data">
 <div class="w3-border w3-half w3-center" style="height: 600px;">
     <img src="./Images/source/picture.png" alt="" srcset="" width="50%">
     <div style="clear:both;">
-        <input type="file" value="โพสต์" class="submitClass" style="margin-bottom: 10px;">
+        <input type="file" name="petPhoto" value="โพสต์" class="submitClass" style="margin-bottom: 10px;">
     </div>
 
 </div>
-<form action="editPetdata.php" method="post" enctype="multipart/form-data">
+
         <div class="w3-half" style="background-color: #E2E0E0;height: 600px;">
 
             <div class="w3-container" style="padding:10px;background-color: #373143; color: white;">
