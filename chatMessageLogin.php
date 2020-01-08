@@ -1,4 +1,12 @@
 <?php
+// Start the session
+session_start();
+if(!$_SESSION['loginStatus']){
+  $_SESSION['message'] = 'Please login first';
+  header("Location: login.php");
+}
+?>
+<?php
 session_start();
 $_SESSION["userIDLogin"] = "1";
 
