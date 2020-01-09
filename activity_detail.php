@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
 <meta charset="UTF-8">
@@ -46,88 +46,55 @@
 
 
 <?php
-    include('NavbarNonMember.html');
+    include('NavbarNonMember.php');
     ?>
-    
+
+    <?php
+        include('connectDB.php');
+        ?>
     <!--Content-->
 
-    <center>
-        <h1 style="margin-top: 50px;">Where can I get some ?</h1>
+<?php
+
+
+$id = $_GET["id"];
+
+$sql="SELECT * FROM activity Where activityID = $id";
+
+$rs=$conn->query($sql);
+
+while($row = $rs->fetch_assoc()) {
+
+
+
+    echo'<center>
+        <h1 style="margin-top: 50px;">'. $row['topic'] .'</h1>
         <br>
-        <img src="./Images/new1.jpg" alt="" srcset="" width="80%">
+        <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="80%">
     </center>
+
 
     <div style="width: 80%;display: table;width: 80%;" class="contentCenter">
 
         <p class="pragraph">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-            alteration in
-            some form, by injected humour, or randomised words which don't look even slightly believable. If you
-            are
-            going
-            to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-            middle
-            of
-            text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
-            making
-            this
-            the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-            with a
-            handful
-            of model sentence structures, to generate Lorem Ipsum which looks reasonable.
+          '. $row['details'] .'
         </p>
 
-        <p class="pragraph">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-            alteration in
-            some form, by injected humour, or randomised words which don't look even slightly believable. If you
-            are
-            going
-            to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-            middle
-            of
-            text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
-            making
-            this
-            the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-            with a
-            handful
-            of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-        </p>
-
-        <p class="pragraph">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-            alteration in
-            some form, by injected humour, or randomised words which don't look even slightly believable. If you
-            are
-            going
-            to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-            middle
-            of
-            text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
-            making
-            this
-            the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-            with a
-            handful
-            of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-        </p>
 
     </div>
     <br>
     <div class="container">
         <div class="row">
             <div>
-                <h6 style="font-size:20px;display: inline-block;">Post by </h6> &nbsp;&nbsp;
             </div>
             <div>
-                <img src="./Images/source/2.png" style="width: 30px;height: 30px;" alt="" srcset="">
             </div>
-            <div>
-                &nbsp;&nbsp;<h6 style="font-size:20px;display: inline-block;">Jame Logan</h6>
+          <div>
             </div>
         </div>
-    </div>
+    </div>'; }
+
+?>
     <br>
     <!--end Content-->
 

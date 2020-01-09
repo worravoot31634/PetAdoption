@@ -59,7 +59,7 @@
 <body id="myPage">
 
 <?php
-    include('NavbarOrganization.html');
+    include('NavbarOrganization.php');
     ?>
 
 

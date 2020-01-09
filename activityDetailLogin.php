@@ -1,3 +1,11 @@
+﻿<?php
+// Start the session
+session_start();
+if(!$_SESSION['loginStatus']){
+  $_SESSION['message'] = 'Please login first';
+  header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -46,90 +54,58 @@
 
 
 <?php
-    include('NavbarMember.html');
+    include('NavbarMember.php');
     ?>
-    
-    <!--Content-->
 
-    <center>
-        <h1 style="margin-top: 50px;">Where can I get some ?</h1>
-        <br>
-        <img src="./Images/new1.jpg" alt="" srcset="" width="80%">
-    </center>
+    <?php
+        include('connectDB.php');
+        ?>
 
-    <div style="width: 80%;display: table;width: 80%;" class="contentCenter">
+        <!--Content-->
 
-        <p class="pragraph">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-            alteration in
-            some form, by injected humour, or randomised words which don't look even slightly believable. If you
-            are
-            going
-            to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-            middle
-            of
-            text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
-            making
-            this
-            the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-            with a
-            handful
-            of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-        </p>
+    <?php
 
-        <p class="pragraph">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-            alteration in
-            some form, by injected humour, or randomised words which don't look even slightly believable. If you
-            are
-            going
-            to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-            middle
-            of
-            text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
-            making
-            this
-            the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-            with a
-            handful
-            of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-        </p>
 
-        <p class="pragraph">
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-            alteration in
-            some form, by injected humour, or randomised words which don't look even slightly believable. If you
-            are
-            going
-            to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-            middle
-            of
-            text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
-            making
-            this
-            the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-            with a
-            handful
-            of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-        </p>
+    $id = $_GET["id"];
 
-    </div>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div>
-                <h6 style="font-size:20px;display: inline-block;">Post by </h6> &nbsp;&nbsp;
-            </div>
-            <div>
-                <img src="./Images/source/2.png" style="width: 30px;height: 30px;" alt="" srcset="">
-            </div>
-            <div>
-                &nbsp;&nbsp;<h6 style="font-size:20px;display: inline-block;">Jame Logan</h6>
-            </div>
+    $sql="SELECT * FROM activity Where activityID = $id";
+
+    $rs=$conn->query($sql);
+
+    while($row = $rs->fetch_assoc()) {
+
+
+
+        echo'<center>
+            <h1 style="margin-top: 50px;">'. $row['topic'] .'</h1>
+            <br>
+            <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="80%">
+        </center>
+
+
+        <div style="width: 80%;display: table;width: 80%;" class="contentCenter">
+
+            <p class="pragraph">
+              '. $row['details'] .'
+            </p>
+
+
         </div>
-    </div>
-    <br>
-    <!--end Content-->
+        <br>
+        <div class="container">
+            <div class="row">
+                <div>
+                </div>
+                <div>
+                </div>
+              <div>
+                </div>
+            </div>
+        </div>'; }
+
+    ?>
+        <br>
+        <!--end Content-->
 
 
 
@@ -170,7 +146,7 @@
             </td>
           </tr>
         </table>
-       
+
         <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
             class="fa fa-facebook "></i></a>
         <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i

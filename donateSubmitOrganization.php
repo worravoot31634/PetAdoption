@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="./CSS/W3S/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -19,9 +20,44 @@
     crossorigin="anonymous"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="CSS/CustomCss.css">
+<link rel="stylesheet" href="./CSS/CustomCss.css">
 
+<link rel="stylesheet" href="/lib/bootstrap.min.css">
+  <script src="/lib/jquery-1.12.2.min.js"></script>
+  <script src="/lib/bootstrap.min.js"></script>
+  <?php
+        include("connectDB.php");
+  ?>
 <style>
+.statusCircle {
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+</style>
+<style>
+    .statusCircle {
+        height: 30px;
+        width: 30px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .btnEdit {
+        width: 40%;
+        border-radius: 3px;
+        border: none;
+        background-color: #786898;
+        color: #ffffff;
+    }
+
+    .btnEdit:hover {
+        background-color: #373143;
+    }
+
     .activity-content-link {
         text-decoration: none;
         color: black;
@@ -39,80 +75,43 @@
 
 <body id="myPage">
 
+
 <?php
-    include('NavbarNonMember.php');
+    include('NavbarOrganization.php');
     ?>
+  
 
-    <?php
-        include('connectDB.php');
-        ?>
-
-    <!--Content-->
-
-    <!--header text and image of activity-->
-    <center>
-        <div class="w3-container" style="margin-top:60px;display:inline-block">
-            <img src="./Images/icon/cat.png" alt="" srcset="" width="50px">
-            <div style="display:inline-block;">
-                <p style="font-size: 30px;font-weight:bold;vertical-align: middle;">กิจกรรม</p>
-            </div>
-        </div>
-    </center>
-    <!--end header text and image of activity-->
-
-
-
-
-
-    <div class="w3-container ">
-
-        <!--row of half content activity-->
-
-
-        <!--row  half right side-->
+<center>
+                <br>
+                <p style="font-weight: bold; margin-top:70px;font-size: 30px;">
+                    <img width="50" src="./Images/icon/catIcon1.png">&nbsp;ขอบคุณ
+                </p>
+                <p style="font-weight: bold; margin-top:70px;font-size: 30px;">ขอบคุณสำหรับการบริจาค การบริจาคของคุณได้ช่วยให้น้องๆสุนัขและแมวได้มีชีวิตที่ดีขึ้น ^^ </p>
+                <br><br><p><a href="donateOrganization.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">กลับไปหน้าบริจาค</button></a></p>
+            </center>
+</div>
 <?php
+include("connectDB.php");
 
-$sql="SELECT * FROM activity";
-$rs=$conn->query($sql);
+    $donate=$_POST["donate"];
+    $name=$_POST["donateName"];
+    $creditCard=$_POST["creditCard"];
+    $CVV=$_POST["CVV"];
+    $accountID=$_POST["organizationID"];
+    $donateID=$_POST["donateID"];
+    $sqlInsert = "INSERT INTO donatedetails(donateMoney,donaterName,cardID,cvv,accountID,donateID)
+    VALUES('$donate','$name','$creditCard','$CVV','$accountID','$donateID')";
 
-
-while($row = $rs->fetch_assoc()) {
-
-	$id = $row['activityID'];
-
-
-
-        echo'<div class="w3-half" style="padding: 10px;">
-            <a href= "activity_detail.php?id='.$id.'" class="activity-content-link">
-                <div class="w3-half colorActivity" style="height: 210px;">
-                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
-                </div> <!-- end of img -->
-
-
-                <div class="w3-half colorActivity" style="height: 210px;">
-
-                    <!--img and text side by side-->
-                    <div style="margin-top: 5px;float: left;">
-
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">'. $row['topic'] .'</h6>
-                        </div>
-                    </div><!-- end of img and text side by side-->
-
-                    <p style="font-size: 1em;clear: both;">'. $row['details'] .'</p>
-            </a></div>
-    </div>'; }
+if ($conn->query($sqlInsert) === TRUE) {
+  
+} else {
+    echo "Error: " . $sqlInsert . "<br>" . $conn->error;
+}
+    
+?>
 
 
-    ?>
-
-    </div>
-    <!--end of row of half content activity-->
-    </div>
-
-
-
-    <style>
+<style>
     .w3-8c71c0 {
     background-color: #8c71c0;
     }
@@ -146,8 +145,7 @@ while($row = $rs->fetch_assoc()) {
               </td>
             </tr>
           </table>
-
-        <p><a href="register.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
+          
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
@@ -205,8 +203,6 @@ while($row = $rs->fetch_assoc()) {
 
         }
     </script>
-
-
 
 </body>
 

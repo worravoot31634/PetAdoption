@@ -1,3 +1,11 @@
+<?php
+// Start the session
+session_start();
+if(!$_SESSION['loginStatus']){
+  $_SESSION['message'] = 'Please login first';
+  header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -25,10 +33,15 @@
 <link rel="stylesheet" href="/lib/bootstrap.min.css">
   <script src="/lib/jquery-1.12.2.min.js"></script>
   <script src="/lib/bootstrap.min.js"></script>
+  <script src="searchDonate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <style>
+  
 
-
-
+<?php
+        include("connectDB.php");
+        session_start();
+  ?>
   .city {display:none}
   </style>
 <style>
@@ -81,7 +94,7 @@
 
 
 <?php
-    include('NavbarMember.html');
+    include('NavbarMember.php');
     ?>
 
 
@@ -105,356 +118,184 @@
                   
                         
                         <div style="width: 100%; ">
+                        <form name="donateSearch"  >
                         <table align=center style="width: 70%;">
                             <tr style="width: 100%;" >
                                 <td style="width: 50%;"> 
-                                    <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" />
+                                    <input class="advanceSearch" name="donateTitle" id="fromText"  placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" />
                                 </td>
                                 <td >
                                     <a style="font-weight: bold; font-size: 20px;">จังหวัด&nbsp;&nbsp;</a>
                                 </td>
                                 <td style="width: 50%;" >
                                     <div style="font-size: 20px;" class="w3-half" >
-                                                        <select class="w3-border w3-rest  w3-select" name="option" >
+                                                        <select class="w3-border w3-rest  w3-select" name="province" id="fromSelect">
                                                             <option style="font-size: 20px;" value="0">all</option>
-                                                            <option style="font-size: 20px;" value="1">นครราชสีมา</option>
-                                                            <option style="font-size: 20px;" value="2">บุรีรัมย์</option>
+                                                            <option style="font-size: 20px;" value="นครราชสีมา">นครราชสีมา</option>
+                                                            <option style="font-size: 20px;" value="บุรีรัมย์">บุรีรัมย์</option>
                                                         </select>
                                                         </div>  
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="#" style="font-size:18px; background-color: #726292; color: white;" 
-                                                        class="w3-button w3-circle" title="Search"><i class="fa fa-search"></i></a>
+                                                        <a href="#" id="bntSearch"  type="submit" style="font-size:18px; background-color: #726292; color: white;" 
+                                                        class="w3-button w3-circle "title="Search"><i class="fa fa-search"></i></a>
 
                                 </td>
-                                
-                               
-                                
                             </tr>
                         </table>
+                        </form>
                         </div>
                                                                        
                             
-                        
-                        
-                    
+<script>
+    $("#fromSelect").change(function() {
+    fromSelect = $(this).val();
+    });
+
+    $("#fromText").change(function() {
+    fromText = $(this).val();
+    });
+    $("#bntSearch").click(function() {
+        alert("The paragraph was clicked.");
+        showHint(fromText,fromSelect);
+        $(".reset").empty();
+    });
+
+
+</script>
+
+<?php
+    $sql ="SELECT";
+?>            
                 
 <br>
-<div class="w3-container">
+<div class="w3-container" id="popup">
     
-        <div class="w3-container w3-border" style="margin: 1%; position:relative">
+        <div class="w3-container w3-border reset" style="margin: 1%; position:relative" id="search" >
 
             <!--row of half content activity-->
-    
-            <div class="w3-row" style="width: 100%;margin:auto">
-                        <!--row  half right side-->
+            <?php
+                $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID , organization.firstname as fname,organization.lastname as lname,donateTitle
+                FROM donate
+                join organization 
+                on donate.organizationID = organization.organizationID";
+                
+                $rs = $conn->query($sql);
+                $i=0;
+                while ($row = $rs->fetch_assoc()) {
+                    $sql2 = "SELECT SUM(donateMoney) as sumDonate
+                        FROM donate
+                        join organization 
+                        on donate.organizationID = organization.organizationID
+                        join donateDetails 
+                        on donateDetails.donateID = donate.donateID
+                        WHERE donate.donateID =".$row['donateID']."";
+
+                        $rs2 = $conn->query($sql2);
+                        $row2 = $rs2;
+                        $row2 = $rs2->fetch_assoc();
+                        if($row2['sumDonate'] < $row['donateRequired']){
+                            $presen = $row2['sumDonate']/($row['donateRequired']/100);
+                        }else{
+                            $presen = 100;
+                        }
+                    if($i%2==0){
+                        echo "<div class='w3-row' style='width: 100%;margin:auto'>";
+                        echo "<!--row  half right side-->
+                                <div class='w3-half' style='padding: 10px;'>
+                                    <div class='w3-half colorActivity' style='height: 220px;'>
+                                        <img src='./Images/".$row['DImage']."' alt='' srcset='' width='100%'' height='auto' style='height: 220px;'>
+                                    </div> <!-- end of img -->
+
+                                    <div class='w3-half colorActivity' style='height: 220px;'>
+
+                                        <!--img and text side by side-->
+                                        <div style='margin-top: 5px;float: left;''>
+                                            <div style='display:inline-block'>
+                                                <img src='./Images/".$row['OImage']."' alt='' srcset='' width='100%'
+                                                    style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>
+                                            </div>
+                                            <div style='display:inline-block'>
+                                                <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
+                                            </div>
+                                        </div><!-- end of img and text side by side-->
+                                        <p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p>
+                                        <p style='font-size: 1vw;clear: both;'>".$row['details']."</p>
+
+                                        
+                                        <table style='width: 100%;'>
+                                            <tr>
+                                                <td  style='width: 60%;'>
+                                            <div class='container' >
+                                                <div class='progress' style='height: 0.6cm;'>
+                                                    <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
+                                                    ".$row2['sumDonate']." บาท
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </td>
+                                            <td style='width: 40%;'>
+                                            <button onclick="."document.getElementById('".$row['donateID']."').style.display='block' "."  class='btnEdit'style='width:80%'>บริจาค</button>
+                                            </td>
+                                            </tr>
+                                        </table>
+                                </a></div><!-- end of text -->
+                        </div> <!-- end of row  half right side-->";
+
+
+                    }else{
+                        echo " <!--row  half right side-->
+
+                        <div class='w3-half' style='padding: 10px;'>
+                                <div class='w3-half colorActivity' style='height: 220px;'>
+                                    <img src='./Images/".$row['DImage']."' srcset='' width='100%' height='auto' style='height: 220px;'>
+                                </div> <!-- end of img -->
             
-                    <div class="w3-half" style="padding: 10px;">
-                        <div class="w3-half colorActivity" style="height: 220px;">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                        </div> <!-- end of img -->
-
-
-                        <div class="w3-half colorActivity" style="height: 220px;">
-
-                            <!--img and text side by side-->
-                            <div style="margin-top: 5px;float: left;">
-                                <div style="display:inline-block">
-                                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                        style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                                </div>
-                                <div style="display:inline-block">
-                                    <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                                </div>
-                            </div><!-- end of img and text side by side-->
-
-                            <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                                distracted by the
-                                readable content of a page
-                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                normal
-                                
-                            </p>
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td  style="width: 65%;">
-                                <div class="container" >
-                                    <div class="progress" style="height: 0.6cm;">
-                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                        2000 บาท
-                                        </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td style="width: 100%;">
-                                    <button onclick="document.getElementById('id01').style.display='block'"  class="btnEdit">บริจาค</button>
-                                </td>
-                                </tr>
-                            </table>
-                    </a></div><!-- end of text -->
-            </div> <!-- end of row  half right side-->
-    
-            <!--row  half right side-->
-    
-            <div class="w3-half" style="padding: 10px;">
-                    <div class="w3-half colorActivity" style="height: 220px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                    </div> <!-- end of img -->
-    
-    
-                    <div class="w3-half colorActivity" style="height: 220px;">
-    
-                        <!--img and text side by side-->
-                        <div style="margin-top: 5px;float: left;">
-                            <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                    style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                            </div>
-                        </div><!-- end of img and text side by side-->
-    
-                        <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
-                            
-                        </p>
-                        <table style="width: 100%;">
-                            <tr>
-                                <td  style="width: 65%;">
-                            <div class="container" >
-                                <div class="progress" style="height: 0.6cm;">
-                                    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                      2000 บาท
-                                    </div>
-                                  </div>
-                              </div>
-                              </td>
-                              <td style="width: 100%;">
-                                <button onclick="document.getElementById('id01').style.display='block'"  class="btnEdit">บริจาค</button>
-                              </td>
-                            </tr>
-                        </table>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half right side-->
-    
-        </div>
-       
-        
-        
-        <!---row 2 --->
-            <!--row of half content activity-->
-    
-            <div class="w3-row" style="width: 100%;margin:auto">
-                        <!--row  half right side-->
             
-                    <div class="w3-half" style="padding: 10px;">
-                        <div class="w3-half colorActivity" style="height: 220px;">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                        </div> <!-- end of img -->
-
-
-                        <div class="w3-half colorActivity" style="height: 220px;">
-
-                            <!--img and text side by side-->
-                            <div style="margin-top: 5px;float: left;">
-                                <div style="display:inline-block">
-                                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                        style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                                </div>
-                                <div style="display:inline-block">
-                                    <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                                </div>
-                            </div><!-- end of img and text side by side-->
-
-                            <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                                distracted by the
-                                readable content of a page
-                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                normal
-                                
-                            </p>
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td  style="width: 65%;">
-                                <div class="container" >
-                                    <div class="progress" style="height: 0.6cm;">
-                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                        2000 บาท
+                                <div class='w3-half colorActivity' style='height: 220px;'>
+            
+                                <!--img and text side by side-->
+                                <div style='margin-top: 5px;float: left;''>
+                                    <div style='display:inline-block'>
+                                        <img src='./Images/".$row['OImage']."' alt='' srcset='' width='100%'
+                                            style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>
+                                    </div>
+                                        <div style='display:inline-block'>
+                                            <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
                                         </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td style="width: 100%;">
-                                    <button onclick="document.getElementById('id01').style.display='block'"  class="btnEdit">บริจาค</button>
-                                </td>
-                                </tr>
-                            </table>
-                    </a></div><!-- end of text -->
-            </div> <!-- end of row  half right side-->
-    
-            <!--row  half right side-->
-    
-            <div class="w3-half" style="padding: 10px;">
-                    <div class="w3-half colorActivity" style="height: 220px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                    </div> <!-- end of img -->
-    
-    
-                    <div class="w3-half colorActivity" style="height: 220px;">
-    
-                        <!--img and text side by side-->
-                        <div style="margin-top: 5px;float: left;">
-                            <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                    style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                            </div>
-                        </div><!-- end of img and text side by side-->
-    
-                        <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
-                            
-                        </p>
-                        <table style="width: 100%;">
-                            <tr>
-                                <td  style="width: 65%;">
-                            <div class="container" >
-                                <div class="progress" style="height: 0.6cm;">
-                                    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                      2000 บาท
-                                    </div>
-                                  </div>
-                              </div>
-                              </td>
-                              <td style="width: 100%;">
-                                <button onclick="document.getElementById('id01').style.display='block'"  class="btnEdit">บริจาค</button>
-                              </td>
-                            </tr>
-                        </table>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half right side-->
-    
-        </div>
-        <!-----END row2----->
-
-        <!---row 3 --->
-            <!--row of half content activity-->
-    
-            <div class="w3-row" style="width: 100%;margin:auto">
-                <!--row  half right side-->
-    
-            <div class="w3-half" style="padding: 10px;">
-                <div class="w3-half colorActivity" style="height: 220px;">
-                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                </div> <!-- end of img -->
-
-
-                <div class="w3-half colorActivity" style="height: 220px;">
-
-                    <!--img and text side by side-->
-                    <div style="margin-top: 5px;float: left;">
-                        <div style="display:inline-block">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                                style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                        </div>
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                        </div>
-                    </div><!-- end of img and text side by side-->
-
-                    <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-                        
-                    </p>
-                    <table style="width: 100%;">
-                        <tr>
-                            <td  style="width: 65%;">
-                        <div class="container" >
-                            <div class="progress" style="height: 0.6cm;">
-                                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                                2000 บาท
-                                </div>
-                            </div>
-                        </div>
-                        </td>
-                        <td style="width: 100%;">
-                            <button onclick="document.getElementById('id01').style.display='block'"  class="btnEdit">บริจาค</button>
-                        </td>
-                        </tr>
-                    </table>
-            </a></div><!-- end of text -->
-    </div> <!-- end of row  half right side-->
-
-    <!--row  half right side-->
-
-    <div class="w3-half" style="padding: 10px;">
-            <div class="w3-half colorActivity" style="height: 220px;">
-                <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-            </div> <!-- end of img -->
-
-
-            <div class="w3-half colorActivity" style="height: 220px;">
-
-                <!--img and text side by side-->
-                <div style="margin-top: 5px;float: left;">
-                    <div style="display:inline-block">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                            style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                    </div>
-                    <div style="display:inline-block">
-                        <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                    </div>
-                </div><!-- end of img and text side by side-->
-
-                <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                    distracted by the
-                    readable content of a page
-                    when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                    normal
+                                    </div><!-- end of img and text side by side-->
+                                    <p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p>
+                                    <p style='font-size: 1vw;clear: both;'>".$row['details']."</p>
+            
+                                    <table style='width: 100%;''>
+                                        <tr>
+                                            <td  style='width: 60%;'>
+                                        <div class='container' >
+                                            <div class='progress' style='height: 0.6cm;'>
+                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100'  style='width:".$presen."% ;''>
+                                                  ".$row2['sumDonate']." บาท
+                                                </div>
+                                              </div>
+                                          </div>
+                                          </td>
+                                          <td style='width: 40%;'>
+                                          <button onclick="."document.getElementById('".$row['donateID']."').style.display='block' "."  class='btnEdit'style='width:80%'>บริจาค</button>
+                                          </td>
+                                        </tr>
+                                    </table>
+                            </a></div><!-- end of text -->
+                    </div> <!-- end of row  half right side-->";
+                   
+                    } 
+                    $i=$i+1;
+                    ?>
                     
-                </p>
-                <table style="width: 100%;">
-                    <tr>
-                        <td  style="width: 65%;">
-                    <div class="container" >
-                        <div class="progress" style="height: 0.6cm;">
-                            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40% ;">
-                              2000 บาท
-                            </div>
-                          </div>
-                      </div>
-                      </td>
-                      <td style="width: 100%;">
-                        <button onclick="document.getElementById('id01').style.display='block'"  class="btnEdit">บริจาค</button>
-                      </td>
-                    </tr>
-                </table>
-        </a></div><!-- end of text -->
-</div> <!-- end of row  half right side-->
-
-</div>
-<!-----END row3----->
-         <!--end of row of half content activity-->
-        </div>
-        
-    </div>
      <!----Popup box---->
-     <div id="id01" class="w3-modal">
-        
+    
+     <div id="<?php echo $row['donateID']; ?>" class="w3-modal popup" >
+     
         <div class="w3-modal-content w3-card-4 w3-animate-zoom">
          <header class="w3-container w3-8c71c0"> 
-          <span onclick="document.getElementById('id01').style.display='none'" 
+          <span onclick="document.getElementById('<?php echo $row['donateID']; ?>').style.display='none'" 
           class="w3-button w3-8c71c0 w3-xlarge w3-display-topright">&times;</span>
           <b><center><p style="font-size: 30px;margin: 5px; color: #ffffff;">บริจาค</p></center><b>
          </header>
@@ -462,35 +303,37 @@
              <tr style="width: 100%;">
                  <td style="width: 30%;">
                     <div class="w3-half "  style="width: 100%;">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="100%">
+                            <img src="./Images/<?php echo $row['DImage']; ?>" alt="" srcset="" width="100%" height="100%">
                     </div> <!-- end of img -->
                  </td>
                  <td style="width: 50%;">
                      <div  class="w3-container w3-light-grey">
-                                    <form action="">
+                                    <form action="donateSubmitLogin.php" id="from1" method="post">
                                         <br>
                                         <p style="font-size: 18px;left: 10%;position:relative;">ชื่อ-นามสกุล</p>
                                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="donateName"></center>
                                         
                                         <p style="font-size: 18px;left: 10%;position:relative;">รหัสบัตรเครดิต</p>
-                                        <center><input type="password" style="width:80%;border: none;border-radius: 2px;" name="creditCard"></center>
+                                        <center><input type="test" style="width:80%;border: none;border-radius: 2px;" name="creditCard"></center>
 
                                         <p style="font-size: 18px;left: 10%;position:relative;">CVV</p>
                                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="CVV"></center>
                                         
                                         <p style="font-size: 18px;left: 10%;position:relative;">วันที่</p>
-                                        <center><p style="font-size: 18px;;position:relative;">5 มกราคม 2563</p></center>
+                                        <center><p style="font-size: 18px;;position:relative;"  ><script> document.write(new Date().toDateString()); </script></p></center>
 
                                         <p style="font-size: 18px;left: 10%;position:relative;">จำนวนเงิน</p>
                                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="donate"></center>
-                                        
-                                        
                                         <br>
-                                    </form>
+                                        <input type="hidden" name="donateID" value="<?php echo $row['donateID']; ?>">
+                                        <input type="hidden" name="memberID" value="<?php echo $_SESSION["memberID"]; ?>">
+                                        
                         <div class="w3-container w3-padding">
-                            <button class="btnEdit w3-right " onclick="document.getElementById('id01').style.display='none'" style="height: 1cm;">ยกเลิก</button>
-                            <button class="btnEdit w3-left  " onclick="document.getElementById('id01').style.display='none'" style="height: 1cm;">บริจาค</button>
+                            <button class="btnEdit w3-right " onclick="document.getElementById('<?php echo $row['donateID']; ?>').style.display='none'" style="height: 1cm;">ยกเลิก</button>
+                            <button class="btnEdit w3-left  " type="submit"  style="height: 1cm;">บริจาค</button>
+                            </form>
                         </div>
+                        
                     </div>
                  </td>
              </tr>
@@ -499,6 +342,12 @@
         </div>
        </div>
     <!----End Popup box----->
+                    <?php
+                }
+            ?>
+         <!--end of row of half content activity-->
+        </div>
+    </div>
 
 </div>
 
@@ -511,6 +360,7 @@
 
     </table>
 <br><br>
+
 
 
 <!---Script popup------>

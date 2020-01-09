@@ -1,12 +1,25 @@
+<?php
+
+
+
+    include('NavbarOrganization.php');
+    include('connectDB.php');
+    $_SESSION["userIDLogin"] = "1";
+    
+    ?>
+
+
 <!DOCTYPE html>
+
+
 <html>
 <title>Pet Adoption</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./CSS/W3S/w3.css">
-<link rel="stylesheet" href="./CSS/W3S/w3-theme-black.css">
+<link rel="stylesheet" href="CSS/W3S/w3.css">
+<link rel="stylesheet" href="CSS/W3S/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="CSS/Bootstrap/css/bootstrap.min.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -736,13 +749,7 @@ body {
 </style>
 <body id="myPage">
 
-<?php
-    include('NavbarOrganization.html');
-    include('connectDB.php');
 
-    session_start();
-    $_SESSION["userIDLogin"] = "1";
-    ?>
 <!--Content-->
 
               <?php
@@ -773,9 +780,7 @@ body {
                     $tempContact = array_merge($contactFrom,$contactSend);
                     $tempContact = array_unique($tempContact);
 
-                    echo "<pre>";
-                    print_r($tempContact);
-                    echo "</pre>";
+                    
 
                     ?>
 
@@ -849,13 +854,29 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                           
                         
                       echo'
-                        <li id="contact'. $countContactList .'" class="contact"  onclick="showChat('.$countContactList.')">
+                        <li id="contact'. $countContactList .'" class="contact"  onclick="showChat('.$countContactList.');setFromUserID('.$row['memberID'].')">
                         <div class="wrap">
                             <span class="contact-status online"></span>
                             <img src="./Images/'. $row['Image'] .'" alt="" />
                             <div class="meta">
                                 <p class="name">'. $row['firstname'].' ' .$row['lastname'] .'</p>
-                                <p id = "preview'. $countContactList .'" class="preview"><span>คุณ:</span> คริคริคริ</p>
+                                <p id = "preview'. $countContactList .'" class="preview"><span>คุณ:</span>';
+                                
+                                
+                                $rowLastestChat = "SELECT * FROM chat WHERE toUserID = ". $row['memberID'] ." OR fromUserID = ". $row['memberID']   . " ORDER BY timestamp DESC LIMIT 1";
+                                $rs2=$conn->query($rowLastestChat); 
+                            
+                              while($rowLastestChat = $rs2->fetch_assoc()) {
+
+                                  
+                              
+                                echo  ' '.$rowLastestChat['message'].'</p>';
+                            
+                            }
+                            
+                                     
+                                   
+                      echo '
                             </div>
                         </div>
                     </li>
@@ -1037,6 +1058,12 @@ document.getElementById("btnChat").style.display = "block"
 <script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
 
+//Check User from
+var tempfromUserID=0;
+function setFromUserID(idUser){
+  tempfromUserID = idUser;
+}
+
 
 
 function newMessage(idInput,idNum) {
@@ -1054,8 +1081,8 @@ $append = "#message" + idNum + " ul";
 	$("#message" + idNum ).animate({ scrollTop: $(document).height() }, "fast");
 
 
-  var toUserID = "1";
-  var fromUserID = "2";
+  var toUserID = <?php echo $_SESSION["userIDLogin"];?>;
+  var fromUserID = tempfromUserID;
   var message = message;
 
 
@@ -1064,7 +1091,7 @@ $append = "#message" + idNum + " ul";
 
   $.ajax({
             type: "POST",
-            url: "addChatPHP",
+            url: "addChatPHP.php",
             data: userdata, 
             success: function(data){
                 console.log(data);
@@ -1091,6 +1118,16 @@ $append = "#message" + idNum + " ul";
                 echo "$('#submit". $e."').click(function() {
                   newMessage('#inputMessage". $e ." input',". $e .");
                 });";
+
+                echo " $('#InputMessage".$e." input').on('keyup', function(e) {
+                  if (e.which == 13) {
+                   
+                    newMessage('#inputMessage". $e ." input',". $e .");
+                    return false;
+                  }
+                });
+                ";
+                
                 $e++;
               }
             }
@@ -1099,16 +1136,20 @@ $append = "#message" + idNum + " ul";
 
 
 
-$(window).on('keydown', function(e) {
-  if (e.which == 13) {
-    newMessage();
-    return false;
-  }
-});
-//# sourceURL=pen.js
+     /* $(window).on('keydown', function(e) {
+        if (e.which == 13) {
+          newMessage();
+          return false;
+        }
+      });
+      # sourceURL=pen.js*/
 
 
 function showChat(id){
+
+ 
+
+
   switch(id) {
   case 1:
     document.getElementById('contact1').classList.add('active');

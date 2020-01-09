@@ -56,9 +56,9 @@
 <body id="myPage">
 
 <?php
-    include('NavbarNonMember.html');
+    include('NavbarNonMember.php');
     ?>
-   
+
 
 
 <!-------------------------------------------------->
@@ -303,7 +303,9 @@
                         readable.
                     </p>
                     <div>
-
+                      <div>
+                          <button class="btnEdit" style="margin: 5px;">รายละเอียดกิจกรรม</button>
+                      </div>
                     </div>
             </a></div><!-- end of text -->
     </div> <!-- end of row  half left side-->
@@ -340,6 +342,9 @@
                     readable.
                 </p>
                 <div>
+                  <div>
+                      <button class="btnEdit" style="margin: 5px;">รายละเอียดกิจกรรม</button>
+                  </div>
 
                 </div>
         </a></div><!-- end of text -->

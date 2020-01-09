@@ -25,9 +25,9 @@
 
 
 <?php
-    include('NavbarNonMember.html');
+    include('NavbarNonMember.php');
     ?>
-    
+
 
   <!-- Image Header -->
   <div style="margin-top:35px;" class="w3-display-container w3-animate-opacity ">
@@ -60,7 +60,7 @@
 
     <!--<img src="./Images/headerIndex.png" alt="boat " style="width:100%;min-height:350px;max-height:600px; ">-->
     <div class="w3-container w3-display-bottomleft w3-margin-bottom ">
-      <a href="donate"><button  class="w3-button w3-xlarge w3-theme w3-hover-teal ">บริจาคให้น้อน</button>
+      <a href="#"><button  class="w3-button w3-xlarge w3-theme w3-hover-teal ">บริจาคให้น้อน</button></a>
     </div>
   </div>
 
@@ -714,7 +714,7 @@
             </td>
           </tr>
         </table>
-        <p><a href="register"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
+        <p><a href="register.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
         <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
             class="fa fa-facebook "></i></a>
         <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
