@@ -324,7 +324,7 @@
             xmlHttp.onreadystatechange = stateChange;
             var url = "jsonPet.php";
             //url = "greeting.php?day=Monday"
-            alert(url);
+            //alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }

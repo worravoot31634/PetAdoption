@@ -84,7 +84,7 @@ session_start();
                 <center>
                     <p style="font-size: 30px;color:white;font-weight: bold;">เข้าสู่ระบบ</p>
                 </center>
-                <form action="">
+                <form name="form1" method="post" action="check_login.php">
                     <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">ชื่อผู้ใช้</p>
                     <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="username">
                     </center>
