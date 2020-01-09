@@ -96,7 +96,7 @@
           echo' <div style="padding:10px;" class="w3-quarter w3-container">
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
 
-                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 300px;"">
+                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 300px;">
 
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
                     <a href="editAddPetOrganization.php?id='.$id.'"><button class="btnEdit">แก้ไข</button></a>

@@ -124,21 +124,20 @@ if (!$_SESSION['loginStatus']) {
         if($rs->num_rows != 0){//Check that it's have in DB or not
             while($row = $rs->fetch_assoc()) {
         ?>
-            <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="height:300px; width:100%;max-width:300px;">
+            <div  style="padding:10px;" class="w3-quarter w3-container">
+                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
                     <img src="./Images/<?php echo $row["Image"]; ?>" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                        <a href="editAddPetLogin.php?id=<?php echo $row["petID"]?>"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: 
-                        <?php if($row["petStatus"]==0) {
+                    <div id="colorStatus" class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
+                        <a href="editAddPetLogin.php?id=<?php echo $row["petID"]?>">
+                        <button class="btnEdit">แก้ไข</button></a>
+                        <a style="cursor:pointer; background-color: <?php if($row["petStatus"]==0) {
                             echo "green";
                         }elseif($row["petStatus"]==1){
                             echo "yellow";
                         }else{
                             echo "red";
                         }
-                        ?>" 
-                        class="w3-right statusCircle"></a>
+                        ?>;" id="circle" class="w3-right statusCircle"  onclick="updateStatusPet(<?php echo $row['petID'] ?>)"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
                 </div>
@@ -198,7 +197,7 @@ if (!$_SESSION['loginStatus']) {
         <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
             <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
             <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
-                    <i class="fa fa-chevron-circle-up "></i></span></a>
+                    <i class="fa fa-chevron-circle-up"></i></span></a>
         </div>
     </footer>
 
@@ -254,7 +253,7 @@ if (!$_SESSION['loginStatus']) {
 </html>
 
 
-
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script>
     function hideNav() {
         document.getElementById("menu").style.display = "none";
@@ -269,4 +268,43 @@ if (!$_SESSION['loginStatus']) {
 
 
     }
+
+
+function updateStatusPet(id){
+
+    var userdata = {'petID':id};
+    console.log(userdata);
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "updateStatusPet.php",
+            data: userdata,
+            success: function(data){
+                    console.log(data);
+
+                    if(data == true){ 
+                        console.log('hello');
+                        
+                        
+                        
+                        
+                        $('#colorStatus').load(document.URL +  ' #circle');
+                        
+                    }
+
+
+            }
+            
+        });
+    });
+
+
+}
+    
+
+
+
+
+
 </script>
