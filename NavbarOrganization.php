@@ -11,7 +11,7 @@
                 class=" w3-bar-item w3-button w3-hide-medium w3-hide-small"><b>เขียนกิจกรรม</b></a>
             <a href="writeDonate.php" style="font-size: 20px;"
                 class=" w3-bar-item w3-button w3-hide-medium w3-hide-small"><b>ขอบริจาค</b></a>
-            <a href="addPet.php" style="font-size: 20px;"
+            <a href="addPetOrganization.php" style="font-size: 20px;"
                 class=" w3-bar-item w3-button w3-hide-medium w3-hide-small"><b>เขียนโพสต์</b></a>
             <a href="petOrganization.php" style="font-size: 20px;"
                 class=" w3-bar-item w3-button w3-hide-medium w3-hide-small"><b>สัตว์เลี้ยง</b></a>
@@ -37,7 +37,7 @@
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large ">
         <a href="writePost.php" class="w3-bar-item w3-button ">เขียนกิจกรรม</a>
         <a href="writeDonate.php" class="w3-bar-item w3-button ">ขอบริจาค</a>
-        <a href="addPet.php" class="w3-bar-item w3-button ">เขียนโพสต์</a>
+        <a href="addPetOrganization.php" class="w3-bar-item w3-button ">เขียนโพสต์</a>
         <a href="petOrganization.php" class="w3-bar-item w3-button ">สัตว์เลี้ยง</a>
         <a href="donateOrganization.php" class="w3-bar-item w3-button ">บริจาค</a>
         <a href="activityOrganization.php" class="w3-bar-item w3-button ">กิจกรรม</a>

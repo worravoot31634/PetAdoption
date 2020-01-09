@@ -12,7 +12,7 @@ if(!isset($_SESSION))
             onclick="openNav()"><i class="fa fa-bars"></i></a>
         <a href="homeLogin.php" style="font-size: 20px;" class="w3-bar-item w3-button w3-white"><img width="100" src="./Images/logo.png"></a>
         <div style="margin-top: 10px;" class="w3-right w3-hide-medium w3-hide-small w3-animate-right">
-          <a href="addPetLogin.php" style="font-size: 20px;"
+          <a href="addPet.php" style="font-size: 20px;"
               class=" w3-bar-item w3-button w3-hide-medium w3-hide-small"><b>เขียนโพสต์</b></a>
           <a href="petLogin.php" style="font-size: 20px;"
                 class=" w3-bar-item w3-button w3-hide-medium w3-hide-small"><b>สัตว์เลี้ยง</b></a>
@@ -36,7 +36,7 @@ if(!isset($_SESSION))
 
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large ">
-        <a href="addPetLogin.php" class="w3-bar-item w3-button ">เขียนโพสต์</a>
+        <a href="addPet.php" class="w3-bar-item w3-button ">เขียนโพสต์</a>
         <a href="petLogin.php" class="w3-bar-item w3-button ">สัตว์เลี้ยง</a>
         <a href="donateLogin.php" class="w3-bar-item w3-button ">บริจาค</a>
         <a href="activityLogin.php" class="w3-bar-item w3-button ">กิจกรรม</a>
