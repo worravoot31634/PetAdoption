@@ -20,8 +20,7 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 {
 obj = JSON.parse(xmlHttp.responseText);
 suml=obj.length;
-alert(obj);
-alert(suml);
+
 if(obj!=0){
     url = "donateSubmitLogin.php";
 }else{
