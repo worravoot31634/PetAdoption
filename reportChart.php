@@ -132,12 +132,12 @@ if(!$_SESSION['loginStatus']){
                         WHERE donate.donateID =$id";
                         $rs2 = $conn->query($sql2);
                         $row2 = $rs2->fetch_assoc();
-                        $Need=$row2['sumDonate'] ; 
+                        $Donate=$row2['sumDonate'] ; 
                         
                         $sql3 = "SELECT donateRequired FROM donate";
                         $rs3 = $conn->query($sql3);
                         $row3 = $rs3->fetch_assoc();
-                        $Donate=$row3['donateRequired'];
+                        $Need=$row3['donateRequired'];
                     ?>
                 </table>
             </div>
