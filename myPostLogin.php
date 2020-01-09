@@ -115,7 +115,8 @@ if (!$_SESSION['loginStatus']) {
         </div>
     </div>
 
-    <div class="w3-container">
+    <div class="w3-container" style="width:80%;margin-left: auto;
+  margin-right: auto;">
         <div class="w3-container w3-border">
         <?php
         include 'connectDB.php';
@@ -124,9 +125,9 @@ if (!$_SESSION['loginStatus']) {
         if($rs->num_rows != 0){//Check that it's have in DB or not
             while($row = $rs->fetch_assoc()) {
         ?>
-            <div  style="padding:10px;" class="w3-quarter w3-container">
+            <div style="padding:10px;" class="w3-quarter w3-container">
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/<?php echo $row["Image"]; ?>" alt="Avatar" style="width:100%;">
+                    <img src="./Images/<?php echo $row["Image"]; ?>" alt="Avatar" width="100%" height="300px">
                     <div id="colorStatus" class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
                         <a href="editAddPetLogin.php?id=<?php echo $row["petID"]?>">
                         <button class="btnEdit">แก้ไข</button></a>
@@ -147,7 +148,8 @@ if (!$_SESSION['loginStatus']) {
         }
             ?>
 
-        </div>
+        
+    </div>
     </div>
 
     <!--end of content-->
@@ -285,11 +287,9 @@ function updateStatusPet(id){
 
                     if(data == true){ 
                         console.log('hello');
-                        
-                        
-                        
-                        
-                        $('#colorStatus').load(document.URL +  ' #circle');
+
+                       
+                        location.reload();
                         
                     }
 

@@ -11,7 +11,7 @@ $userLogin = 1;
 
 if ($_FILES["filePost"]["error"] > 0) {
 } else {
-    move_uploaded_file($_FILES['filePost']['tmp_name'], "./Images/" . $_FILES['filePost']['name']);
+    move_uploaded_file($_FILES['filedonate']['tmp_name'], "./Images/" . $_FILES['filedonate']['name']);
 }
 
 $sql = "INSERT INTO donate(donateTitle,details,donateProvince,donateRequired,image,organizationID) VALUES('" . $Topic . "' ,'" . $Comment . "',  '" . $Province . "','" . $Totalprice . "','" . $file . "',0);";
