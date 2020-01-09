@@ -1,11 +1,3 @@
-<?php
-// Start the session
-session_start();
-if(!$_SESSION['loginStatus']){
-  $_SESSION['message'] = 'Please login first';
-  header("Location: login.php");
-}
-?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -114,29 +106,8 @@ if(!$_SESSION['loginStatus']){
 
 <body id="myPage">
 
-<<<<<<< HEAD
   <?php
-  include_once('NavbarMember.html');
-=======
-<?php
-    include('NavbarMember.php');
-    ?>
-    
-    <!--Content-->
-
-    <!--header text and image of activity-->
-
-    <center>
-      <br>
-        <div class="container" style="margin-top:40px;display:inline-block">
-            <img src="./Images/icon/cat.png" alt="" srcset="" width="50px">
-            <div style="display:inline-block;">
-                <p style="font-size: 30px;font-weight:bold;vertical-align: middle;">รายละเอียด</p>
-            </div>
-        </div>
-    </center>
-    <!--end header text and image of activity-->
->>>>>>> a4a3c3cefa35c8a7220702a0ee721a7f31ac6b6e
+  include_once('NavbarMember.php');
 
   include_once('connectDB.php');
 

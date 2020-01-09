@@ -101,19 +101,12 @@
 <body id="myPage">
 
   <?php
-  include_once('NavbarNonMember.html');
+  include_once('NavbarNonMember.php');
 
   include_once('connectDB.php');
 
-<<<<<<< HEAD
   $id = $_GET['id'];
   $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image,member.firstname,member.lastname,member.Image as memImage FROM pet JOIN account ON (pet.posterID = account.accountID) JOIN member ON member.accountID = account.accountID WHERE petID = '" . $id . "'";
-=======
-   
-<?php
-    include('NavbarNonMember.php');
-    ?>
->>>>>>> a4a3c3cefa35c8a7220702a0ee721a7f31ac6b6e
 
 
   $res = $conn->query($sql);

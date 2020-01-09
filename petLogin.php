@@ -1,11 +1,3 @@
-<?php
-// Start the session
-session_start();
-if(!$_SESSION['loginStatus']){
-  $_SESSION['message'] = 'Please login first';
-  header("Location: login.php");
-}
-?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -16,40 +8,33 @@ if(!$_SESSION['loginStatus']){
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="./js/script.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./CSS/CustomCss.css">
 
 <style>
-.statusCircle {
-  height: 30px;
-  width: 30px;
-  background-color: red;
-  border-radius: 50%;
-  display: inline-block;
-}
+    .statusCircle {
+        height: 30px;
+        width: 30px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+    }
 </style>
 
 
 <body id="myPage">
 
 
-
-<?php
+    <?php
     include('NavbarMember.php');
     ?>
 
+
     <!--Fix 80 percent Screen-->
-    <br>
     <table width="80%" align="center">
 
 
@@ -67,33 +52,32 @@ if(!$_SESSION['loginStatus']){
 
         <tr>
             <td>
-                    <div class="w3-half">
+                <div class="w3-half">
 
-                        <div class="w3-container w3-mobile">
-                        <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" />
-                        <a href="#" style="font-size:18px; background-color: #726292; color: white;"
-                            class="w3-right w3-button w3-circle" title="Search"><i class="fa fa-search"></i></a>
+                    <div class="w3-container w3-mobile">
+                        <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" id="textSearch" />
+                        <a href="#" style="font-size:18px; background-color: #726292; color: white;" class="w3-right w3-button w3-circle" title="Search" id="bntSearch"><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+                <div class="w3-half" style="padding: 4px;">
+                    <div class="w3-third  w3-container w3-mobile" style="padding: 4px;">
+                        <div style="display: flex;">
+                            <a style="background-color: green;" class="statusCircle"></a>
+                            <a style="padding-left: 5px; font-weight: bold; font-size: 18px;">ยังไม่มีผู้สนใจรับเลี้ยง</a>
                         </div>
                     </div>
-                    <div class="w3-half" style="padding: 4px;">
-                        <div class="w3-third  w3-container w3-mobile" style="padding: 4px;">
-                            <div style="display: flex;">
-                                <a style="background-color: green;" class="statusCircle"></a>
-                                <a style="padding-left: 5px; font-weight: bold; font-size: 18px;">ยังไม่มีผู้สนใจรับเลี้ยง</a>
-                            </div>
+                    <div class="w3-third  w3-container w3-mobile" style="padding: 4px;">
+                        <div style="display: flex;">
+                            <a style="background-color: yellow;" class="statusCircle"></a>
+                            <a style="padding-left: 5px; font-weight: bold; font-size: 18px;">มีผู้สนใจรับเลี้ยง</a>
                         </div>
-                        <div class="w3-third  w3-container w3-mobile" style="padding: 4px;">
-                            <div style="display: flex;">
-                                <a style="background-color: yellow;" class="statusCircle"></a>
-                                <a style="padding-left: 5px; font-weight: bold; font-size: 18px;">มีผู้สนใจรับเลี้ยง</a>
-                            </div>
+                    </div>
+                    <div class="w3-third ter w3-container w3-mobile" style="padding: 4px;">
+                        <div style="display: flex;">
+                            <a style="background-color: red;" class="statusCircle"></a>
+                            <a style="padding-left: 5px;font-weight: bold; font-size: 18px;">มีผู้รับเลี้ยงแล้ว</a>
                         </div>
-                        <div class="w3-third ter w3-container w3-mobile" style="padding: 4px;">
-                            <div style="display: flex;">
-                                <a style="background-color: red;" class="statusCircle"></a>
-                                <a style="padding-left: 5px;font-weight: bold; font-size: 18px;">มีผู้รับเลี้ยงแล้ว</a>
-                            </div>
-                        </div>
+                    </div>
 
                 </div>
                 <br><br><br>
@@ -103,10 +87,10 @@ if(!$_SESSION['loginStatus']){
                             <a style="font-weight: bold; font-size: 20px;">ชนิดสัตว์เลี้ยง</a>
                         </div>
                         <div style="font-size: 20px;" class="w3-half" style="width: 50%;">
-                            <select class="w3-border w3-rest  w3-select" name="option">
-                                <option style="font-size: 20px;" value="0">all</option>
-                                <option style="font-size: 20px;" value="1">Dogs</option>
-                                <option style="font-size: 20px;" value="2">Cats</option>
+                            <select class="w3-border w3-rest  w3-select" name="typePet" id="typePetSelect" required>
+                                <option style="font-size: 20px;" value="">ทั้งหมด</option>
+                                <option style="font-size: 20px;" value="หมา">หมา</option>
+                                <option style="font-size: 20px;" value="แมว">แมว</option>
                             </select>
                         </div>
 
@@ -118,10 +102,8 @@ if(!$_SESSION['loginStatus']){
                             <a style="font-weight: bold; font-size: 20px;">สายพันธ์</a>
                         </div>
                         <div style="font-size: 20px;" class="w3-half" style="width: 50%;">
-                            <select class="w3-border w3-rest  w3-select" name="option">
-                                <option style="font-size: 20px;" value="0">all</option>
-                                <option style="font-size: 20px;" value="1">บีเกิล</option>
-                                <option style="font-size: 20px;" value="2">บางแก้ว</option>
+                            <select class="w3-border w3-rest  w3-select" name="species" id="speciesSelect" required>
+
                             </select>
                         </div>
 
@@ -133,10 +115,86 @@ if(!$_SESSION['loginStatus']){
                             <a style="font-weight: bold; font-size: 20px;">จังหวัด</a>
                         </div>
                         <div style="font-size: 20px;" class="w3-half" style="width: 50%;">
-                            <select class="w3-border w3-rest  w3-select" name="option">
-                                <option style="font-size: 20px;" value="0">all</option>
-                                <option style="font-size: 20px;" value="1">นครราชสีมา</option>
-                                <option style="font-size: 20px;" value="2">บุรีรัมย์</option>
+                            <select class="w3-border w3-rest  w3-select" name="option" id="provinceSelect">
+                                <option style="font-size: 20px;" value="">ทั้งหมด</option>
+                                <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                <option value="กระบี่">กระบี่ </option>
+                                <option value="กาญจนบุรี">กาญจนบุรี </option>
+                                <option value="กาฬสินธุ์">กาฬสินธุ์ </option>
+                                <option value="กำแพงเพชร">กำแพงเพชร </option>
+                                <option value="ขอนแก่น">ขอนแก่น</option>
+                                <option value="จันทบุรี">จันทบุรี</option>
+                                <option value="ฉะเชิงเทรา">ฉะเชิงเทรา </option>
+                                <option value="ชัยนาท">ชัยนาท </option>
+                                <option value="ชัยภูมิ">ชัยภูมิ </option>
+                                <option value="ชุมพร">ชุมพร </option>
+                                <option value="ชลบุรี">ชลบุรี </option>
+                                <option value="เชียงใหม่">เชียงใหม่ </option>
+                                <option value="เชียงราย">เชียงราย </option>
+                                <option value="ตรัง">ตรัง </option>
+                                <option value="ตราด">ตราด </option>
+                                <option value="ตาก">ตาก </option>
+                                <option value="นครนายก">นครนายก </option>
+                                <option value="นครปฐม">นครปฐม </option>
+                                <option value="นครพนม">นครพนม </option>
+                                <option value="นครราชสีมา">นครราชสีมา </option>
+                                <option value="นครศรีธรรมราช">นครศรีธรรมราช </option>
+                                <option value="นครสวรรค์">นครสวรรค์ </option>
+                                <option value="นราธิวาส">นราธิวาส </option>
+                                <option value="น่าน">น่าน </option>
+                                <option value="นนทบุรี">นนทบุรี </option>
+                                <option value="บึงกาฬ">บึงกาฬ</option>
+                                <option value="บุรีรัมย์">บุรีรัมย์</option>
+                                <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์ </option>
+                                <option value="ปทุมธานี">ปทุมธานี </option>
+                                <option value="ปราจีนบุรี">ปราจีนบุรี </option>
+                                <option value="ปัตตานี">ปัตตานี </option>
+                                <option value="พะเยา">พะเยา </option>
+                                <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา </option>
+                                <option value="พังงา">พังงา </option>
+                                <option value="พิจิตร">พิจิตร </option>
+                                <option value="พิษณุโลก">พิษณุโลก </option>
+                                <option value="เพชรบุรี">เพชรบุรี </option>
+                                <option value="เพชรบูรณ์">เพชรบูรณ์ </option>
+                                <option value="แพร่">แพร่ </option>
+                                <option value="พัทลุง">พัทลุง </option>
+                                <option value="ภูเก็ต">ภูเก็ต </option>
+                                <option value="มหาสารคาม">มหาสารคาม </option>
+                                <option value="มุกดาหาร">มุกดาหาร </option>
+                                <option value="แม่ฮ่องสอน">แม่ฮ่องสอน </option>
+                                <option value="ยโสธร">ยโสธร </option>
+                                <option value="ยะลา">ยะลา </option>
+                                <option value="ร้อยเอ็ด">ร้อยเอ็ด </option>
+                                <option value="ระนอง">ระนอง </option>
+                                <option value="ระยอง">ระยอง </option>
+                                <option value="ราชบุรี">ราชบุรี</option>
+                                <option value="ลพบุรี">ลพบุรี </option>
+                                <option value="ลำปาง">ลำปาง </option>
+                                <option value="ลำพูน">ลำพูน </option>
+                                <option value="เลย">เลย </option>
+                                <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                                <option value="สกลนคร">สกลนคร</option>
+                                <option value="สงขลา">สงขลา </option>
+                                <option value="สมุทรสาคร">สมุทรสาคร </option>
+                                <option value="สมุทรปราการ">สมุทรปราการ </option>
+                                <option value="สมุทรสงคราม">สมุทรสงคราม </option>
+                                <option value="สระแก้ว">สระแก้ว </option>
+                                <option value="สระบุรี">สระบุรี </option>
+                                <option value="สิงห์บุรี">สิงห์บุรี </option>
+                                <option value="สุโขทัย">สุโขทัย </option>
+                                <option value="สุพรรณบุรี">สุพรรณบุรี </option>
+                                <option value="สุราษฎร์ธานี">สุราษฎร์ธานี </option>
+                                <option value="สุรินทร์">สุรินทร์ </option>
+                                <option value="สตูล">สตูล </option>
+                                <option value="หนองคาย">หนองคาย </option>
+                                <option value="หนองบัวลำภู">หนองบัวลำภู </option>
+                                <option value="อำนาจเจริญ">อำนาจเจริญ </option>
+                                <option value="อุดรธานี">อุดรธานี </option>
+                                <option value="อุตรดิตถ์">อุตรดิตถ์ </option>
+                                <option value="อุทัยธานี">อุทัยธานี </option>
+                                <option value="อุบลราชธานี">อุบลราชธานี</option>
+                                <option value="อ่างทอง">อ่างทอง </option>
+                                <option value="อื่นๆ">อื่นๆ</option>
                             </select>
                         </div>
 
@@ -148,10 +206,10 @@ if(!$_SESSION['loginStatus']){
                             <a style="font-weight: bold; font-size: 20px;">จาก</a>
                         </div>
                         <div style="font-size: 20px;" class="w3-half" style="width: 50%;">
-                            <select class="w3-border w3-rest  w3-select" name="option">
-                                <option style="font-size: 20px;" value="0">all</option>
-                                <option style="font-size: 20px;" value="1">ทางบ้าน</option>
-                                <option style="font-size: 20px;" value="2">มูลนิธิ</option>
+                            <select class="w3-border w3-rest  w3-select" name="option" id="fromSelect">
+                                <option style="font-size: 20px;" value="">ทั้งหมด</option>
+                                <option style="font-size: 20px;" value="member">ทางบ้าน</option>
+                                <option style="font-size: 20px;" value="organization">มูลนิธิ</option>
                             </select>
                         </div>
 
@@ -159,88 +217,11 @@ if(!$_SESSION['loginStatus']){
                         </p>
                     </div>
                 </div>
-<br>
+
+                <br>
                 <div class="w3-container">
-                    <div class="w3-container w3-border">
-                        <div style="padding:10px;" class="w3-quarter w3-container">
-                            <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                                <a href="petDetailLogin"><img src="./Images/dogPic.png" alt="Avatar" style="width:100%;"></a>
-                                <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <img  width="35px" src="./Images/userPic.png">
-                                    <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
-                                    <a style="background-color: red;" class="w3-right statusCircle"></a>
-                                    <!--<p>Architect and engineer</p>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div style="padding:10px;" class="w3-quarter w3-container">
-                            <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <a href="petDetailLogin"><img src="./Images/dogPic.png" alt="Avatar" style="width:100%;"></a>
-                                <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <img  width="35px" src="./Images/userPic.png">
-                                    <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
-                                    <a style="background-color: green;" class="w3-right statusCircle"></a>
-                                    <!--<p>Architect and engineer</p>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div style="padding:10px;" class="w3-quarter w3-containe">
-                            <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <a href="petDetailLogin"><img src="./Images/dogPic.png" alt="Avatar" style="width:100%;"></a>
-                                <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <img  width="35px" src="./Images/userPic.png">
-                                    <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
+                    <div class="w3-container w3-border" id="cardPet">
 
-                                    <a style="background-color: yellow;" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div style="padding:10px;" class="w3-quarter w3-container">
-                            <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <a href="petDetailLogin"><img src="./Images/dogPic.png" alt="Avatar" style="width:100%;"></a>
-                                <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <img  width="35px" src="./Images/userPic.png">
-                                    <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
-                                    <a style="background-color: green;" class="w3-right statusCircle"></a>
-                                    <!--<p>Architect and engineer</p>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div style="padding:10px;" class="w3-quarter w3-container">
-                            <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <a href="petDetailLogin"><img src="./Images/dogPic.png" alt="Avatar" style="width:100%;"></a>
-                                <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <img  width="35px" src="./Images/userPic.png">
-                                    <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
-                                    <a style="background-color: yellow;" class="w3-right statusCircle"></a>
-                                    <!--<p>Architect and engineer</p>-->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="padding:10px;" class="w3-quarter w3-container">
-                            <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <a href="petDetailLogin"><img src="./Images/dogPic.png" alt="Avatar" style="width:100%;"></a>
-                                <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <img  width="35px" src="./Images/userPic.png">
-                                    <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
-                                    <a style="background-color: green;" class="w3-right statusCircle"></a>
-                                    <!--<p>Architect and engineer</p>-->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="padding:10px;" class="w3-quarter w3-container">
-                            <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <a href="petDetailLogin"><img src="./Images/dogPic.png" alt="Avatar" style="width:100%;"></a>
-                                <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <img  width="35px" src="./Images/userPic.png">
-                                    <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
-                                    <a style="background-color: red;" class="w3-right statusCircle"></a>
-                                    <!--<p>Architect and engineer</p>-->
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -251,65 +232,235 @@ if(!$_SESSION['loginStatus']){
 
 
     </table>
-
-
-<br><br>
-
-<style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
         .w3-8c71c0 {
-          background-color: #8c71c0;
+            background-color: #8c71c0;
         }
 
         .w3-564b6c {
-          background-color: #564b6c;
+            background-color: #564b6c;
         }
 
         .w3-373143 {
-          background-color: #373143;
+            background-color: #373143;
         }
-      </style>
-      <!-- Footer -->
-      <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
+    </style>
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
         <table align=center>
-          <tr>
-            <td style="height: 3cm;">
+            <tr>
+                <td style="height: 3cm;">
 
-            </td>
-          </tr>
+                </td>
+            </tr>
 
-          <tr style="width:100%;">
-            <td>
-              <p style="font-size: 30px;color: #E2E0E0;">
-                มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <td>
-          </tr>
-          <tr style="width:100%;">
+            <tr style="width:100%;">
+                <td>
+                    <p style="font-size: 30px;color: #E2E0E0;">
+                        มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <td>
+            </tr>
+            <tr style="width:100%;">
 
-            <td>
-              <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
-            </td>
-          </tr>
+                <td>
+                    <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
+                </td>
+            </tr>
         </table>
-       
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
-            class="fa fa-facebook "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
-            class="fa fa-twitter "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i
-            class="fa fa-google-plus "></i></a>
+        <p><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></p>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
         <p></p>
 
         <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
-          <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
-          <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
-              <i class="fa fa-chevron-circle-up "></i></span></a>
+            <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
+            <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
+                    <i class="fa fa-chevron-circle-up "></i></span></a>
         </div>
-      </footer>
-
+    </footer>
 
     <script>
+        // reload json pet
+
+        var xmlHttp;
+
+        function createXMLHttpRequest() {
+            if (window.ActiveXObject) // Internet Explorer
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            else // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+        } //end function createXMLHttpRequest()
+
+        function stateChange() {
+            if (xmlHttp.readyState == 4 ||
+                xmlHttp.readyState == "complete") {
+                resultJsonPet = xmlHttp.responseText;
+
+                var dataJson = JSON.parse(resultJsonPet); // conver string resultJsonpet to json type 
+                var length = Object.keys(dataJson).length; // find length of dataJson
+
+                console.log(length);
+                $("#cardPet").empty();
+                for (var i = 0; i < length; i++) {
+                    if (dataJson[i].petStatus == 0) {
+                        $colorStatus = "green";
+                    } else if (dataJson[i].petStatus == 1) {
+                        $colorStatus = "yellow";
+                    }
+                    $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetailLogin.php?id=' + dataJson[i].petID + '"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
+                    $("#cardPet").append($divCardPet);
+                }
+
+
+            }
+        } // end function statechange()
+
+        function jsonPet() {
+            createXMLHttpRequest();
+            xmlHttp.onreadystatechange = stateChange;
+            var url = "jsonPet.php";
+            //url = "greeting.php?day=Monday"
+            xmlHttp.open("GET", url, true);
+            xmlHttp.send(null);
+        }
+        jsonPet();
+
+        // end of reload json pet 
+
+
+
+        // add option pet
+
+        var dogs = ['ชิวาวา', 'บีเกิ้ล', 'ยอร์กไชร์เทอร์เรีย', 'บูลล์ด็อก', 'ร็อตต์ไวเลอร์', 'ไซบีเรียน', 'ปั๊ก', 'ชิสุ', 'โกลเด้น', 'ปอมเมอเรเนี่ยน'];
+        var cats = ['บาลินีส', 'เบอร์แมน', 'บริติชขนยาว', 'ชานทิลลี', 'จาวานีส', 'หิมาลายัน', 'เนบีลัง', 'เปอร์เซีย', 'แร็กดอลล์ ', 'เทอร์คิชแวน'];
+        var lenDog = dogs.length;
+        var lenCat = cats.length;
+        $('#typePetSelect').change(function() {
+            var type = $(this).val();
+            if (type == "หมา") {
+                $('#speciesSelect').empty();
+
+                $('#speciesSelect').append('<option style="font-size: 20px;" value="0">ทั้งหมด</option>');
+                for (var i = 0; i < lenDog; i++) {
+
+                    $('#speciesSelect').append("<option value=" + dogs[i] + ">" + dogs[i] + "</option>")
+                }
+            } else if (type == "แมว") {
+                $('#speciesSelect').empty();
+                $('#speciesSelect').append('<option style="font-size: 20px;" value="0">ทั้งหมด</option>');
+                for (var i = 0; i < lenCat; i++) {
+                    $('#speciesSelect').append("<option value" + cats[i] + ">" + cats[i] + "</option>")
+                }
+            } else {
+                $('#speciesSelect').empty();
+                $('#speciesSelect').append('<option style="font-size: 20px;" value="0">ทั้งหมด</option>');
+            }
+        });
+
+        // edn of add option pet
+
+        // query filter
+
+        var typePetSelect = "",
+            speciesSelect = "",
+            provinceSelect = "",
+            fromSelect = "",
+            textSearch = "",
+            bntSearch = "";
+        $("#typePetSelect").change(function() {
+            typePetSelect = $(this).val();
+        });
+
+        $("#speciesSelect").change(function() {
+            speciesSelect = $(this).val();
+        });
+        $("#provinceSelect").change(function() {
+            provinceSelect = $(this).val();
+
+        });
+
+        $("#fromSelect").change(function() {
+            fromSelect = $(this).val();
+
+        });
+        $("#textSearch").change(function() {
+            textSearch = $(this).val();
+        });
+
+
+
+        $("#bntSearch").click(function() {
+
+            if (typePetSelect == "" || typePetSelect == 0) {
+                jsonPet();
+                /* } else if ((typePetSelect == "" || typePetSelect == 0) && (speciesSelect == "" || speciesSelect == 0) && (fromSelect == "" || fromSelect == 0) && (provinceSelect != 0 || provinceSelect != "")) {
+                     jsonPetFilter();*/
+            } else {
+                jsonPetFilter();
+            }
+
+        });
+
+
+
+
+
+        function stateChangeFilter() {
+            if (xmlHttp.readyState == 4 ||
+                xmlHttp.readyState == "complete") {
+                resultJsonPet = xmlHttp.responseText;
+                console.log("resultJsonPet");
+                console.log(resultJsonPet);
+                if (resultJsonPet != "[[]]") {
+
+                    console.log(resultJsonPet);
+
+                    var dataJson = JSON.parse(resultJsonPet); // conver string resultJsonpet to json type 
+                    var length = Object.keys(dataJson).length; // find length of dataJson
+
+                    console.log(length);
+                    console.log(dataJson);
+                    if (dataJson != null) {
+                        $("#cardPet").empty();
+                        for (var i = 0; i < length; i++) {
+                            if (dataJson[i].petStatus == 0) {
+                                $colorStatus = "green";
+                            } else if (dataJson[i].petStatus == 1) {
+                                $colorStatus = "yellow";
+                            }
+                            $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetail"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
+                            $("#cardPet").append($divCardPet);
+                        }
+                    } else {
+                        jsonPet();
+                    }
+
+                } else {
+                    $("#cardPet").empty();
+                    $("#cardPet").append("<p style='font-size:50px;text-align: center;'>ไม่เจอผลลัพธ์</p>");
+                } // end of if check null dataJson
+
+
+
+
+            }
+        } // end function statechange()
+
+        function jsonPetFilter() {
+            createXMLHttpRequest();
+            xmlHttp.onreadystatechange = stateChangeFilter;
+            var url = "jsonPetFilter.php?typePet=" + typePetSelect + "&species=" + speciesSelect + "&province=" + provinceSelect + "&from=" + fromSelect + "&text=" + textSearch;
+            //url = "greeting.php?day=Monday"
+            xmlHttp.open("GET", url, true);
+            xmlHttp.send(null);
+        }
+        // end of query filter
+
+
         // Script for side navigation
         function w3_open() {
             var x = document.getElementById("mySidebar ");
