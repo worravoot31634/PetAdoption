@@ -144,7 +144,7 @@
 <body id="myPage">
 
 
-    <?php include('NavbarOrganization.html') ?>
+    <?php include('NavbarOrganization.php') ?>
 
     <!--Content-->
 
@@ -163,32 +163,43 @@
 
 
 
-    <div class="w3-container" style=" margin-left: auto;
+    <form method="post" action="addNewPet.php" enctype="multipart/form-data">
+        <div class="w3-container" style=" margin-left: auto;
     margin-right: auto;width: 80%;padding: 10px;" height="200px">
-        <!--Left side of Page-->
-        <div class="w3-border w3-half w3-center" style="height: 600px;">
-            <img src="./Images/source/picture.png" alt="" srcset="" width="50%">
-            <div style="clear:both;">
-                <input type="file" value="โพสต์" name="filePet" class="submitClass" style="margin-bottom: 10px;">
+            <!--Left side of Page-->
+            <div class="w3-border w3-half w3-center" style="height: 600px;">
+                <img src="./Images/source/picture.png" alt="" srcset="" width="50%">
+                <div style="clear:both;">
+                    <input type="file" value="โพสต์" name="filePet" class="submitClass" style="margin-bottom: 10px;">
+                </div>
+
             </div>
+            <div class="w3-half" style="background-color: #E2E0E0;height: 600px;">
 
-        </div>
-        <div class="w3-half" style="background-color: #E2E0E0;height: 600px;">
+                <div class="w3-container" style="padding:10px;background-color: #373143; color: white;">
+                    <div class="w3-half">
 
-            <div class="w3-container" style="padding:10px;background-color: #373143; color: white;">
-                <div class="w3-half">
-
+<<<<<<< HEAD
                 
                 </div>
+=======
+                        <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
+                            <img width="35px" src="./Images/userPic.png">
+                            <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
 
-                <div class="w3-half">
 
-                    <!--Add Right element of Name-->
+                        </div>
+                    </div>
+>>>>>>> 9a55cf5ccfdab6f87fde124312c4dd7ee9e66435
 
+                    <div class="w3-half">
+
+                        <!--Add Right element of Name-->
+
+                    </div>
                 </div>
-            </div>
-            <!--Detail Pet-->
-            <form method="get" action="<?php echo $_SERVER['REQUEST_URI'] ?>" enctype="multipart/form-data">
+                <!--Detail Pet-->
+
                 <div class="w3-container">
                     <br>
                     <div class="w3-row w3-padding">
@@ -326,7 +337,7 @@
 
                     <div class="w3-row w3-padding">
 
-                        <button class="open-button w3-right" style="border-radius: 14px;" id="btnChat" onclick="addNewPet();"><img width="20px" src="./Images/icon/sendIcon.png">
+                        <button class="open-button w3-right" style="border-radius: 14px;" id="btnChat"><img width="20px" src="./Images/icon/sendIcon.png">
                             <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">โพสต์</a></button>
 
 
@@ -334,8 +345,8 @@
                 </div>
                 <br>
 
-        </div>
-        </form>
+            </div>
+    </form>
 
 
     </div>
