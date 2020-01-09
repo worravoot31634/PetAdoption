@@ -1,3 +1,13 @@
+<?php
+// Start the session
+session_start();
+if (!$_SESSION['loginStatus']) {
+    $_SESSION['message'] = 'Please login first';
+    header("Location: login.php");
+    $_SESSION['accountID'];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -86,17 +96,18 @@
         <div class="w3-container w3-border">
 
 <?php
-          $sql="SELECT * FROM pet";
+          //$sql="SELECT * FROM pet";
+          $sql = "SELECT * FROM account join pet where accountID=posterID and username='".$_SESSION['username']."'";
           $rs=$conn->query($sql);
 
 
-
+  if($rs->num_rows != 0){
         while($row = $rs->fetch_assoc()) {
                   $id = $row['petID'];
           echo' <div style="padding:10px;" class="w3-quarter w3-container">
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
 
-                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 300px;"">
+                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 300px;">
 
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
                     <a href="editAddPetOrganization.php?id='.$id.'"><button class="btnEdit">แก้ไข</button></a>
@@ -104,7 +115,7 @@
                         <!--<p>Architect and engineer</p>-->
                     </div>
                 </div>
-            </div>'; }
+            </div>'; } }
 
 ?>
 
@@ -131,12 +142,9 @@
     <div class="w3-container w3-border" style="margin: 1%; position:relative">
 
       <?php
-      $accountID =$_SESSION['userAccountID'];
-      $sql="SELECT donate.Image as DImage , organization.Image as OImage , donateTitle,details,donateID
-      FROM donate 
-      JOIN organization 
-      ON donate.organizationID = organization.organizationID 
-      WHERE  organization.accountID = '$accountID'";
+
+      $sql="SELECT * FROM donate where organizationID =".  $_SESSION['accountID'];;
+
       $rs=$conn->query($sql);
 
 
@@ -152,7 +160,7 @@
 
 
                     <div class="w3-half colorActivity" style="height: 220px;">
-                        <img src="./Images/'. $row['DImage'] .'" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
+                        <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
                     </div> <!-- end of img -->
 
 
@@ -169,12 +177,8 @@
 
                         </p>
                         <div>
-                        <form action="reportChart.php" method="Post">
-                        <input type="hidden" value="'.$id.'" name="id">
-                            <a href="reportChart.php"><button type="submit" class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button></a>
-                            </form>
-                                <a href="editDonate.php?id='.$id.'"><button class="btnEdit"  style="width: 20%;margin: 5px;">แก้ไข</button></a>
-                            
+                            <a href="reportChart.php"><button class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button></a>
+                            <a href="editDonate.php?id='.$id.'"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
                         </div>
                 </a></div>
         </div>
@@ -203,7 +207,8 @@
 
         <?php
 
-        $sql="SELECT * FROM activity";
+
+          $sql="SELECT * FROM activity where organizationID =".  $_SESSION['accountID'];;
         $rs=$conn->query($sql);
 
 
