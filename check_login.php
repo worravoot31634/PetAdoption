@@ -19,6 +19,7 @@ session_start();
 
                 $_SESSION['username'] = $_POST["username"];
                 $_SESSION['accountID'] = $row['accountID'];
+                $_SESSION['roles']= $row['roles'];
                 $_SESSION['loginStatus'] = true;
                 switch ($row['roles']) {
 
@@ -39,6 +40,7 @@ session_start();
                             $_SESSION['UserLastname']= $rowMember['lastname'];
                             $_SESSION['Image']= $rowMember['Image'];
                             
+                            
                         }
                         header("Location: homeLogin.php");
                         break;
@@ -54,6 +56,7 @@ session_start();
                             $_SESSION['UserLastname']= $rowrOrganize['lastname'];
                             $_SESSION['UserAddress']= $rowrOrganize['address'];
                             $_SESSION['Image']= $rowrOrganize['Image'];
+                            
                             
                         }
                         header("Location: homeOrganization.php");
