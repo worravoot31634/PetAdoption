@@ -187,7 +187,7 @@ if (!$_SESSION['loginStatus']) {
 
             ?>
             <div class="w3-border w3-half w3-center" style="height: 600px;">
-                <img src="./Images/source/picture.png" alt="" srcset="" width="50%">
+                <img src="./Images/<?php echo $row['Image']?>" alt="" srcset="" width="70%" height="50%">
                 <div style="clear:both;">
                     <input type="file" name="petPhoto" value="โพสต์" class="submitClass" style="margin-bottom: 10px;">
                 </div>
@@ -213,8 +213,8 @@ if (!$_SESSION['loginStatus']) {
                         </div>
                         <div class="w3-twothird">
                             <select class="w3-border w3-rest  w3-select" name="type" required>
-                                <option style="font-size: 20px;" <?php if ($row['type'] == 1) echo "selected='selected'"; ?> value="1">Dogs</option>
-                                <option style="font-size: 20px;" <?php if ($row['type'] == 2) echo "selected='selected'"; ?> value="2">Cats</option>
+                                <option style="font-size: 20px;" <?php if ($row['type'] == 1) echo "selected='selected'"; ?> value="1">หมา</option>
+                                <option style="font-size: 20px;" <?php if ($row['type'] == 2) echo "selected='selected'"; ?> value="2">แมว</option>
                             </select>
                         </div>
 
