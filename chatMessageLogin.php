@@ -865,11 +865,14 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                             <img src="./Images/'. $row['Image'] .'" alt="" />
                             <div class="meta">
                                 <p class="name">'. $row['firstname'].' ' .$row['lastname'] .'</p>
-                                <p id = "preview'. $countContactList .'" class="preview"><span>คุณ:</span>';
+                                <p id = "preview'. $countContactList .'" class="preview"><span> :</span>';
 
 
-                                $rowLastestChat = "SELECT * FROM chat WHERE toUserID = ". $value   . " ORDER BY timestamp DESC LIMIT 1";
+                                $rowLastestChat = "SELECT * FROM chat WHERE (toUserID = ". $value   . " AND fromUserID = ". $_SESSION["accountID"] .") OR " 
+                                ."(toUserID = ". $_SESSION["accountID"]   . " AND fromUserID = ". $value . ") ORDER BY timestamp DESC LIMIT 1";
                                 $rs2=$conn->query($rowLastestChat);
+                                
+                                //echo $rowLastestChat;
 
                               while($rowLastestChat = $rs2->fetch_assoc()) {
 
