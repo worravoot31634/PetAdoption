@@ -177,8 +177,12 @@ if (!$_SESSION['loginStatus']) {
 
                         </p>
                         <div>
-                            <a href="reportChart.php"><button class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button></a>
-                            <a href="editDonate.php?id='.$id.'"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
+                        <form action="reportChart.php" method="Post">
+                        <input type="hidden" value="'.$id.'" name="id">
+                            <a href="reportChart.php"><button type="submit" class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button></a>
+                            </form>
+                                <a href="editDonate.php?id='.$id.'"><button class="btnEdit"  style="width: 20%;margin: 5px;">แก้ไข</button></a>
+                            
                         </div>
                 </a></div>
         </div>
