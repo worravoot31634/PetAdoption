@@ -231,7 +231,8 @@ if (!$_SESSION['loginStatus']) {
                         </div>
                         <div class="w3-twothird">
                             <select class="w3-border w3-rest  w3-select" name="species" id="speciesSelect" required>
-
+                              <option style="font-size: 20px;" <?php if ($row['species'] == "บีเกิล") echo "selected='selected'"; ?> value="บีเกิล">บีเกิล</option>
+                              <option style="font-size: 20px;" <?php if ($row['species'] == "บางแก้ว") echo "selected='selected'"; ?> value="บางแก้ว">บางแก้ว</option>
 
                             </select>
                         </div>

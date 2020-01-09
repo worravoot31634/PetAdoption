@@ -226,8 +226,8 @@ background-color: #373143;
                     </div>
                     <div class="w3-twothird">
                       <select class="w3-border w3-rest  w3-select" name="type" required>
-                          <option style="font-size: 20px;" <?php if ($row['type'] == 1) echo "selected='selected'"; ?> value="1">หมา</option>
-                          <option style="font-size: 20px;" <?php if ($row['type'] == 2) echo "selected='selected'"; ?> value="2">แมว</option>
+                          <option style="font-size: 20px;" <?php if ($row['type'] == "หมา") echo "selected='selected'"; ?> value="หมา">หมา</option>
+                          <option style="font-size: 20px;" <?php if ($row['type'] == "แมว") echo "selected='selected'"; ?> value="แมว">แมว</option>
                       </select>
                     </div>
 
@@ -240,8 +240,8 @@ background-color: #373143;
 
                     <div class="w3-twothird">
                       <select class="w3-border w3-rest  w3-select" name="species" required>
-                          <option style="font-size: 20px;" <?php if ($row['species'] == 1) echo "selected='selected'"; ?> value="1">บีเกิล</option>
-                          <option style="font-size: 20px;" <?php if ($row['species'] == 2) echo "selected='selected'"; ?> value="2">บางแก้ว</option>
+                          <option style="font-size: 20px;" <?php if ($row['species'] == "บีเกิล") echo "selected='selected'"; ?> value="บีเกิล">บีเกิล</option>
+                          <option style="font-size: 20px;" <?php if ($row['species'] == "บางแก้ว") echo "selected='selected'"; ?> value="บางแก้ว">บางแก้ว</option>
                       </select>
                     </div>
 

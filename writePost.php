@@ -1,3 +1,15 @@
+
+<?php
+// Start the session
+session_start();
+if (!$_SESSION['loginStatus']) {
+    $_SESSION['message'] = 'Please login first';
+    header("Location: login.php");
+    $_SESSION['accountID'];
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -85,7 +97,7 @@
 
 
                 <div class="w3-half" style="background-color: #E2E0E0;">
-            
+
 
 
                     <div>
