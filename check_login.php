@@ -18,7 +18,7 @@ session_start();
         
 
                 $_SESSION['username'] = $_POST["username"];
-                $_SESSION['accountID'] = $row['accountID'];
+                $_SESSION['userAccountID'] = $row['accountID'];
                 $_SESSION['roles']= $row['roles'];
                 $_SESSION['loginStatus'] = true;
                 switch ($row['roles']) {
@@ -34,7 +34,7 @@ session_start();
                             //Update Login Status Online
                             $sqlUpdateStatusLogin = $conn->query("UPDATE account SET statusLogin = 1 WHERE accountID = " . $rowMember['accountID'] ); 
 
-
+                            
                             $_SESSION['accountID']= $rowMember['memberID'];
                             $_SESSION['UserFirstname'] = $rowMember['firstname'];
                             $_SESSION['UserLastname']= $rowMember['lastname'];
