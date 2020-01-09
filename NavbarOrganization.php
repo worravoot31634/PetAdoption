@@ -23,7 +23,7 @@
                 <button class=" w3-button" style="color: #726292;"><b><?php echo $_SESSION['UserFirstname'] . ' ' . $_SESSION['UserLastname'];?></b></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     <a href="myPost.php" class="w3-bar-item w3-button"><b>โพสต์ของฉัน</b></a>
-                    <a href="chatMessage.php" class="w3-bar-item w3-button"><b>ประวัติแชท</b></a>
+                    <a href="check_chatOrganization.php" class="w3-bar-item w3-button"><b>ประวัติแชท</b></a>
                     <a href="logout.php" class="w3-bar-item w3-button"><b>ออกจากระบบ</b></a>
                 </div>
             </div>
