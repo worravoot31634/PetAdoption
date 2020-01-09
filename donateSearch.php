@@ -3,7 +3,9 @@
 
         $donateTitle = $_GET['donateTitle'];
         $province = $_GET['province'];
-       
+        $accountID = $_GET['accountID'];
+        $roles = $_GET['roles'];
+
         if($province=="0"){
             $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID as OrganizationID, organization.firstname as fname,organization.lastname as lname,donateTitle
             ,donateProvince
@@ -18,12 +20,11 @@
             FROM donate
             join organization 
             on donate.organizationID = organization.organizationID
-            WHERE  donate.donateTitle like '%$donateTitle%' AND donate.donateProvince ='$province' ";
+            WHERE  (donate.donateTitle like '%$donateTitle%' )AND donate.donateProvince ='$province' ";
 
 
         }
 
-        
         $rs = $conn->query($sql);
         
         if($rs->num_rows > 0){
@@ -55,7 +56,9 @@
                 'donateTitle' => $row["donateTitle"],
                 'donateProvince' => $row["donateProvince"],
                 'sumDonate' => $row2["sumDonate"],
-                'presen' => $presen
+                'presen' => $presen,
+                'accountID'=>$accountID,
+                'roles' => $roles
         
             );
         }

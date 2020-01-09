@@ -1,4 +1,5 @@
 var xmlHttp;
+type="text/javascript"
 function createXMLHttpRequest()
 {
 if (window.ActiveXObject) // Internet Explorer
@@ -12,18 +13,23 @@ xmlHttp=new XMLHttpRequest();
 } //end function createXMLHttpRequest()
 
 
-
 function stateChange()
 {
+    
 if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 {
-alert(xmlHttp.responseText);
 obj = JSON.parse(xmlHttp.responseText);
-
 suml=obj.length;
-alert("suml="+suml);
-alert(obj[0].donateID);
-alert(1%2);
+alert(obj);
+alert(suml);
+if(obj!=0){
+    url = "donateSubmitLogin.php";
+}else{
+    url = "donateSubmitOrganization.php";
+}
+
+
+
 for(i=0;i<suml;i++){
     if(i%2==0){
         $("#search").append("<div class='w3-row' style='width: 100%;margin:auto'id='search2'>"+
@@ -126,7 +132,7 @@ for(i=0;i<suml;i++){
              "</td>"+
              "<td style='width: 50%;'>"+
                  "<div  class='w3-container w3-light-grey'>"+
-                                "<form action='donateSubmitLogin.php' id='from1' method='post'>"+
+                                "<form action='"+url+"' id='from1' method='post'>"+
                                     "<br>"+
                                    " <p style='font-size: 18px;left: 10%;position:relative;'>ชื่อ-นามสกุล</p>"+
                                     "<center><input type='text' style='width:80%;border: none;border-radius: 2px;' name='donateName'></center>"+
@@ -144,7 +150,7 @@ for(i=0;i<suml;i++){
                                     "<center><input type='text' style='width:80%;border: none;border-radius: 2px;' name='donate'></center>"+
                                     "<br>"+
                                     "<input type='hidden' name='donateID' value='"+obj[i].donateID+"'>"+
-                                    "<input type='hidden' name='memberID' value='<?php echo $_SESSION['memberID']; ?>'>"+
+                                    "<input type='hidden' name='accountID' value='"+obj[i].accountID+"' >"+
                                     
                     "<div class='w3-container w3-padding'>"+
                         "<button class='btnEdit w3-right ' onclick=document.getElementById('"+obj[i].donateID+"').style.display='none' style='height: 1cm;'>ยกเลิก</button>"+
@@ -160,17 +166,16 @@ for(i=0;i<suml;i++){
     "</div>"+
    "</div>");
 }
-
 }
 
 
 } // end function statechange()
-function showHint(str,str2)
+function showHint(str,str2,int,str3)
 {
 createXMLHttpRequest();
 xmlHttp.onreadystatechange = stateChange;
 var url = "donateSearch.php";
-url = url + "?donateTitle=" + str+"&province="+str2; //url = "greeting.php?day=Monday"
+url = url + "?donateTitle=" + str+"&province="+str2+"&accountID="+int+"&roles="+str3; //url = "greeting.php?day=Monday"
 //alert(url);
 xmlHttp.open("GET",url,true);
 xmlHttp.send(null);

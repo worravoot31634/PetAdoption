@@ -97,7 +97,7 @@ include("connectDB.php");
     $name=$_POST["donateName"];
     $creditCard=$_POST["creditCard"];
     $CVV=$_POST["CVV"];
-    $accountID=$_POST["memberID"];
+    $accountID=$_POST["accountID"];
     $donateID=$_POST["donateID"];
     $sqlInsert = "INSERT INTO donatedetails(donateMoney,donaterName,cardID,cvv,accountID,donateID)
     VALUES('$donate','$name','$creditCard','$CVV','$accountID','$donateID')";

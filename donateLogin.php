@@ -40,7 +40,7 @@ if(!$_SESSION['loginStatus']){
 
 <?php
         include("connectDB.php");
-        session_start();
+       
   ?>
   .city {display:none}
   </style>
@@ -95,13 +95,14 @@ if(!$_SESSION['loginStatus']){
 
 <?php
     include('NavbarMember.php');
+    
     ?>
 
 
 
     <!--Fix 80 percent Screen-->
     <table width="80%" align="center">
-
+    
 
         <div>
             <center>
@@ -116,7 +117,7 @@ if(!$_SESSION['loginStatus']){
         <tr>
             <td>
                   
-                        
+         
                         <div style="width: 100%; ">
                         <form name="donateSearch"  >
                         <table align=center style="width: 70%;">
@@ -147,29 +148,28 @@ if(!$_SESSION['loginStatus']){
                                                                        
                             
 <script>
+    fromSelect = "0";
+    fromText="";
     $("#fromSelect").change(function() {
     fromSelect = $(this).val();
     });
-
     $("#fromText").change(function() {
     fromText = $(this).val();
     });
+    var accountID =<?php echo $_SESSION["userAccountID"]; ?>;
+    var roles ="<?php echo $_SESSION["roles"]; ?>";
     $("#bntSearch").click(function() {
-        alert("The paragraph was clicked.");
-        showHint(fromText,fromSelect);
+        showHint(fromText,fromSelect,accountID,roles);
         $(".reset").empty();
     });
 
 
 </script>
 
-<?php
-    $sql ="SELECT";
-?>            
-                
+
 <br>
+<p id="unfiled"><p>
 <div class="w3-container" id="popup">
-    
         <div class="w3-container w3-border reset" style="margin: 1%; position:relative" id="search" >
 
             <!--row of half content activity-->
@@ -326,7 +326,7 @@ if(!$_SESSION['loginStatus']){
                                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="donate"></center>
                                         <br>
                                         <input type="hidden" name="donateID" value="<?php echo $row['donateID']; ?>">
-                                        <input type="hidden" name="memberID" value="<?php echo $_SESSION["memberID"]; ?>">
+                                        <input type="hidden" name="accountID" value="<?php echo $_SESSION["userAccountID"]; ?>">
                                         
                         <div class="w3-container w3-padding">
                             <button class="btnEdit w3-right " onclick="document.getElementById('<?php echo $row['donateID']; ?>').style.display='none'" style="height: 1cm;">ยกเลิก</button>
