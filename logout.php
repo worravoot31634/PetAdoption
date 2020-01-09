@@ -8,7 +8,7 @@
 	SET statusLogin = 0 
 	WHERE accountID = " . $_SESSION['accountID'] ); 
 
-
+	session_unset();
 	session_destroy();
 	
     $conn->close();

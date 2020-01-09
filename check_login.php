@@ -46,10 +46,15 @@ session_start();
                         break;
 
                     case "organization":
+
+                        
+
                         $sqlOrganize = "SELECT * FROM organization where accountID = '".$row["accountID"]."'";
                         $rsOrganize = $conn->query($sqlOrganize);
 
                         while($rowrOrganize = $rsOrganize->fetch_assoc()) {
+
+                            $sqlUpdateStatusLogin = $conn->query("UPDATE account SET statusLogin = 1 WHERE accountID = " . $rowrOrganize['accountID'] ); 
 
                             $_SESSION['accountID']= $rowrOrganize['organizationID'];
                             $_SESSION['UserFirstname'] = $rowrOrganize['firstname'];
@@ -63,6 +68,9 @@ session_start();
                         break;
 
                     case "admin":
+
+                        
+
                         $sqlAdmin = "SELECT * FROM admin where accountID = '".$row["accountID"]."'";
                         $rsAdmin= $conn->query($sqlAdmin);
 
