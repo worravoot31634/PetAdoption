@@ -324,6 +324,7 @@
             xmlHttp.onreadystatechange = stateChange;
             var url = "jsonPet.php";
             //url = "greeting.php?day=Monday"
+            //alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }
@@ -455,7 +456,7 @@
             xmlHttp.onreadystatechange = stateChangeFilter;
             var url = "jsonPetFilter.php?typePet=" + typePetSelect + "&species=" + speciesSelect + "&province=" + provinceSelect + "&from=" + fromSelect + "&text=" + textSearch;
             //url = "greeting.php?day=Monday"
-            //alert(url);
+            alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }

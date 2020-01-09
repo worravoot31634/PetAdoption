@@ -85,58 +85,35 @@
 
             <div class="w3-container">
                 <div class="w3-container ">
+                    <?php 
+                        include 'connectDB.php';
+                        $sql = "SELECT *,pet.image as pimage,member.image as mimage FROM pet join member on posterID=memberID where (type like '%".$_POST["keyword"]."%' or species like '%".$_POST["keyword"]."%' or province like '%".$_POST["keyword"]."%'or firstname like '%".$_POST["keyword"]."%' or lastname like '%".$_POST["keyword"]."%') and not petStatus = 2";
+                        $rs = $conn->query($sql);
 
-
-                    <div style="padding:10px;" class="w3-quarter w3-container">
-                        <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                            <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                <img  width="35px" src="./Images/userPic.png">
-                                <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
-                                <a style="background-color: red;" class="w3-right statusCircle"></a>
-                                <!--<p>Architect and engineer</p>-->
+                        if($rs->num_rows != 0){//Check that it's have in DB or not
+                            while($row = $rs->fetch_assoc()) {?>
+                            <div style="padding:10px;" class="w3-quarter w3-container">
+                                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
+                                    <img src="./Images/<?php echo $row['pimage']?>" alt="Avatar" style="width:100%;">
+                                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
+                                        <img  width="35px" src="./Images/<?php echo $row['mimage']?>">
+                                        <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;"><?php echo $row['firstname']?></a>
+                                        <a style="background-color: <?php if($row["petStatus"]==0) {
+                                            echo "green";
+                                        }elseif($row["petStatus"]==1){
+                                            echo "yellow";
+                                        }else{
+                                            echo "red";
+                                        }
+                                        ?>" class="w3-right statusCircle"></a>
+                                        <!--<p>Architect and engineer</p>-->
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <?php }
+                        } ?>
                     </div>
-                    <div style="padding:10px;" class="w3-quarter w3-container">
-                        <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <img src="./Images/d5.jpg" alt="Avatar" style="width:100%;  height:300px">
-                            <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                <img  width="35px" src="./Images/2.png">
-                                <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Niko</a>
-                                <a style="background-color: green;" class="w3-right statusCircle"></a>
-                                <!--<p>Architect and engineer</p>-->
-                            </div>
-                        </div>
-                    </div>
-                    <div style="padding:10px;" class="w3-quarter w3-containe">
-                        <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <img src="./Images/d9.jpg" alt="Avatar"style="width:100%;  height:300px">
-                            <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                <img  width="35px" src="./Images/5.png">
-                                <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Ammie</a>
-
-                                <a style="background-color: yellow;" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>-->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="padding:10px;" class="w3-quarter w3-container">
-                        <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                            <img src="./Images/d4.jpg" alt="Avatar" style="width:100%;  height:300px">
-                            <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                                <img  width="35px" src="./Images/8.png">
-                                <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Andrew</a>
-                                <a style="background-color: green;" class="w3-right statusCircle"></a>
-                                <!--<p>Architect and engineer</p>-->
-                            </div>
-                        </div>
-                    </div>
-
-
-
                 </div>
-            </div>
 
         </td>
     </tr>
@@ -167,13 +144,22 @@
 
     <!--row of half content activity-->
 
+   
+
     <div class="w3-row" style="width: 100%;margin:auto">
         <!--row  half left side-->
-
+        <?php
+    include 'connectDB.php';
+    echo $sql = "SELECT *,organization.image as oimage,donate.image as dimage FROM donate join organization on donate.organizationID=organization.organizationID where donateTitle like '%".$_POST["keyword"]."%' or firstname like '%".$_POST["keyword"]."%'";
+    $rs = $conn->query($sql);
+    echo '<pre>' . print_r($rs->num_rows, TRUE) . '</pre>';
+    if($rs->num_rows != 0){//Check that it's have in DB or not
+        while($row = $rs->fetch_assoc()) {
+    ?>
         <div class="w3-half" style="padding: 10px;">
             <a href="activityDetail" class="activity-content-link">
                 <div class="w3-half colorActivity" style="height: 220px;">
-                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
+                    <img src="./Images/<?php echo $row['dimage']?>" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
                 </div> <!-- end of img -->
 
 
@@ -182,22 +168,18 @@
                     <!--img and text side by side-->
                     <div style="margin-top: 5px;float: left;">
                         <div style="display:inline-block">
-                            <img src="./Images/2.png" alt="" srcset="" width="100%"
+                            <img src="./Images/<?php echo $row['oimage']?>" alt="" srcset="" width="100%"
                                 style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
                         </div>
                         <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
+                            <h6 class="w3-left" style="font-size: 14px;"><?php echo $row['firstname']?></h6>
+                        </div>
+                        <div style="display:inline-block">
+                            </br><h6 class="w3-left" style="font-size: 14px;"><?php echo $row['donateTitle']?></h6>
                         </div>
                     </div><!-- end of img and text side by side-->
 
-                    <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-                        distribution of letters, as opposed to using 'Content here, content here', making it look
-                        like
-                        readable.
+                    <p style="font-size: 1vw;clear: both;"><?php echo $row['details']?>
                     </p>
                     <div>
                         <button class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button>
@@ -205,44 +187,10 @@
                     </div>
             </a></div><!-- end of text -->
     </div> <!-- end of row  half left side-->
+    <?php }
+    } ?>
 
-    <!--row  half right side-->
-
-    <div class="w3-half" style="padding: 10px;">
-        <a href="activityDetail" class="activity-content-link">
-            <div class="w3-half colorActivity" style="height: 220px;">
-                <img src="./Images/new5.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-            </div> <!-- end of img -->
-
-
-            <div class="w3-half colorActivity" style="height: 220px;">
-
-                <!--img and text side by side-->
-                <div style="margin-top: 5px;float: left;">
-                    <div style="display:inline-block">
-                        <img src="./Images/1.png" alt="" srcset="" width="100%"
-                            style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                    </div>
-                    <div style="display:inline-block">
-                        <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                    </div>
-                </div><!-- end of img and text side by side-->
-
-                <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                    distracted by the
-                    readable content of a page
-                    when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                    normal
-                    distribution of letters, as opposed to using 'Content here, content here', making it look
-                    like
-                    readable.
-                </p>
-                <div>
-                    <button class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button>
-                    <button class="btnEdit" style="width: 20%;">บริจาค</button>
-                </div>
-        </a></div><!-- end of text -->
-</div> <!-- end of row  half right side-->
+    
 
 </div>
 <!--end of row of half content activity-->
@@ -272,11 +220,18 @@
 
     <div class="w3-row" style="width: 100%;margin:auto">
         <!--row  half left side-->
-
+            <?php
+        include 'connectDB.php';
+        echo $sql = "SELECT *,activity.image as aimage,organization.image as oimage FROM activity join organization on activity.organizationID=organization.organizationID where topic like '%".$_POST["keyword"]."%' or firstname like '%".$_POST["keyword"]."%'";
+        $rs = $conn->query($sql);
+        echo '<pre>' . print_r($rs->num_rows, TRUE) . '</pre>';
+        if($rs->num_rows != 0){//Check that it's have in DB or not
+            while($row = $rs->fetch_assoc()) {
+        ?>
         <div class="w3-half" style="padding: 10px;">
             <a href="activityDetail" class="activity-content-link">
                 <div class="w3-half colorActivity" style="height: 220px;">
-                    <img src="./Images/new3.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
+                    <img src="./Images/<?php echo $row['mimage']?>" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
                 </div> <!-- end of img -->
 
 
@@ -285,22 +240,18 @@
                     <!--img and text side by side-->
                     <div style="margin-top: 5px;float: left;">
                         <div style="display:inline-block">
-                            <img src="./Images/2.png" alt="" srcset="" width="100%"
+                            <img src="./Images/<?php echo $row['oimage']?>" alt="" srcset="" width="100%"
                                 style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
                         </div>
                         <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
+                            <h6 class="w3-left" style="font-size: 14px;"><?php echo $row['firstname']?></h6>
+                        </div>
+                        <div style="display:inline-block">
+                            </br><h6 class="w3-left" style="font-size: 14px;"><?php echo $row['topic']?></h6>
                         </div>
                     </div><!-- end of img and text side by side-->
 
-                    <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-                        distribution of letters, as opposed to using 'Content here, content here', making it look
-                        like
-                        readable.
+                    <p style="font-size: 1vw;clear: both;"><?php echo $row['details']?>
                     </p>
                     <div>
                       <div>
@@ -309,47 +260,10 @@
                     </div>
             </a></div><!-- end of text -->
     </div> <!-- end of row  half left side-->
+    <?php }
+    } ?>
 
-    <!--row  half right side-->
-
-    <div class="w3-half" style="padding: 10px;">
-        <a href="activityDetail" class="activity-content-link">
-            <div class="w3-half colorActivity" style="height: 220px;">
-                <img src="./Images/new4.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-            </div> <!-- end of img -->
-
-
-            <div class="w3-half colorActivity" style="height: 220px;">
-
-                <!--img and text side by side-->
-                <div style="margin-top: 5px;float: left;">
-                    <div style="display:inline-block">
-                        <img src="./Images/3.png" alt="" srcset="" width="100%"
-                            style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                    </div>
-                    <div style="display:inline-block">
-                        <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                    </div>
-                </div><!-- end of img and text side by side-->
-
-                <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                    distracted by the
-                    readable content of a page
-                    when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                    normal
-                    distribution of letters, as opposed to using 'Content here, content here', making it look
-                    like
-                    readable.
-                </p>
-                <div>
-                  <div>
-                      <button class="btnEdit" style="margin: 5px;">รายละเอียดกิจกรรม</button>
-                  </div>
-
-                </div>
-        </a></div><!-- end of text -->
-</div> <!-- end of row  half right side-->
-
+    
 </div>
 <!--end of row of half content activity-->
 </div>

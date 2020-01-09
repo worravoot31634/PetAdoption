@@ -26,16 +26,18 @@
 
 
    <!-- Navbar Search Hide-->
+   <form name="searchForm" method="post" action="resultSearch.php">
    <div id="searchMenu" class="w3-top" style="display: none;">
     <div class="w3-bar w3-white w3-card">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white" href="javascript:void(0);" onclick="openNav2()"><i class="fa fa-bars"></i></a>
         <a href="index.php" style="font-size: 20px;" class="w3-bar-item w3-button w3-white"><img width="100" src="./Images/logo.png"></a>
         <div style="margin-top: 10px;" class="w3-center w3-hide-small w3-animate-left">
-            <input class="simpleSearch" placeholder = "ค้นหา" style="font-size: 20px;" size="100" type="text" />
-            <a href="resultSearch.php" style="font-size:18px; " onclick="hideNav()" class=" w3-black w3-button w3-hide-small w3-circle" title="Search"><i  class="fa fa-search"></i></a>
+            <input name="keyword" class="simpleSearch" placeholder = "ค้นหา" style="font-size: 20px;" size="100" type="text" />
+            <button type="sumbit" style="font-size:18px; " onclick="hideNav()" class=" w3-black w3-button w3-hide-small w3-circle" title="Search"><i  class="fa fa-search"></i></button>
             <a href="#" style="font-size:18px; margin-right: 10px;margin-bottom: 4px;" onclick="showNav()" class="w3-black w3-bar-item w3-button w3-hide-small w3-right w3-circle" title="Search"><i  class="fa fa-close"></i></a>
         </div>
     </div>
+    </form>
 
 <!-- Navbar on small screens case Search-->
 <div id="navDemo2" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
