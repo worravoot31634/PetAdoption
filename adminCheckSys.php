@@ -14,7 +14,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./CSS/CustomCss.css">
-
+<script src="js/script.js"></script>
 <style>
     .statusCircle {
         height: 30px;
@@ -84,14 +84,14 @@
     <!--content-->
     <div class="w3-container" style="margin-top: 80px;left: 2%;position:relative">
         <div style="display:inline-block">
-            <p style="font-size: 28px;font-weight: bold;">รายชื่อ</p>
+            <p style="font-size: 28px;font-weight: bold;">การบริจาค</p>
         </div>
     </div>
 
 
     <form action="" method="POST">
         <div class="w3-container">
-            <div class="w3-row">
+            <div class="w3-row" id="tableCheckSys">
                 <table class="w3-table w3-centered w3-bordered w3-border" style="width: 80%;margin: auto;">
                     <tr class="tableHeader">
                         <th>โปรไฟล์</th>
@@ -100,27 +100,41 @@
                         <th>สถานะ</th>
                         <th>ปิดการใช้งานระบบ</th>
                     </tr>
-                    <tr>
-                        <td><img src="./Images/new1.jpg" alt="" srcset="" width="40px" height="40px" style="border-radius: 50%;"></td>
-                        <td>พงษชาติ เฟื่องคำ</td>
-                        <td>User</td>
-                        <td>online</td>
-                        <td><button type="submit" class="btnCloseStatus">ปิดการใช้งานระบบ</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./Images/new1.jpg" alt="" srcset="" width="40px" height="40px" style="border-radius: 50%;"></td>
-                        <td>พงษชาติ เฟื่องคำ</td>
-                        <td>User</td>
-                        <td>offline</td>
-                        <td><button class="btnClosedStatus">ปิดการใช้งานระบบ</button></td>
-                    </tr>
+
+                    <?php
+
+                    include "connectDB.php";
+
+                    $sql = "SELECT ac.accountID,organ.Image,organ.firstname,ac.roles,ac.statusLogin FROM  account as ac  JOIN organization as organ on ac.accountID = organ.accountID";
+
+                    $res = $conn->query($sql);
+
+                    if ($res->num_rows > 0) {
+                        while ($row = $res->fetch_assoc()) {
+
+                            echo '<tr>';
+                            echo '<td><img src="./Images/' . $row["Image"] . '" alt="" srcset="" width="40px" height="40px" style="border-radius: 50%;"></td>';
+                            echo '<td>' . $row["firstname"] . '</td>';
+                            echo '<td>' . $row["roles"] . '</td>';
+                            if ($row["statusLogin"] == 1) {
+                                echo '<td>Online</td>';
+                                echo '<td><a  class="btnCloseStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" onclick="CheckSys(' . $row["accountID"] . ')">ปิดการใช้งานระบบ</a></td>';
+                                echo  '</tr>';
+                            } else {
+                                echo '<td>Offline</td>';
+                                echo '<td><a  class="btnClosedStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" disabled">ออกจากระบบแล้ว</a></td>';
+                                echo  '</tr>';
+                            }
+                        }
+                    }
+                    ?>
                 </table>
 
             </div>
         </div>
     </form>
     <!--end of content-->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         // Script for side navigation
         function w3_open() {

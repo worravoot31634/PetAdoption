@@ -185,11 +185,16 @@ if (!$_SESSION['loginStatus']) {
             $rs = $conn->query($sql);
             $row = $rs->fetch_assoc();
 
+            $typeCheck = $row["type"];
+            $speciesCheck = $row["species"];
+            $changeImage = $row["Image"];
+
             ?>
+            <input type="hidden" name="fileHidden" value="<?php echo $changeImage ?>">
             <div class="w3-border w3-half w3-center" style="height: 600px;">
-                <img src="./Images/<?php echo $row['Image']?>" alt="" srcset="" width="70%" height="50%">
+                <img src="./Images/<?php echo $row['Image'] ?>" alt="" srcset="" width="100%" height="560px">
                 <div style="clear:both;">
-                    <input type="file" name="petPhoto" value="โพสต์" class="submitClass" style="margin-bottom: 10px;">
+                    <input type="file" name="petPhoto" value="โพสต์" class="submitClass" style="margin-bottom: 10px;" id="fileChange">
                 </div>
 
             </div>
@@ -212,9 +217,9 @@ if (!$_SESSION['loginStatus']) {
                             <a style="padding-left: 4px ;font-size: 1.2em;font-weight: bold;">ชนิดสัตว์เลี้ยง: </a>
                         </div>
                         <div class="w3-twothird">
-                            <select class="w3-border w3-rest  w3-select" name="type" required>
-                                <option style="font-size: 20px;" <?php if ($row['type'] == 1) echo "selected='selected'"; ?> value="1">หมา</option>
-                                <option style="font-size: 20px;" <?php if ($row['type'] == 2) echo "selected='selected'"; ?> value="2">แมว</option>
+                            <select class="w3-border w3-rest  w3-select" name="type" required disabled>
+                                <option style="font-size: 20px;" <?php if ($row['type'] == "หมา") echo "selected='selected'"; ?> value="หมา">หมา</option>
+                                <option style="font-size: 20px;" <?php if ($row['type'] == "แมว") echo "selected='selected'"; ?> value="แมว">แมว</option>
                             </select>
                         </div>
 
@@ -225,9 +230,9 @@ if (!$_SESSION['loginStatus']) {
                             <a style="padding-left: 4px ;font-size: 1.2em;font-weight: bold;">สายพันธู์: </a>
                         </div>
                         <div class="w3-twothird">
-                            <select class="w3-border w3-rest  w3-select" name="species" required>
-                                <option style="font-size: 20px;" <?php if ($row['species'] == 1) echo "selected='selected'"; ?> value="1">บีเกิล</option>
-                                <option style="font-size: 20px;" <?php if ($row['species'] == 2) echo "selected='selected'"; ?> value="2">บางแก้ว</option>
+                            <select class="w3-border w3-rest  w3-select" name="species" id="speciesSelect" required>
+
+
                             </select>
                         </div>
 
@@ -327,7 +332,7 @@ if (!$_SESSION['loginStatus']) {
                             <a style="padding-left: 4px ;font-size: 1.2em;font-weight: bold;">หมายเลขโทรศัพท์: </a>
                         </div>
                         <div class="w3-twothird">
-                            <input value = "<?php echo $row['phoneNumber']?>" name="phoneNumber" class="w3-input" type="text" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required />
+                            <input value="<?php echo $row['phoneNumber'] ?>" name="phoneNumber" class="w3-input" type="text" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required />
                         </div>
 
                     </div>
@@ -336,7 +341,7 @@ if (!$_SESSION['loginStatus']) {
                     </div>
                     <div class="w3-row w3-padding">
                         <div class="w3-row w3-padding" style="border: 2px solid whitesmoke;border-radius: 12px;">
-                            <textarea  name="details" class="w3-input" rows="4" cols="50" required><?php echo $row['details']?></textarea>
+                            <textarea name="details" class="w3-input" rows="4" cols="50" required><?php echo $row['details'] ?></textarea>
                         </div>
                     </div>
 
@@ -414,6 +419,36 @@ if (!$_SESSION['loginStatus']) {
     </footer>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var dogs = ['ชิวาวา', 'บีเกิ้ล', 'ยอร์กไชร์เทอร์เรีย', 'บูลล์ด็อก', 'ร็อตต์ไวเลอร์', 'ไซบีเรียน', 'ปั๊ก', 'ชิสุ', 'โกลเด้น', 'ปอมเมอเรเนี่ยน'];
+        var cats = ['บาลินีส', 'เบอร์แมน', 'บริติชขนยาว', 'ชานทิลลี', 'จาวานีส', 'หิมาลายัน', 'เนบีลัง', 'เปอร์เซีย', 'แร็กดอลล์ ', 'เทอร์คิชแวน'];
+        var lenDog = dogs.length;
+        var lenCat = cats.length;
+
+        if ("<?php echo $typeCheck ?>" == "หมา") {
+            $('#speciesSelect').empty();
+            for (var i = 0; i < lenDog; i++) {
+                if ("<?php echo $speciesCheck ?>" == dogs[i]) {
+                    $('#speciesSelect').append("<option selected value='" + dogs[i] + "'>" + dogs[i] + "</option>")
+                } else {
+                    $('#speciesSelect').append("<option value='" + dogs[i] + "'>" + dogs[i] + "</option>")
+                }
+
+            }
+        } else if ("<?php echo $typeCheck ?>" == "แมว") {
+            $('#speciesSelect').empty();
+            for (var i = 0; i < lenCat; i++) {
+
+                if ("<?php echo $speciesCheck ?>" == cats[i]) {
+                    $('#speciesSelect').append("<option selected value='" + cats[i] + "'>" + cats[i] + "</option>")
+                } else {
+                    $('#speciesSelect').append("<option value='" + cats[i] + "'>" + cats[i] + "</option>")
+                }
+                //$('#speciesSelect').append("<option>" + cats[i] + "</option>")
+            }
+        }
+    </script>
     <script>
         // Script for side navigation
         function w3_open() {

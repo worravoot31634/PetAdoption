@@ -432,7 +432,7 @@
                             } else if (dataJson[i].petStatus == 1) {
                                 $colorStatus = "yellow";
                             }
-                            $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetail"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
+                            $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetail.php?id=' + dataJson[i].petID + '"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
                             $("#cardPet").append($divCardPet);
                         }
                     } else {
