@@ -1,3 +1,12 @@
+<?php
+// Start the session
+session_start();
+if (!$_SESSION['loginStatus']) {
+    $_SESSION['message'] = 'Please login first';
+    header("Location: login.php");
+    $_SESSION['accountID'];
+}
+?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -57,7 +66,7 @@
 
 
     <?php
-    include('NavbarMember.html');
+    include('NavbarMember.php');
     ?>
 
 
@@ -108,90 +117,36 @@
 
     <div class="w3-container">
         <div class="w3-container w3-border">
+        <?php
+        include 'connectDB.php';
+        $sql = "SELECT * FROM account join pet where accountID=posterID and username='".$_SESSION['username']."'";
+        $rs = $conn->query($sql);
+        if($rs->num_rows != 0){//Check that it's have in DB or not
+            while($row = $rs->fetch_assoc()) {
+        ?>
             <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
+                <div class="w3-card-4 test" style="height:300px; width:100%;max-width:300px;">
+                    <img src="./Images/<?php echo $row["Image"]; ?>" alt="Avatar" style="width:100%;">
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: red;" class="w3-right statusCircle"></a>
+                        <a href="editAddPetLogin.php?id=<?php echo $row["petID"]?>"><button class="btnEdit">แก้ไข</button></a>
+                        <a style="background-color: 
+                        <?php if($row["petStatus"]==0) {
+                            echo "green";
+                        }elseif($row["petStatus"]==1){
+                            echo "yellow";
+                        }else{
+                            echo "red";
+                        }
+                        ?>" 
+                        class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
                 </div>
             </div>
-            <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: green;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
-            <div style="padding:10px;" class="w3-quarter w3-containe">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
-
-                        <a style="background-color: yellow;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
-            <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: green;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
-
-
-            <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: red;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
-            <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: green;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
-            <div style="padding:10px;" class="w3-quarter w3-containe">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
-
-                        <a style="background-color: yellow;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
-            <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                        <a href="editAddPetLogin.php"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: green;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
+            <?php 
+            }
+        }
+            ?>
 
         </div>
     </div>
@@ -199,56 +154,53 @@
     <!--end of content-->
     <style>
         .w3-8c71c0 {
-          background-color: #8c71c0;
+            background-color: #8c71c0;
         }
 
         .w3-564b6c {
-          background-color: #564b6c;
+            background-color: #564b6c;
         }
 
         .w3-373143 {
-          background-color: #373143;
+            background-color: #373143;
         }
-      </style>
-      <!-- Footer -->
-      <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
+    </style>
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
         <table align=center>
-          <tr>
-            <td style="height: 3cm;">
+            <tr>
+                <td style="height: 3cm;">
 
-            </td>
-          </tr>
+                </td>
+            </tr>
 
-          <tr style="width:100%;">
-            <td>
-              <p style="font-size: 30px;color: #E2E0E0;">
-                มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <td>
-          </tr>
-          <tr style="width:100%;">
+            <tr style="width:100%;">
+                <td>
+                    <p style="font-size: 30px;color: #E2E0E0;">
+                        มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <td>
+            </tr>
+            <tr style="width:100%;">
 
-            <td>
-              <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
-            </td>
-          </tr>
+                <td>
+                    <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
+                </td>
+            </tr>
         </table>
 
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
-            class="fa fa-facebook "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
-            class="fa fa-twitter "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i
-            class="fa fa-google-plus "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
         <p></p>
 
         <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
-          <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
-          <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
-              <i class="fa fa-chevron-circle-up "></i></span></a>
+            <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
+            <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
+                    <i class="fa fa-chevron-circle-up "></i></span></a>
         </div>
-      </footer>
+    </footer>
 
 
     <script>

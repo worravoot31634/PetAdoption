@@ -1,8 +1,8 @@
 <?php
 session_start();
-$_SESSION["userIDLogin"] = "1";
+$_SESSION["userIDLogin"] = $_SESSION['accountID'];
 
-    include('NavbarMember.html');
+    include('NavbarMember.php');
     include('connectDB.php');
 
 
@@ -763,38 +763,43 @@ body {
 
                     while($row = $rsChat->fetch_assoc()) {
                       if($row['toUserID'] == $_SESSION["userIDLogin"]){
-
+                        echo '<pre>' . print_r($row['toUserID'], TRUE) . '</pre>';
                         $contactFrom[$i++] = $row['fromUserID'];
-                      }else{
+                      }else if($row['fromUserID'] == $_SESSION["userIDLogin"]){
                         $contactSend[$j++] = $row['toUserID'];
                       }
 
 
 
                     }
-
-
-
+                    
+                    
 
                     //Check Contact Lists
                     $tempContact = array_merge($contactFrom,$contactSend);
                     $tempContact = array_unique($tempContact);
+                    
+                    echo '<pre>' . print_r(count($tempContact), TRUE) . '</pre>';
+
+                    $_SESSION["amountOfContact"] = count($tempContact);
 
 
+                    
 
                     ?>
 
                     <!--Fetch Image of User-->
+                    
 <?php
-$rowCheckImage = "SELECT * FROM member WHERE memberID = " . $_SESSION["userIDLogin"];
+/*$rowCheckImage = "SELECT * FROM member m, organization o WHERE m.accountID = " . $_SESSION["userIDLogin"] . " OR o.accountID = " . $_SESSION["userIDLogin"] . " AND o.accountID = m.accountID";
 $rsImage=$conn->query($rowCheckImage);
 
 while($rowCheckImages = $rsImage->fetch_assoc()) {
 
     $imageUser = $rowCheckImages['Image'];
 
-
-}
+    echo $imageUser;
+}*/
 
 ?>
 
@@ -802,7 +807,7 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
   <div id="sidepanel">
       <div id="profile">
           <div class="wrap">
-              <img id="profile-img" src="./Images/<?php echo $imageUser ?>" class="online" alt="" />
+              <img id="profile-img" src="./Images/<?php echo $_SESSION["Image"] ?>" class="online" alt="" />
               <?php
 
                     // get results from database
@@ -860,15 +865,18 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                             <img src="./Images/'. $row['Image'] .'" alt="" />
                             <div class="meta">
                                 <p class="name">'. $row['firstname'].' ' .$row['lastname'] .'</p>
-                                <p id = "preview'. $countContactList .'" class="preview"><span>คุณ:</span>';
+                                <p id = "preview'. $countContactList .'" class="preview"><span> :</span>';
 
 
-                                $rowLastestChat = "SELECT * FROM chat WHERE toUserID = ". $row['memberID'] ." OR fromUserID = ". $row['memberID']   . " ORDER BY timestamp DESC LIMIT 1";
+                                $rowLastestChat = "SELECT * FROM chat WHERE (toUserID = ". $value   . " AND fromUserID = ". $_SESSION["accountID"] .") OR " 
+                                ."(toUserID = ". $_SESSION["accountID"]   . " AND fromUserID = ". $value . ") ORDER BY timestamp DESC LIMIT 1";
                                 $rs2=$conn->query($rowLastestChat);
+                                
+                                //echo $rowLastestChat;
 
                               while($rowLastestChat = $rs2->fetch_assoc()) {
 
-
+                                
 
                                 echo  ' '.$rowLastestChat['message'].'</p>';
 
@@ -903,7 +911,7 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
           //Get Data Contact
           foreach($tempContact as $value){
 
-              $sqlGetContactList = "SELECT * FROM member WHERE memberID = " . $value;
+              $sqlGetContactList = "SELECT * FROM member m ,account a WHERE m.accountID = a.accountID AND m.memberID = " . $value;
               $rs=$conn->query($sqlGetContactList);
 
 
@@ -931,15 +939,22 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                       $sqlGetAllContacts ="SELECT * FROM chat";
                       $rsChat=$conn->query($sqlGetAllContacts);
                     while($rowChat = $rsChat->fetch_assoc()) {
+                      //echo "<h2>VALUE : " . $value . "</h2>";
+                        
 
-                      if($rowChat['fromUserID'] == $row['memberID']){
-                          echo '<li class="replies">
-                          <img src="./Images/'. $imageUser  .'" alt="" />
+                        if($rowChat['toUserID'] == $value && $rowChat["fromUserID"] == $_SESSION["accountID"]){
+                          //echo 'จาก User : ' . $rowChat['toUserID'];
+                          echo '<li class="sent">
+                          
+                          <img src="./Images/'. $row['Image']  .'" alt="" />
                           <p>'. $rowChat['message'] .'</p>
                       </li>';
-                      }else if ($rowChat['toUserID'] == $row['memberID']){
-                        echo '<li class="sent">
-                        <img src="./Images/'. $row['Image']  .'" alt="" />
+                        
+                    }else if ($rowChat['fromUserID'] == $value && $rowChat["toUserID"] == $_SESSION["accountID"]){
+                      //echo 'ส่ง User : ' . $rowChat['toUserID'];
+                        echo '<li class="replies">
+
+                        <img src="./Images/'. $_SESSION["Image"]  .'" alt="" />
                           <p>'. $rowChat['message'] .'</p>
                       </li>';
                       }
@@ -1062,6 +1077,7 @@ document.getElementById("btnChat").style.display = "block"
 var tempfromUserID=0;
 function setFromUserID(idUser){
   tempfromUserID = idUser;
+  console.log("setFromUserID : " + idUser);
 }
 
 
@@ -1074,7 +1090,7 @@ function newMessage(idInput,idNum) {
   console.log(message);
 $append = "#message" + idNum + " ul";
 
-	$('<li class="replies"><img src="./Images/userPic.png" alt="" /><p>' + message + '</p></li>').appendTo($($append));
+	$('<li class="replies"><img src="./Images/<?php echo $_SESSION["Image"] ?>" alt="" /><p>' + message + '</p></li>').appendTo($($append));
   $(idInput).val(null);
 
 	$('.contact.active .preview').html('<span>คุณ: </span>' + message);
@@ -1147,57 +1163,46 @@ $append = "#message" + idNum + " ul";
 
 function showChat(id){
 
+  let ChatNameID = "Chat" + id;
+  let ContactNameID = "contact" + id;
+
+switch (id){
+
+  <?php
 
 
+for($i=1; $i<= $_SESSION["amountOfContact"]; $i++){
 
-  switch(id) {
-  case 1:
-    document.getElementById('contact1').classList.add('active');
-    document.getElementById('contact2').classList.remove('active');
-    //document.getElementById('contact3').classList.remove('active');
-    //document.getElementById('contact4').classList.remove('active');
-    //Chat Box
-    document.getElementById('Chat1').style.display = "block";
-    document.getElementById('Chat2').style.display = "none";
-    //document.getElementById('Chat3').style.display = "none";
-    //document.getElementById('Chat4').style.display = "none";
-    break;
-  case 2:
-    document.getElementById('contact1').classList.remove('active');
-    document.getElementById('contact2').classList.add('active');
-    //document.getElementById('contact3').classList.remove('active');
-    //document.getElementById('contact4').classList.remove('active');
-    //Chat Box
-    document.getElementById('Chat1').style.display = "none";
-    document.getElementById('Chat2').style.display = "block";
-    //document.getElementById('Chat3').style.display = "none";
-    //document.getElementById('Chat4').style.display = "none";
-    break;
-  case 3:
-    document.getElementById('contact1').classList.remove('active');
-    document.getElementById('contact2').classList.remove('active');
-    //document.getElementById('contact3').classList.add('active');
-    //document.getElementById('contact4').classList.remove('active');
-    //Chat Box
-    document.getElementById('Chat1').style.display = "none";
-    document.getElementById('Chat2').style.display = "none";
-    //document.getElementById('Chat3').style.display = "block";
-    //document.getElementById('Chat4').style.display = "none";
-    break;
-  case 4 :
-    document.getElementById('contact1').classList.remove('active');
-    document.getElementById('contact2').classList.remove('active');
-    //document.getElementById('contact3').classList.remove('active');
-    //document.getElementById('contact4').classList.add('active');
-    //Chat Box
-    document.getElementById('Chat1').style.display = "none";
-    document.getElementById('Chat2').style.display = "none";
-    //document.getElementById('Chat3').style.display = "none";
-    //document.getElementById('Chat4').style.display = "block";
-  default:
-    // code block
+      echo 'case ' . $i . ': ';
+
+      for($j=1; $j<= $_SESSION["amountOfContact"]; $j++){
+
+        if($j == $i){
+          echo 'document.getElementById("contact'.$j.'").classList.add("active");';
+          echo 'document.getElementById("Chat'.$j.'").style.display = "block";';
+        }else{
+          echo 'document.getElementById("contact'.$j.'").classList.remove("active");';
+          echo 'document.getElementById("Chat'.$j.'").style.display = "none";';
+        }
+
+        
+        
+      }
+    echo 'break;';
+    }
+
+?>
+
+    default:
+      break;
 }
 
+
+
+  
+
+  
+  
 
 }
 </script>

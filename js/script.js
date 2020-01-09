@@ -1,4 +1,5 @@
 var xmlHttp;
+
 function createXMLHttpRequest() {
     if (window.ActiveXObject) // Internet Explorer
         xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
@@ -9,19 +10,28 @@ function createXMLHttpRequest() {
 function stateChange() {
     if (xmlHttp.readyState == 4 ||
         xmlHttp.readyState == "complete") {
-        var a = xmlHttp.responseText;
-        //alert(xmlHttp.responseText);
-        alert(a);
+        data = xmlHttp.responseText;
+
+        console.log(data);
+        if (data == "successfully") {
+            document.getElementById("msg").value = "";
+            Notiflix.Notify.Success('ส่งข้อความแล้ว');
+        } else {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาดระหว่างส่งข้อความ');
+        }
     }
 } // end function statechange()
 
-function addNewPet() {
+function sendMessage() {
     createXMLHttpRequest();
     xmlHttp.onreadystatechange = stateChange;
-    var url = "addNewPet";
+    var sendID = 1;
+    var recieverID = 2;
+    var mess = document.getElementById("msg").value;
+    var param = "sendID=" + sendID + "&reciever=" + recieverID + "&mess=" + mess;
 
-    //url = "greeting.php?day=Monday"
-    alert(url);
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send(null);
-}
+    var url = "messageSave.php";
+    xmlHttp.open("POST", url, true);
+    xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xmlHttp.send(param);
+} 

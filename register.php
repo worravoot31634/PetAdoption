@@ -49,7 +49,7 @@
 
 
 <?php
-    include('NavbarNonMember.html');
+    include('NavbarNonMember.php');
     ?>
     
     <!--Content-->
@@ -61,7 +61,7 @@
                 <center>
                     <p style="font-size: 30px;color:white;font-weight: bold;">สมัครสมาชิก</p>
                 </center>
-            <form action="">
+            <form action="addRegisterPHP.php" method="post" enctype="multipart/form-data">
                 <table align="center" style="width: 100%;">
                     <tr  style="width: 100%;">
                         <td  style="width: 50%;">
@@ -130,7 +130,7 @@
         <center>
             <p style="font-size: 30px;color:white;font-weight: bold;">สมัครสมาชิก</p>
         </center>
-        <form action="">
+        <form action="addRegisterPHP.php" method="post" enctype="multipart/form-data">
             <table align="center" style="width: 100%;">
                 <tr  style="width: 100%;">
                     <td  style="width: 50%;">
@@ -263,6 +263,9 @@
         document.getElementById("menu").style.display = "block";
         document.getElementById("searchMenu").style.display = "none";
 
+
+
+    
 
     }
 </script>

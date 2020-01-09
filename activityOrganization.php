@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿<?php
+// Start the session
+session_start();
+if(!$_SESSION['loginStatus']){
+  $_SESSION['message'] = 'Please login first';
+  header("Location: login.php");
+}
+?>
+<!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
 <meta charset="UTF-8">
@@ -40,7 +48,7 @@
 <body id="myPage">
 
 <?php
-    include('NavbarOrganization.html');
+    include('NavbarOrganization.php');
     ?>
     <!--Content-->
     <?php
