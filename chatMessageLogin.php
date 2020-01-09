@@ -6,7 +6,7 @@ $_SESSION["userIDLogin"] = $_SESSION['accountID'];
     include('connectDB.php');
 
 
- 
+
     ?>
 
 
@@ -764,7 +764,7 @@ body {
 
                     while($row = $rsChat->fetch_assoc()) {
                       if($row['toUserID'] == $_SESSION["userIDLogin"]){
-                        echo '<pre>' . print_r($row['toUserID'], TRUE) . '</pre>';
+                        //echo '<pre>' . print_r($row['toUserID'], TRUE) . '</pre>';
                         $contactFrom[$i++] = $row['fromUserID'];
                       }else if($row['fromUserID'] == $_SESSION["userIDLogin"]){
                         $contactSend[$j++] = $row['toUserID'];
@@ -773,14 +773,14 @@ body {
 
 
                     }
-                    
-                    
+
+
 
                     //Check Contact Lists
                     $tempContact = array_merge($contactFrom,$contactSend);
                     $tempContact = array_unique($tempContact);
-                    
-                    echo '<pre>' . print_r(count($tempContact), TRUE) . '</pre>';
+
+                    //echo '<pre>' . print_r(count($tempContact), TRUE) . '</pre>';
 
                     $_SESSION["amountOfContact"] = count($tempContact);
 
@@ -790,7 +790,7 @@ body {
                     ?>
 
                     <!--Fetch Image of User-->
-                    
+
 <?php
 /*$rowCheckImage = "SELECT * FROM member m, organization o WHERE m.accountID = " . $_SESSION["userIDLogin"] . " OR o.accountID = " . $_SESSION["userIDLogin"] . " AND o.accountID = m.accountID";
 $rsImage=$conn->query($rowCheckImage);
@@ -869,15 +869,15 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                                 <p id = "preview'. $countContactList .'" class="preview"><span> :</span>';
 
 
-                                $rowLastestChat = "SELECT * FROM chat WHERE (toUserID = ". $value   . " AND fromUserID = ". $_SESSION["accountID"] .") OR " 
+                                $rowLastestChat = "SELECT * FROM chat WHERE (toUserID = ". $value   . " AND fromUserID = ". $_SESSION["accountID"] .") OR "
                                 ."(toUserID = ". $_SESSION["accountID"]   . " AND fromUserID = ". $value . ") ORDER BY timestamp DESC LIMIT 1";
                                 $rs2=$conn->query($rowLastestChat);
-                                
+
                                 //echo $rowLastestChat;
 
                               while($rowLastestChat = $rs2->fetch_assoc()) {
 
-                                
+
 
                                 echo  ' '.$rowLastestChat['message'].'</p>';
 
@@ -941,16 +941,16 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                       $rsChat=$conn->query($sqlGetAllContacts);
                     while($rowChat = $rsChat->fetch_assoc()) {
                       //echo "<h2>VALUE : " . $value . "</h2>";
-                        
+
 
                         if($rowChat['toUserID'] == $value && $rowChat["fromUserID"] == $_SESSION["accountID"]){
                           //echo 'จาก User : ' . $rowChat['toUserID'];
                           echo '<li class="sent">
-                          
+
                           <img src="./Images/'. $row['Image']  .'" alt="" />
                           <p>'. $rowChat['message'] .'</p>
                       </li>';
-                        
+
                     }else if ($rowChat['fromUserID'] == $value && $rowChat["toUserID"] == $_SESSION["accountID"]){
                       //echo 'ส่ง User : ' . $rowChat['toUserID'];
                         echo '<li class="replies">
@@ -1186,8 +1186,8 @@ for($i=1; $i<= $_SESSION["amountOfContact"]; $i++){
           echo 'document.getElementById("Chat'.$j.'").style.display = "none";';
         }
 
-        
-        
+
+
       }
     echo 'break;';
     }
@@ -1200,10 +1200,10 @@ for($i=1; $i<= $_SESSION["amountOfContact"]; $i++){
 
 
 
-  
 
-  
-  
+
+
+
 
 }
 </script>
