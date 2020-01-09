@@ -178,12 +178,7 @@
             <div class="w3-container" style="padding:10px;background-color: #373143; color: white;">
                 <div class="w3-half">
 
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                        <img width="35px" src="./Images/userPic.png">
-                        <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
-
-
-                    </div>
+                
                 </div>
 
                 <div class="w3-half">

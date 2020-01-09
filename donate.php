@@ -77,7 +77,7 @@
 
 
 
-  
+
 <?php
     include('NavbarNonMember.html');
     ?>
@@ -134,29 +134,29 @@
                         </div>
 
 
-  
+
 
 
 <br>
 <div class="w3-container">
-        
+
         <div class="w3-container " style="margin: 1%; position:relative">
 <!---------------------------------------------------------------------->
             <!--row of half content activity-->
             <?php
-                $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID , organization.firstname as fname,organization.lastname as lname
-                FROM donate
-                join organization 
-                on donate.organizationID = organization.organizationID";
-                
+            $sql = "SELECT donateID,details,donate.donateTitle,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID , organization.firstname as fname,organization.lastname as lname
+            FROM donate
+            join organization
+            on donate.organizationID = organization.organizationID";
+
                 $rs = $conn->query($sql);
                 $i=0;
                 while ($row = $rs->fetch_assoc()) {
                     $sql2 = "SELECT SUM(donateMoney) as sumDonate
                         FROM donate
-                        join organization 
+                        join organization
                         on donate.organizationID = organization.organizationID
-                        join donateDetails 
+                        join donateDetails
                         on donateDetails.donateID = donate.donateID
                         WHERE donate.donateID =".$row['donateID']."";
 
@@ -168,7 +168,7 @@
                         }else{
                             $presen = 100;
                         }
-                        
+
                     if($i%2==0){
                         echo "<div class='w3-row' style='width: 100%;margin:auto'>";
                         echo "<!--row  half right side-->
@@ -220,10 +220,10 @@
                                 <div class='w3-half colorActivity' style='height: 220px;'>
                                     <img src='./Images/".$row['DImage']."' srcset='' width='100%' height='auto' style='height: 220px;'>
                                 </div> <!-- end of img -->
-            
-            
+
+
                                 <div class='w3-half colorActivity' style='height: 220px;'>
-            
+
                                 <!--img and text side by side-->
                                 <div style='margin-top: 5px;float: left;''>
                                     <div style='display:inline-block'>
@@ -234,9 +234,9 @@
                                             <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
                                         </div>
                                     </div><!-- end of img and text side by side-->
-            
+
                                     <p style='font-size: 1vw;clear: both;'>".$row['details']."
-            
+
                                     </p>
                                     <table style='width: 100%;''>
                                         <tr>
@@ -256,7 +256,7 @@
                                     </table>
                             </a></div><!-- end of text -->
                     </div> <!-- end of row  half right side-->";
-                   
+
                     }
                      $i=$i+1;
                 }
@@ -320,7 +320,7 @@
               </td>
             </tr>
           </table>
-          
+
         <p><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></p>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>

@@ -62,6 +62,25 @@
     include('NavbarOrganization.html');
     ?>
 
+    <?php
+        include('connectDB.php');
+
+
+                $id = $_GET["id"];
+                $sql="SELECT * FROM activity WHERE activityID = $id";
+                $rs=$conn->query($sql);
+                //define get value
+                while($row = $rs->fetch_assoc()) {
+
+            	$id = $row['activityID'];
+                	$Topic = $row['topic'];
+                	$Detils = $row['details'];
+                  $Image = $row['Image'];
+
+
+                }
+
+        ?>
 
 
     <!--Content-->
@@ -70,38 +89,37 @@
         <br><br>
         <center><b><p style="font-size:35px;">แก้ไขข้อมูลกิจกรรม</p></b></center>
     </div>
-    <form action="" method="post" enctype="multipart/form-data">
+
+    <form action="editPostvalue.php" method="post" enctype="multipart/form-data">
+
         <div class="container" style="width: 80%;">
             <div class="row w3-border" style="margin-top: 50px;margin-bottom: 50px;">
                 <div class="w3-half w3-center">
-                    <img src="./Images/source/picture.png" alt="" srcset="" width="50%">
+                    <img src="./Images/<?php echo $Image;?>" alt="" srcset="" width="70%" height="50%">
                     <div style="clear:both;">
-                        <input type="file" value="โพสต์" class="submitClass" style="margin-bottom: 10px;">
+                        <input type="file" value="โพสต์" name="img" class="submitClass" style="margin-bottom: 10px;">
                     </div>
 
                 </div>
 
 
                 <div class="w3-half" style="background-color: #E2E0E0;">
-                    <div style="display:inline-block;margin-top: 10px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%"
-                            style="border-radius: 100%;width: 40px;height: 40px;float: left;margin-right: 5px;margin-left:5px;">
-                    </div>
-                    <div style="display: inline-block;">
-                        <b><p class="w3-left" style="font-size: 20px;">Jame Logan</p></b>
-                    </div>
+
+
 
                     <div>
                        <b> <p class="w3-left" style="font-size: 25px;margin-left: 30px;">เรื่อง</p></b>
                     </div>
 
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+
                     <center>
                         <div class="w3-row" style="width: 80%;">
                             <p><input type="text" style="width: 100%;border-radius: 5px;" class="w3-border" rows="15"
-                                    name="comment"></textarea>
+                                    name="topic" value="<?php  echo $Topic; ?>">
                             </p>
 
-                         
+
                         </div>
                     </center>
 
@@ -113,7 +131,7 @@
                     <center>
                         <div class="w3-row" style="width: 80%;">
                             <p><textarea style="width: 100%;border-radius: 5px;" class="w3-border" rows="15"
-                                    name="comment"></textarea>
+                                    name="comment"><?php echo $Detils; ?></textarea>
                             </p>
 
                             <input type="submit" value="โพสต์" class="submitClass"
@@ -125,7 +143,7 @@
             </div>
         </div>
     </form>
- 
+
     <style>
         .w3-8c71c0 {
           background-color: #8c71c0;

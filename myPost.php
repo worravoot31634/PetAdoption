@@ -60,6 +60,10 @@
     include('NavbarOrganization.html');
     ?>
 
+    <?php
+        include('connectDB.php');
+        ?>
+
 
     <!--content-->
     <div class="w3-container" style="margin-top: 80px;left: 2%;position:relative">
@@ -71,52 +75,47 @@
         </div>
     </div>
 
+
+
+
+
+
+
+
     <div class="w3-container">
         <div class="w3-container w3-border">
-            <div style="padding:10px;" class="w3-quarter w3-container">
+
+<?php
+          $sql="SELECT * FROM pet";
+          $rs=$conn->query($sql);
+
+
+
+        while($row = $rs->fetch_assoc()) {
+                  $id = $row['petID'];
+          echo' <div style="padding:10px;" class="w3-quarter w3-container">
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
+
+                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 300px;"">
+
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetOrganization.php"><button class="btnEdit">แก้ไข</button></a>
+                    <a href="editAddPetOrganization.php?id='.$id.'"><button class="btnEdit">แก้ไข</button></a>
                         <a style="background-color: red;" class="w3-right statusCircle"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
                 </div>
-            </div>
-            <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetOrganization.php"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: green;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
-            <div style="padding:10px;" class="w3-quarter w3-containe">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetOrganization.php"><button class="btnEdit">แก้ไข</button></a>
+            </div>'; }
 
-                        <a style="background-color: yellow;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
-            <div style="padding:10px;" class="w3-quarter w3-container">
-                <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                    <img src="./Images/dogPic.png" alt="Avatar" style="width:100%;">
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetOrganization.php"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: green;" class="w3-right statusCircle"></a>
-                        <!--<p>Architect and engineer</p>-->
-                    </div>
-                </div>
-            </div>
+?>
 
         </div>
     </div>
+
+
+
+
+
+
 
     <div class="w3-container" style="margin-top: 80px;left: 2%;position:relative">
         <div style="display:inline-block">
@@ -126,17 +125,30 @@
             <img src="./Images/icon/catIcon1.png" alt="" srcset="" width="30%">
         </div>
     </div>
+
+
+
     <div class="w3-container w3-border" style="margin: 1%; position:relative">
 
-        <!--row of half content activity-->
+      <?php
 
-        <div class="w3-row" style="width: 100%;margin:auto">
-            <!--row  half left side-->
+      $sql="SELECT * FROM donate";
+      $rs=$conn->query($sql);
 
-            <div class="w3-half" style="padding: 10px;">
-                <a href="activityDetail" class="activity-content-link">
+
+      while($row = $rs->fetch_assoc()) {
+
+      	$id = $row['donateID'];
+
+        echo '<div class="" style="width: 100%;margin:auto">
+
+          <div class="w3-half" style="padding: 10px;">
+
+
+
+
                     <div class="w3-half colorActivity" style="height: 220px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
+                        <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
                     </div> <!-- end of img -->
 
 
@@ -145,63 +157,24 @@
                         <!--img and text side by side-->
                         <div style="margin-top: 5px;float: left;">
                             <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%" style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
+                                <h6 class="w3-left" style="font-size: 14px;">'. $row['donateTitle'] .'
                             </div>
                         </div><!-- end of img and text side by side-->
 
-                        <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
+                        <p style="font-size: 1vw;clear: both;">'. $row['details'] .'
 
                         </p>
                         <div>
                             <a href="reportChart.php"><button class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button></a>
-                            <a href="editDonate.php"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
+                            <a href="editDonate.php?id='.$id.'"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
                         </div>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half left side-->
+                </a></div>
+        </div>
+    </div>';}
 
-        <!--row  half right side-->
-
-        <div class="w3-half" style="padding: 10px;">
-            <a href="activityDetail" class="activity-content-link">
-                <div class="w3-half colorActivity" style="height: 220px;">
-                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                </div> <!-- end of img -->
+?>
 
 
-                <div class="w3-half colorActivity" style="height: 220px;">
-
-                    <!--img and text side by side-->
-                    <div style="margin-top: 5px;float: left;">
-                        <div style="display:inline-block">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%" style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                        </div>
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                        </div>
-                    </div><!-- end of img and text side by side-->
-
-                    <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-
-                    </p>
-                    <div>
-                    <a href="reportChart.php"><button class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button></a>
-                    <a href="editDonate.php"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
-                    </div>
-            </a></div><!-- end of text -->
-    </div> <!-- end of row  half right side-->
-
-    </div>
     <!--end of row of half content activity-->
     </div>
     </div>
@@ -215,17 +188,28 @@
             <img src="./Images/icon/catIcon1.png" alt="" srcset="" width="30%">
         </div>
     </div>
+
     <div class="w3-container w3-border" style="margin: 1%; position:relative">
 
         <!--row of half content activity-->
 
-        <div class="w3-row" style="width: 100%;margin:auto">
-            <!--row  half left side-->
+        <?php
 
+        $sql="SELECT * FROM activity";
+        $rs=$conn->query($sql);
+
+
+        while($row = $rs->fetch_assoc()) {
+
+          $id = $row['activityID'];
+
+
+        echo'<div class="" style="width: 100%;margin:auto">
+            <!--row  half left side-->
             <div class="w3-half" style="padding: 10px;">
-                <a href="activityDetail" class="activity-content-link">
+
                     <div class="w3-half colorActivity" style="height: 220px;">
-                        <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
+                        <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
                     </div> <!-- end of img -->
 
 
@@ -233,63 +217,25 @@
 
                         <!--img and text side by side-->
                         <div style="margin-top: 5px;float: left;">
+
                             <div style="display:inline-block">
-                                <img src="./Images/new1.jpg" alt="" srcset="" width="100%" style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                            </div>
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
+                                <h6 class="w3-left" style="font-size: 14px;">'. $row['topic'] .'
                             </div>
                         </div><!-- end of img and text side by side-->
 
-                        <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                            distracted by the
-                            readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal
+                        <p style="font-size: 1vw;clear: both;">'. $row['details'] .'
 
                         </p>
                         <div>
 
-                            <a href="editPost.php"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
+                            <a href="editPost.php?id='.$id.'"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
                         </div>
-                </a></div><!-- end of text -->
-        </div> <!-- end of row  half left side-->
-
-        <!--row  half right side-->
-
-        <div class="w3-half" style="padding: 10px;">
-            <a href="activityDetail" class="activity-content-link">
-                <div class="w3-half colorActivity" style="height: 220px;">
-                    <img src="./Images/new1.jpg" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
-                </div> <!-- end of img -->
+                </a></div>
+        </div>
+    </div>';}
+?>
 
 
-                <div class="w3-half colorActivity" style="height: 220px;">
-
-                    <!--img and text side by side-->
-                    <div style="margin-top: 5px;float: left;">
-                        <div style="display:inline-block">
-                            <img src="./Images/new1.jpg" alt="" srcset="" width="100%" style="border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;">
-                        </div>
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">Jame Logan</h6>
-                        </div>
-                    </div><!-- end of img and text side by side-->
-
-                    <p style="font-size: 1vw;clear: both;">It is a long established fact that a reader will be
-                        distracted by the
-                        readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-
-                    </p>
-                    <div>
-
-                    <a href="editPost.php"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
-                    </div>
-            </a></div><!-- end of text -->
-    </div> <!-- end of row  half right side-->
-
-    </div>
     <!--end of row of half content activity-->
     </div>
     </div>

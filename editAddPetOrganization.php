@@ -151,6 +151,32 @@ background-color: #373143;
 <?php
     include('NavbarOrganization.html');
     ?>
+
+
+
+    <?php
+        include('connectDB.php');
+
+
+        $id = $_GET["id"];
+        $sql="SELECT * FROM pet WHERE petID = $id";
+        $rs=$conn->query($sql);
+        //define get value
+        while($row = $rs->fetch_assoc()) {
+
+      $id = $row['petID'];
+          $Type = $row['type'];
+          $Species = $row['species'];
+          $Province = $row['province'];
+          $PhoneNumber = $row['phoneNumber'];
+          $Details = $row['details'];
+          $Image = $row['Image'];
+
+
+
+        }
+
+        ?>
     <!--Content-->
 
     <!--header text and image of activity-->
@@ -165,16 +191,17 @@ background-color: #373143;
     <!--end header text and image of activity-->
 
 
+  <form action="editOrganizationvalue.php" method="post" enctype="multipart/form-data">
 
-
+  <input type="hidden" name="id" value="<?php echo $id; ?>">
 
     <div class="w3-container" style=" margin-left: auto;
     margin-right: auto;width: 80%;padding: 10px;" height="200px">
 <!--Left side of Page-->
 <div class="w3-border w3-half w3-center" style="height: 600px;">
-    <img src="./Images/source/picture.png" alt="" srcset="" width="50%">
+    <img src="./Images/<?php echo $Image;?>" alt="" srcset="" width="70%" height="50%">
     <div style="clear:both;">
-        <input type="file" value="โพสต์" class="submitClass" style="margin-bottom: 10px;">
+        <input type="file" value="โพสต์" name="img" class="submitClass" style="margin-bottom: 10px;">
     </div>
 
 </div>
@@ -184,8 +211,6 @@ background-color: #373143;
                 <div class="w3-half">
 
                     <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                        <img width="35px" src="./Images/userPic.png">
-                        <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
 
 
                     </div>
@@ -206,8 +231,8 @@ background-color: #373143;
                     </div>
                     <div class="w3-twothird">
                         <select class="w3-border w3-rest  w3-select" name="option" required>
-                            <option style="font-size: 20px;" value="1">Dogs</option>
-                            <option style="font-size: 20px;" value="2">Cats</option>
+                            <option style="font-size: 20px;" value="1">หมา</option>
+                            <option style="font-size: 20px;" value="2">แมว</option>
                         </select>
                     </div>
 
@@ -217,6 +242,7 @@ background-color: #373143;
                     <div class="w3-third">
                         <a style="padding-left: 4px ;font-size: 1.2em;font-weight: bold;">สายพันธู์: </a>
                     </div>
+
                     <div class="w3-twothird">
                         <select class="w3-border w3-rest  w3-select" name="option" required>
                             <option style="font-size: 20px;" value="1">บีเกิล</option>
@@ -320,7 +346,7 @@ background-color: #373143;
                         <a style="padding-left: 4px ;font-size: 1.2em;font-weight: bold;">หมายเลขโทรศัพท์: </a>
                     </div>
                     <div class="w3-twothird">
-                        <input class="w3-input" type="text" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required/>
+                        <input class="w3-input" type="text"  value="<?php  echo   $PhoneNumber; ?> "maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required/>
                     </div>
 
                 </div>
@@ -329,7 +355,7 @@ background-color: #373143;
                 </div>
                 <div class="w3-row w3-padding">
                     <div class="w3-row w3-padding" style="border: 2px solid whitesmoke;border-radius: 12px;">
-                        <textarea class="w3-input" rows="4" cols="50" required></textarea>
+                        <textarea class="w3-input" rows="4" cols="50" required><?php  echo $Details; ?></textarea>
                     </div>
                 </div>
 
@@ -354,6 +380,7 @@ background-color: #373143;
 
 
     </div>
+  </form>
 
 
 
@@ -394,7 +421,7 @@ background-color: #373143;
             </td>
           </tr>
         </table>
-       
+
         <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
             class="fa fa-facebook "></i></a>
         <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
