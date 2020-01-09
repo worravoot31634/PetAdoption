@@ -243,7 +243,7 @@ if(!$_SESSION['loginStatus']){
 
 
                     }else{
-                        echo " <!--row  half right side-->
+                        echo "  <!--row  half right side-->
 
                         <div class='w3-half' style='padding: 10px;'>
                                 <div class='w3-half colorActivity' style='height: 220px;'>

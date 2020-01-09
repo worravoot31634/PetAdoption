@@ -26,13 +26,10 @@ if(obj!=0){
 }else{
     url = "donateSubmitOrganization.php";
 }
-
-
-
 for(i=0;i<suml;i++){
     if(i%2==0){
-        $("#search").append("<div class='w3-row' style='width: 100%;margin:auto'id='search2'>"+
-                "<!--row  half right side-->"+
+        $("#search").append("<div class='w3-row' style='width: 100%;margin:auto' id='search2'>"+
+                "<!--row  half right side1-->"+
                 "<div class='w3-half' style='padding: 10px;' >"+
                     "<div class='w3-half colorActivity' style='height: 220px;'>"+
                         "<img src='./Images/"+obj[i].DImage+ "' alt='' srcset='' width='100%' height='auto' style='height: 220px;'>"+
@@ -71,10 +68,10 @@ for(i=0;i<suml;i++){
                            " </tr>"+
                         "</table>"+
                 "</a></div><!-- end of text -->"+
-        "</div> <!-- end of row  half right side-->");
+        "</div> <!-- end of row  half right side1-->");
     }else{
-        $("#search2").append(" <!--row  half right side-->"+
-
+        $("#search2").append(" <!--row  half right side2-->"+
+        
         "<div class='w3-half' style='padding: 10px;'>"+
                 "<div class='w3-half colorActivity' style='height: 220px;'>"+
                    " <img src='./Images/"+obj[i].DImage+"' srcset='' width='100%' height='auto' style='height: 220px;'>"+
@@ -90,7 +87,7 @@ for(i=0;i<suml;i++){
                            " style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>"+
                    " </div>"+
                       "  <div style='display:inline-block'>"+
-                      "<h6 class='w3-left' style='font-size: 14px;'>"+obj[i].fname +" "+obj[i].lname+"</h6>"+
+                            "<h6 class='w3-left' style='font-size: 14px;'>"+obj[i].fname +" "+obj[i].lname+"</h6>"+
                         "</div>"+
                     "</div><!-- end of img and text side by side-->"+
 
@@ -113,7 +110,7 @@ for(i=0;i<suml;i++){
                         "</tr>"+
                     "</table>"+
            " </a></div><!-- end of text -->"+
-    "</div> <!-- end of row  half right side-->");
+    "</div> <!-- end of row  half right side2-->");
     }
     $("#popup").append("<div id='"+obj[i].donateID+"' class='w3-modal'>"+
      
