@@ -1,3 +1,11 @@
+<?php
+// Start the session
+session_start();
+if(!$_SESSION['loginStatus']){
+  $_SESSION['message'] = 'Please login first';
+  header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -21,6 +29,10 @@
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./CSS/CustomCss.css">
 
+<?php
+        include("connectDB.php");
+       
+  ?>
 <style>
     .statusCircle {
         height: 30px;
@@ -80,7 +92,7 @@
     </div>
 
 
-
+ 
     <div class="w3-container">
         <div class="w3-row">
             <div class="w3-half">
@@ -91,48 +103,42 @@
                         <th>วันที่บริจาค</th>
                         <th>เวลาที่บริจาค</th>
                     </tr>
-                    <tr>
-                        <td>Notto</td>
-                        <td>200</td>
-                        <td>19/12/2562</td>
-                        <td>12:00 น.</td>
-                    </tr>
-                    <tr>
-                        <td>Notto</td>
-                        <td>200</td>
-                        <td>19/12/2562</td>
-                        <td>12:00 น.</td>
-                    </tr>
-                    <tr>
-                        <td>Notto</td>
-                        <td>200</td>
-                        <td>19/12/2562</td>
-                        <td>12:00 น.</td>
-                    </tr>
-                    <tr>
-                        <td>Notto</td>
-                        <td>200</td>
-                        <td>19/12/2562</td>
-                        <td>12:00 น.</td>
-                    </tr>
-                    <tr>
-                        <td>Notto</td>
-                        <td>200</td>
-                        <td>19/12/2562</td>
-                        <td>12:00 น.</td>
-                    </tr>
-                    <tr>
-                        <td>Notto</td>
-                        <td>200</td>
-                        <td>19/12/2562</td>
-                        <td>12:00 น.</td>
-                    </tr>
-                    <tr>
-                        <td>Notto</td>
-                        <td>200</td>
-                        <td>19/12/2562</td>
-                        <td>12:00 น.</td>
-                    </tr>
+                    <?php
+                        $id = $_POST['id'];
+                        $sql = "SELECT donaterName,donateMoney,date FROM donatedetails 
+                        WHERE donateID =$id ";
+                        $rs = $conn->query($sql);
+                        
+                        while($row = $rs->fetch_assoc()){
+                        $date=$row['date'];
+                        $split = explode(" ",$date);
+                        $splitTime = explode(" ",$date);
+                        echo "<tr>";
+                        echo "<td>".$row['donaterName']."</td>";
+                        echo "<td>".$row['donateMoney']."</td>";
+                        echo "<td>".$split[0]."</td>";
+                        echo "<td>".$splitTime[1]."</td>";
+                        echo "</tr>";
+                        
+                        }
+                    ?>
+                    <?php
+                        $sql2 = "SELECT SUM(donateMoney) as sumDonate
+                        FROM donate
+                        join organization 
+                        on donate.organizationID = organization.organizationID
+                        join donateDetails 
+                        on donateDetails.donateID = donate.donateID
+                        WHERE donate.donateID =$id";
+                        $rs2 = $conn->query($sql2);
+                        $row2 = $rs2->fetch_assoc();
+                        $Need=$row2['sumDonate'] ; 
+                        
+                        $sql3 = "SELECT donateRequired FROM donate";
+                        $rs3 = $conn->query($sql3);
+                        $row3 = $rs3->fetch_assoc();
+                        $Donate=$row3['donateRequired'];
+                    ?>
                 </table>
             </div>
 
@@ -249,8 +255,8 @@
 
             var data = google.visualization.arrayToDataTable([
                 ['Need', 'Donate'],
-                ['Need', 12000],
-                ['Donate total', 15000],
+                ['Need', <?php echo  $Need;?>],
+                ['Donate total', <?php echo  $Donate;?>],
             ]);
 
             var options = {
