@@ -144,7 +144,7 @@
 <body id="myPage">
 
 
-    <?php include('NavbarOrganization.php') ?>
+    <?php include('NavbarOrganization.html') ?>
 
     <!--Content-->
 
@@ -179,10 +179,6 @@
                 <div class="w3-container" style="padding:10px;background-color: #373143; color: white;">
                     <div class="w3-half">
 
-<<<<<<< HEAD
-                
-                </div>
-=======
                         <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
                             <img width="35px" src="./Images/userPic.png">
                             <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
@@ -190,7 +186,6 @@
 
                         </div>
                     </div>
->>>>>>> 9a55cf5ccfdab6f87fde124312c4dd7ee9e66435
 
                     <div class="w3-half">
 
