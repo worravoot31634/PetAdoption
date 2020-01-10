@@ -1149,7 +1149,7 @@ $append = "#message" + idNum + " ul";
 	$("#message" + idNum ).animate({ scrollTop: $(document).height() }, "fast");
 
 
-  var toUserID = <?php echo $_SESSION["userIDLogin"];?>;
+  var toUserID = <?php echo $_SESSION["userAccountID"];?>;
   var fromUserID = tempfromUserID;
   var message = message;
 
@@ -1180,6 +1180,7 @@ $append = "#message" + idNum + " ul";
           foreach($tempContact as $value){
 
               $sqlGetContactList = "SELECT * FROM member WHERE memberID = " . $value;
+              
               $rs=$conn->query($sqlGetContactList);
 
               while($row = $rs->fetch_assoc()) {
