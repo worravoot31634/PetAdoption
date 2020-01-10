@@ -42,7 +42,7 @@ session_start();
     }
 </style>
 
-<body id="myPage">
+<body id="myPage" onload="GFG_Fun();">
 
     <?php
 
@@ -58,6 +58,7 @@ session_start();
                         <p style="font-size: 30px;color:white;font-weight: bold;">เข้าสู่ระบบ</p>
                     </center>
                     <form name="form1" method="post" action="check_login.php">
+                        <input type="hidden" name="deviceInfo" id="deviceInfo">
                         <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">ชื่อผู้ใช้</p>
                         <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="username" id="username">
                         </center>
@@ -67,7 +68,7 @@ session_start();
                         <br>
                         <?php
                         if (isset($_SESSION['message'])) {
-                            echo "<center>"."<p style='font-size: 18px;position:relative;color: #FFFFFF;'>".$_SESSION['message']."</p>"."</center>";  
+                            echo "<center>" . "<p style='font-size: 18px;position:relative;color: #FFFFFF;'>" . $_SESSION['message'] . "</p>" . "</center>";
                             unset($_SESSION['message']);
                         } ?>
                         <center><button type="submit" name="login" style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
@@ -85,6 +86,7 @@ session_start();
                     <p style="font-size: 30px;color:white;font-weight: bold;">เข้าสู่ระบบ</p>
                 </center>
                 <form name="form1" method="post" action="check_login.php">
+                    <input type="hidden" name="deviceInfo" id="deviceInfoSmall">
                     <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">ชื่อผู้ใช้</p>
                     <center><input type="text" style="width:80%;border: none;border-radius: 2px;" name="username">
                     </center>
@@ -172,6 +174,27 @@ session_start();
         document.getElementById("menu").style.display = "block";
         document.getElementById("searchMenu").style.display = "none";
 
+
+    }
+</script>
+
+<script>
+    function GFG_Fun() {
+
+        var Name = "Unknown OS";
+        if (navigator.userAgent.indexOf("Win") != -1) Name =
+            "Windows OS";
+        if (navigator.userAgent.indexOf("Mac") != -1) Name =
+            "Macintosh";
+        if (navigator.userAgent.indexOf("Linux") != -1) Name =
+            "Linux OS";
+        if (navigator.userAgent.indexOf("Android") != -1) Name =
+            "Android OS";
+        if (navigator.userAgent.indexOf("like Mac") != -1) Name =
+            "iOS";
+
+        document.getElementById("deviceInfo").value = Name;
+        document.getElementById("deviceInfoSmall").value = Name;
 
     }
 </script>
