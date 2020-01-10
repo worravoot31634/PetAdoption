@@ -222,7 +222,7 @@
 
                 <br>
                 <div class="w3-container">
-                    <div class="w3-container w3-border" id="cardPet">
+                    <div class="w3-container" id="cardPet">
                         <?php
 
                         include "connectDB.php";
