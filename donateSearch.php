@@ -12,7 +12,7 @@
             FROM donate
             join organization 
             on donate.organizationID = organization.organizationID
-            WHERE  donate.donateTitle like '%$donateTitle%' ";
+            WHERE  donateTitle like '%$donateTitle%' or firstname like '%$donateTitle%' or lastname like '%$donateTitle%'";
 
         }else{
             $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID as OrganizationID, organization.firstname as fname,organization.lastname as lname,donateTitle
@@ -20,7 +20,7 @@
             FROM donate
             join organization 
             on donate.organizationID = organization.organizationID
-            WHERE  (donate.donateTitle like '%$donateTitle%' )AND donate.donateProvince ='$province' ";
+            WHERE  ( donateTitle like '%$donateTitle%' or firstname like '%$donateTitle%' or lastname like '%$donateTitle%' )AND donate.donateProvince ='$province' ";
 
 
         }
