@@ -167,7 +167,7 @@
                                 </center>
                             </div>
                             <div class="w3-half">
-                                <p class="textPositionAdRegis">ชื่อองค์กร</p>
+                                <p class="textPositionAdRegis">รูปภาพ</p>
                                 <center><input type="file" name="fileOrgan" id="" style="border:none;background-color: #ffffff;" class="inputRegis" required>
                                 </center>
                             </div>
