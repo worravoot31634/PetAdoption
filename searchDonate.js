@@ -21,13 +21,17 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 {
 obj = JSON.parse(xmlHttp.responseText);
 suml=obj.length;
+alert("test"+suml);
+if(obj!=0){
 if(obj[0].roles!="nonMember"){
     if(obj!=0){
         url1 = "donateSubmitLogin.php";
     }else{
         url1 = "donateSubmitOrganization.php";
     }
+    alert("test"+suml);
     for(i=0;i<suml;i++){
+        alert("test"+suml);
         k=(i-1);
         if(i%2==0){
             $("#search").append(
@@ -257,9 +261,17 @@ if(obj[0].roles!="nonMember"){
     }
 
 }
+}else{
+    $("#search").append(
+        "<div style='padding-top : 5%;'></div>"+
+        "<div style='opacity: 0.9;' class='center3'>"+
+        "<img width='10%' src='images/icon/alert.png '>"+
+        "<p style='font-size : 7vw;'>ไม่พบข้อมูลการสนทนา</p>"+
+        "</div>");
 }
 
 
+}
 } // end function statechange()
 function showHint(str,str2,int,str3)
 {

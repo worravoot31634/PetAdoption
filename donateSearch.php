@@ -5,6 +5,7 @@
         $province = $_GET['province'];
         $accountID = $_GET['accountID'];
         $roles = $_GET['roles'];
+
         if($province=="0"){
             $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID as OrganizationID, organization.firstname as fname,organization.lastname as lname,donateTitle
             ,donateProvince

@@ -53,6 +53,13 @@ if(!$_SESSION['loginStatus']){
 }
 </style>
 <style>
+.center3 {
+  height: 200px;
+  position: relative;
+  text-align :center;
+
+}
+<style>
     .statusCircle {
         height: 30px;
         width: 30px;
@@ -174,7 +181,7 @@ if(!$_SESSION['loginStatus']){
 <br>
 <div class="w3-container" id="popup">
     
-        <div class="w3-container w3-border reset" style="margin: 1%; position:relative" id="search" >
+        <div class="w3-container reset" style="margin: 1%; position:relative" id="search" >
 
             <!--row of half content activity-->
             <?php
