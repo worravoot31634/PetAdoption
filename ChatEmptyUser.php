@@ -41,28 +41,21 @@ $_SESSION["userIDLogin"] = $_SESSION['accountID'];
 .center3 {
   height: 200px;
   position: relative;
+  text-align :center;
 
 }
 
-.center3 p {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size : 7vw;
-  transform: translate(-50%, -50%);
-}
 
 
 </style>
 
 <body>
 
-<div style="font-size : 35px;padding-top : 20%;"></div>
+<div style="padding-top : 18%;"></div>
 
-<div style="opacity: 0.9;" class="w3-red center3">
-
-<p>Chat Empty</p>
+<div style="opacity: 0.9;" class=" center3">
+<img width="10%" src="images/icon/alert.png">
+<p style="font-size : 7vw;">ไม่พบข้อมูลการสนทนา</p>
 </div>
 
 
