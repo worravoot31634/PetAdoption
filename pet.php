@@ -392,20 +392,20 @@
             if (type == "หมา") {
                 $('#speciesSelect').empty();
 
-                $('#speciesSelect').append('<option style="font-size: 20px;" value="0">ทั้งหมด</option>');
+                $('#speciesSelect').append('<option style="font-size: 20px;" value="">ทั้งหมด</option>');
                 for (var i = 0; i < lenDog; i++) {
 
                     $('#speciesSelect').append("<option value=" + dogs[i] + ">" + dogs[i] + "</option>")
                 }
             } else if (type == "แมว") {
                 $('#speciesSelect').empty();
-                $('#speciesSelect').append('<option style="font-size: 20px;" value="0">ทั้งหมด</option>');
+                $('#speciesSelect').append('<option style="font-size: 20px;" value="">ทั้งหมด</option>');
                 for (var i = 0; i < lenCat; i++) {
                     $('#speciesSelect').append("<option value" + cats[i] + ">" + cats[i] + "</option>")
                 }
             } else {
                 $('#speciesSelect').empty();
-                $('#speciesSelect').append('<option style="font-size: 20px;" value="0">ทั้งหมด</option>');
+                $('#speciesSelect').append('<option style="font-size: 20px;" value="">ทั้งหมด</option>');
             }
         });
 
@@ -516,7 +516,7 @@
             xmlHttp.onreadystatechange = stateChangeFilter;
             var url = "jsonPetFilter.php?typePet=" + typePetSelect + "&species=" + speciesSelect + "&province=" + provinceSelect + "&from=" + fromSelect + "&text=" + textSearch;
             //url = "greeting.php?day=Monday"
-            //    alert(url);
+            alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }
