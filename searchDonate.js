@@ -52,8 +52,8 @@ if(obj[0].roles!="nonMember"){
                                 "</div>"+
                             "</div>"+
                         " <!-- end of img and text side by side-->"+
-                            "<p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p>"+
-                            "<p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p>"+
+                            "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
+                            "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p></b>"+
 
                             "<table style='width: 100%;'>"+
                                 "<tr>"+
@@ -95,8 +95,8 @@ if(obj[0].roles!="nonMember"){
                             "</div>"+
                         "</div><!-- end of img and text side by side-->"+
 
-                        "<p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p>"+
-                        "<p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p>"+
+                        "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
+                        "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p></b>"+
                         "<table style='width: 100%;''>"+
                             "<tr>"+
                                 "<td  style='width: 60%;'>"+
@@ -191,8 +191,8 @@ if(obj[0].roles!="nonMember"){
                                 "</div>"+
                             "</div>"+
                         " <!-- end of img and text side by side-->"+
-                            "<p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p>"+
-                            "<p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p>"+
+                            "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
+                            "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p></b>"+
 
                             "<table style='width: 100%;'>"+
                                 "<tr>"+
@@ -234,8 +234,8 @@ if(obj[0].roles!="nonMember"){
                             "</div>"+
                         "</div><!-- end of img and text side by side-->"+
 
-                        "<p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p>"+
-                        "<p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p>"+
+                        "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
+                        "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p></b>"+
                         "<table style='width: 100%;''>"+
                             "<tr>"+
                                 "<td  style='width: 60%;'>"+
