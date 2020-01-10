@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -25,9 +26,17 @@
 <link rel="stylesheet" href="/lib/bootstrap.min.css">
   <script src="/lib/jquery-1.12.2.min.js"></script>
   <script src="/lib/bootstrap.min.js"></script>
-  <?php
+  <script src="searchDonate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <style>
+  
+
+<?php
         include("connectDB.php");
+       
   ?>
+  .city {display:none}
+  </style>
 <style>
 .statusCircle {
   height: 30px;
@@ -77,18 +86,16 @@
 
 
 
-
 <?php
     include('NavbarNonMember.php');
+    
     ?>
 
 
 
-
     <!--Fix 80 percent Screen-->
-    <br>
     <table width="80%" align="center">
-
+    
 
         <div>
             <center>
@@ -102,61 +109,76 @@
 
         <tr>
             <td>
-
-
+                  
+         
                         <div style="width: 100%; ">
+                        <form name="donateSearch"  >
                         <table align=center style="width: 70%;">
                             <tr style="width: 100%;" >
-                                <td style="width: 50%;">
-                                    <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" />
+                                <td style="width: 50%;"> 
+                                    <input class="advanceSearch" name="donateTitle" id="fromText"  placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" />
                                 </td>
                                 <td >
                                     <a style="font-weight: bold; font-size: 20px;">จังหวัด&nbsp;&nbsp;</a>
                                 </td>
                                 <td style="width: 50%;" >
                                     <div style="font-size: 20px;" class="w3-half" >
-                                                        <select class="w3-border w3-rest  w3-select" name="option" >
+                                                        <select class="w3-border w3-rest  w3-select" name="province" id="fromSelect">
                                                             <option style="font-size: 20px;" value="0">all</option>
-                                                            <option style="font-size: 20px;" value="1">นครราชสีมา</option>
-                                                            <option style="font-size: 20px;" value="2">บุรีรัมย์</option>
+                                                            <option style="font-size: 20px;" value="นครราชสีมา">นครราชสีมา</option>
+                                                            <option style="font-size: 20px;" value="บุรีรัมย์">บุรีรัมย์</option>
                                                         </select>
-                                                        </div>
+                                                        </div>  
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="#" style="font-size:18px; background-color: #726292; color: white;"
-                                                        class="w3-button w3-circle" title="Search"><i class="fa fa-search"></i></a>
+                                                        <a href="#" id="bntSearch"  type="submit" style="font-size:18px; background-color: #726292; color: white;" 
+                                                        class="w3-button w3-circle "title="Search"><i class="fa fa-search"></i></a>
 
                                 </td>
-
-
-
                             </tr>
                         </table>
+                        </form>
                         </div>
+                                                                       
+                            
+<script>
+    fromSelect = "0";
+    fromText="";
+    $("#fromSelect").change(function() {
+    fromSelect = $(this).val();
+    });
+    $("#fromText").change(function() {
+    fromText = $(this).val();
+    });
+    var accountID =0;
+    var roles ="nonMember";
+    $("#bntSearch").click(function() {
+        showHint(fromText,fromSelect,accountID,roles);
+        $(".reset").empty();
+    });
 
 
-
+</script>
 
 
 <br>
-<div class="w3-container">
+<div class="w3-container" id="popup">
+        <div class="w3-container w3-border reset" style="margin: 1%; position:relative" id="search" >
 
-        <div class="w3-container " style="margin: 1%; position:relative">
-<!---------------------------------------------------------------------->
             <!--row of half content activity-->
             <?php
-            $sql = "SELECT donateID,details,donate.donateTitle,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID , organization.firstname as fname,organization.lastname as lname
-            FROM donate
-            join organization
-            on donate.organizationID = organization.organizationID";
-
+                $sql = "SELECT donateID,details,donateRequired,donate.Image as DImage,organization.Image as OImage,donate.organizationID , organization.firstname as fname,organization.lastname as lname,donateTitle
+                FROM donate
+                join organization 
+                on donate.organizationID = organization.organizationID";
+                
                 $rs = $conn->query($sql);
                 $i=0;
                 while ($row = $rs->fetch_assoc()) {
                     $sql2 = "SELECT SUM(donateMoney) as sumDonate
                         FROM donate
-                        join organization
+                        join organization 
                         on donate.organizationID = organization.organizationID
-                        join donateDetails
+                        join donateDetails 
                         on donateDetails.donateID = donate.donateID
                         WHERE donate.donateID =".$row['donateID']."";
 
@@ -168,7 +190,6 @@
                         }else{
                             $presen = 100;
                         }
-
                     if($i%2==0){
                         echo "<div class='w3-row' style='width: 100%;margin:auto'>";
                         echo "<!--row  half right side-->
@@ -188,11 +209,11 @@
                                             <div style='display:inline-block'>
                                                 <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
                                             </div>
-                                        </div><!-- end of img and text side by side-->
+                                        </div>
+                                        <!-- end of img and text side by side-->
+                                        <p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p>
+                                        <p style='font-size: 1vw;clear: both;'>".$row['details']."</p>
 
-                                        <p style='font-size: 1vw;clear: both;'>".$row['details']."
-
-                                        </p>
                                         <table style='width: 100%;'>
                                             <tr>
                                                 <td  style='width: 60%;'>
@@ -205,7 +226,7 @@
                                             </div>
                                             </td>
                                             <td style='width: 40%;'>
-                                                <a href='login.php'><button class='btnEdit' style='width:80%'>บริจาค</button></a>
+                                            <a href = 'login.php'><button class='btnEdit'style='width:80%'>บริจาค</button></a>
                                             </td>
                                             </tr>
                                         </table>
@@ -214,16 +235,14 @@
 
 
                     }else{
-                        echo " <!--row  half right side-->
-
+                        echo "  <!--row  half right side-->
                         <div class='w3-half' style='padding: 10px;'>
                                 <div class='w3-half colorActivity' style='height: 220px;'>
                                     <img src='./Images/".$row['DImage']."' srcset='' width='100%' height='auto' style='height: 220px;'>
                                 </div> <!-- end of img -->
-
-
+            
                                 <div class='w3-half colorActivity' style='height: 220px;'>
-
+            
                                 <!--img and text side by side-->
                                 <div style='margin-top: 5px;float: left;''>
                                     <div style='display:inline-block'>
@@ -234,44 +253,40 @@
                                             <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
                                         </div>
                                     </div><!-- end of img and text side by side-->
-
-                                    <p style='font-size: 1vw;clear: both;'>".$row['details']."
-
-                                    </p>
+                                    <p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p>
+                                    <p style='font-size: 1vw;clear: both;'>".$row['details']."</p>
+            
                                     <table style='width: 100%;''>
                                         <tr>
                                             <td  style='width: 60%;'>
                                         <div class='container' >
                                             <div class='progress' style='height: 0.6cm;'>
-                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
+                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100'  style='width:".$presen."% ;''>
                                                   ".$row2['sumDonate']." บาท
                                                 </div>
                                               </div>
                                           </div>
                                           </td>
                                           <td style='width: 40%;'>
-                                          <a href='login.php'><button class='btnEdit' style='width:80%'>บริจาค</button></a>
+                                          <a href = 'login.php'><button class='btnEdit'style='width:80%'>บริจาค</button></a>
                                           </td>
                                         </tr>
                                     </table>
                             </a></div><!-- end of text -->
                     </div> <!-- end of row  half right side-->";
-
-                    }
-                     $i=$i+1;
+                   
+                    } 
+                    $i=$i+1;
+                    ?>
+                    
+     
+                    <?php
                 }
             ?>
-
-        </div>
          <!--end of row of half content activity-->
-
-
-
-
-
         </div>
-
     </div>
+
 </div>
 
 
@@ -282,9 +297,29 @@
 
 
     </table>
-
-
 <br><br>
+
+
+
+<!---Script popup------>
+<script>
+    document.getElementsByClassName("tablink")[0].click();
+    
+    function openCity(evt, cityName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("city");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < x.length; i++) {
+        tablinks[i].classList.remove("w3-light-grey");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.classList.add("w3-light-grey");
+    }
+    </script>
+     
 
 <style>
     .w3-8c71c0 {
@@ -320,8 +355,6 @@
               </td>
             </tr>
           </table>
-
-        <p><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></p>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
@@ -381,8 +414,6 @@
     </script>
 
 </body>
-
-
 
 </html>
 
