@@ -21,7 +21,6 @@ if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 {
 obj = JSON.parse(xmlHttp.responseText);
 suml=obj.length;
-alert("test"+suml);
 if(obj!=0){
 if(obj[0].roles!="nonMember"){
     if(obj!=0){
@@ -29,9 +28,7 @@ if(obj[0].roles!="nonMember"){
     }else{
         url1 = "donateSubmitOrganization.php";
     }
-    alert("test"+suml);
     for(i=0;i<suml;i++){
-        alert("test"+suml);
         k=(i-1);
         if(i%2==0){
             $("#search").append(
