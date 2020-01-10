@@ -180,8 +180,8 @@
                     <div class="w3-half">
 
                         <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                            <img width="35px" src="./Images/userPic.png">
-                            <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">Logan</a>
+                            <img width="35px" src="./Images/<?php echo $_SESSION['Image'] ?>">
+                            <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;"><?php echo  $_SESSION['UserFirstname']; ?></a>
 
 
                         </div>

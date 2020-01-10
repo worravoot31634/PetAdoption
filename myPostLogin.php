@@ -45,6 +45,20 @@ if (!$_SESSION['loginStatus']) {
         background-color: #373143;
     }
 
+    .btnDeletePostPet {
+        width: 20%;
+        border-radius: 3px;
+        border: none;
+        opacity: 0.9;
+        background-color: red;
+        color: #ffffff;
+    }
+
+    .btnDeletePostPet:hover {
+        background-color: #7b0000;
+        opacity: 0.9;
+    }
+
     .activity-content-link {
         text-decoration: none;
         color: black;
@@ -131,6 +145,9 @@ if (!$_SESSION['loginStatus']) {
                     <div id="colorStatus" class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
                         <a href="editAddPetLogin.php?id=<?php echo $row["petID"]?>">
                         <button class="btnEdit">แก้ไข</button></a>
+
+                        <button onclick = "deletePostPet(<?php echo $row['petID']?>)" id="btnDeletePost" class="btnEdit btnDeletePostPet">ลบ</button>
+
                         <a style="cursor:pointer; background-color: <?php if($row["petStatus"]==0) {
                             echo "green";
                         }elseif($row["petStatus"]==1){
@@ -286,7 +303,7 @@ function updateStatusPet(id){
                     console.log(data);
 
                     if(data == true){ 
-                        console.log('hello');
+                        console.log('UPDATED');
 
                        
                         location.reload();
@@ -300,6 +317,48 @@ function updateStatusPet(id){
     });
 
 
+}
+
+
+
+
+function deletePostPet(id){
+
+    var userdata = {'petID':id};
+    console.log(userdata);
+
+
+    if (confirm("คุณต้องการลบใช่หรือไม่ ?")) {
+        
+        $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "deletePostPet.php",
+            data: userdata,
+            success: function(data){
+                    console.log(data);
+
+                    if(data == true){ 
+                        console.log('DELETED');
+
+                       
+                        location.reload();
+                        
+                    }
+
+
+            }
+            
+        });
+    });
+    
+    }else{
+
+    }
+
+
+
+    
 }
     
 

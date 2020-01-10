@@ -16,10 +16,10 @@ $sqlCheckChat = "SELECT * FROM chat WHERE toUserID = " . $_SESSION["accountID"] 
      $count=$result->num_rows;
 
      if (mysqli_num_rows($result)==0) { 
-        header("Location:ChatEmptyOrganizaion.php");
+        header("Location:ChatEmptyOrganization.php");
     }else{
 
-        header("Location:chatMessageLogin.php");
+        header("Location:chatMessageOrganizaion.php");
     }
 
 

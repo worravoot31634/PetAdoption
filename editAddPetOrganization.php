@@ -196,7 +196,7 @@ background-color: #373143;
 <div class="w3-border w3-half w3-center" style="height: 600px;">
     <img src="./Images/<?php echo $row['Image']?>" alt="" srcset="" width="70%" height="50%">
     <div style="clear:both;">
-        <input type="file" value="โพสต์" name="petPhoto" class="submitClass" style="margin-bottom: 10px;">
+        <input type="file" value="โพสต์" name="petPhoto" class="submitClass" style="margin-bottom: 10px;" required>
     </div>
 
 </div>
