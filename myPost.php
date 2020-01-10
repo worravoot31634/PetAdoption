@@ -107,7 +107,7 @@ if (!$_SESSION['loginStatus']) {
     </div>
 
     <div class="w3-container" style="width:80%;margin-left: auto;margin-right: auto;">
-        <div class="w3-container w3-border">
+        <div class="w3-container">
         <?php
         include 'connectDB.php';
         $sql = "SELECT * FROM account join pet where accountID=posterID and username='".$_SESSION['username']."'";
@@ -161,7 +161,7 @@ if (!$_SESSION['loginStatus']) {
 
 
 
-    <div class="w3-container w3-border" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
+    <div class="w3-container" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
 
       <?php
 
@@ -228,7 +228,7 @@ if (!$_SESSION['loginStatus']) {
         </div>
     </div>
 
-    <div class="w3-container w3-border" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
+    <div class="w3-container" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
 
         <!--row of half content activity-->
 

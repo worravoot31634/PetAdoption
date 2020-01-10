@@ -131,7 +131,7 @@ if (!$_SESSION['loginStatus']) {
 
     <div class="w3-container" style="width:80%;margin-left: auto;
   margin-right: auto;">
-        <div class="w3-container w3-border">
+        <div class="w3-container">
         <?php
         include 'connectDB.php';
         $sql = "SELECT * FROM account join pet where accountID=posterID and username='".$_SESSION['username']."'";
