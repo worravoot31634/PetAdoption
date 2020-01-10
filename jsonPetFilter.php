@@ -64,6 +64,9 @@ if ($typePetSelect != "''" && $speciesSelect != "''" && $speciesSelect != "ท�
 } else if ($typePetSelect != "''" && ($speciesSelect != "''" || $speciesSelect == "ทั้งหมด") && $provinceSelect != "''" && $fromSelect == "''") {
     $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image,member.firstname,member.lastname,member.Image as memImage FROM pet JOIN account ON (pet.posterID = account.accountID) JOIN member ON member.accountID = account.accountID  WHERE pet.petStatus != 2 and (((pet.type='" . $typePetSelect . "' and pet.species = '" . $speciesSelect . "' and pet.province = '" . $provinceSelect . "') or account.roles='" . $fromSelect . "') or (pet.type LIKE '%" . $textSearch . "%' or pet.species LIKE '%" . $textSearch . "%' or pet.province LIKE '%" . $textSearch . "%' or account.roles LIKE '%" . $textSearch . "%'))";
 } else if ($typePetSelect != "''" && $speciesSelect == "''" && $provinceSelect == "''" && $fromSelect == "''" && $textSearch != "''") {
+
+    // jsonPetFilter.php?typePet=หมา&species=&province=&from=&text=u
+    $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image,member.firstname,member.lastname,member.Image as memImage FROM pet JOIN account ON (pet.posterID = account.accountID) JOIN member ON member.accountID = account.accountID  WHERE pet.petStatus != 2 and pet.type='" . $typePetSelect . "' or ( pet.type LIKE '%" . $textSearch . "%' or pet.species LIKE '%" . $textSearch . "%' or pet.province LIKE '%" . $textSearch . "%' or account.roles LIKE '%" . $textSearch . "%'or member.firstname LIKE '%" . $textSearch . "%')";
 }
 
 
