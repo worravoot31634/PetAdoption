@@ -224,7 +224,47 @@
                 <br>
                 <div class="w3-container">
                     <div class="w3-container w3-border" id="cardPet">
+                        <?php
 
+                        include "connectDB.php";
+
+                        $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image as petImage,member.firstname as memFirstname,member.lastname,member.Image as memImage  , organ.firstname as organFirstname, organ.lastname,organ.Image as organImage FROM pet LEFT JOIN account ON (pet.posterID = account.accountID) LEFT JOIN member ON member.accountID = account.accountID LEFT JOIN organization as organ on account.accountID = organ.accountID WHERE pet.petStatus != 2;";
+
+                        $res = $conn->query($sql);
+
+                        while ($row = $res->fetch_assoc()) {
+
+                            if ($row["memImage"] == null && $row["memFirstname"] == null) {
+                                $userImage = $row["organImage"];
+                                $userFirstname = $row["organFirstname"];
+                            } else if ($row["organImage"] == null && $row["organFirstname"] == null) {
+                                $userImage = $row["memImage"];
+                                $userFirstname = $row["memFirstname"];
+                            }
+
+
+                            //  if ($row["Image"] != null && $row["firstname"] != null) {
+                            echo  '<div style="padding:10px;" class="w3-quarter w3-container">';
+                            echo '<div class="w3-card-4 test" style="width:100%;max-width:300px;">';
+                            echo '<a href="petDetailLogin.php?id=' . $row["petID"] . '">';
+                            echo '<img src="./Images/' . $row["petImage"] . '" alt="Avatar" style="width:100%;height:300px">';
+                            echo '</a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">';
+                            echo '<img width="35px" src="./Images/' . $userImage . '">';
+                            echo '<input type="hidden" id="PosterID" value=' . $row["petID"] . '>';
+                            echo '<a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' . $userFirstname . '</a>';
+                            if ($row["petStatus"] == 0) {
+                                $colorStatus = "green";
+                            } else if ($row["petStatus"] == 1) {
+                                $colorStatus = "yellow";
+                            } else if ($row["petStatus"] == 2) {
+                                $colorStatus = "red";
+                            }
+                            echo '<a style="background-color: ' . $colorStatus . ';" class="w3-right statusCircle"></a>';
+                            echo '<!--<p>Architect and engineer</p>--></div></div></div>';
+                        }
+                        //  }
+
+                        ?>
                     </div>
                 </div>
 
@@ -273,11 +313,7 @@
                 </td>
             </tr>
         </table>
-        <p><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></p>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
-        <p></p>
+
 
         <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
             <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
@@ -332,11 +368,14 @@
 
             var url = "jsonPet.php?textSearch=" + textSearch;
             //url = "greeting.php?day=Monday"
-            //  alert(url);
+            // alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }
-        jsonPet();
+        // jsonPet();
+
+
+
 
         // end of reload json pet 
 
@@ -454,7 +493,7 @@
                             } else if (dataJson[i].petStatus == 1) {
                                 $colorStatus = "yellow";
                             }
-                            $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetail"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
+                            $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetailLogin.php?id=' + dataJson[i].petID + '"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
                             $("#cardPet").append($divCardPet);
                         }
                     } else {
@@ -477,7 +516,7 @@
             xmlHttp.onreadystatechange = stateChangeFilter;
             var url = "jsonPetFilter.php?typePet=" + typePetSelect + "&species=" + speciesSelect + "&province=" + provinceSelect + "&from=" + fromSelect + "&text=" + textSearch;
             //url = "greeting.php?day=Monday"
-            alert(url);
+            //  alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }

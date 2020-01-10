@@ -14,7 +14,13 @@
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
-<script src="./js/script.js"></script>
+<link rel="stylesheet" href="CSS/notiflix-1.9.1.min.css">
+<script src="js/notiflix-1.9.1.min.js"></script>
+<script src="js/notiflix-aio-1.9.1.min.js"></script>
+
+
+
+<script src="js/script.js"></script>
 <style>
   .statusCircle {
     height: 30px;
@@ -106,23 +112,35 @@
   include_once('connectDB.php');
 
   $id = $_GET['id'];
-  $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image,member.firstname,member.lastname,member.Image as memImage FROM pet JOIN account ON (pet.posterID = account.accountID) JOIN member ON member.accountID = account.accountID WHERE petID = '" . $id . "'";
+  $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image as petImage,pet.posterID,member.firstname as memFirstname,member.lastname,member.Image as memImage  , organ.firstname as organFirstname, organ.lastname,organ.Image as organImage FROM pet LEFT JOIN account ON (pet.posterID = account.accountID) LEFT JOIN member ON member.accountID = account.accountID LEFT JOIN organization as organ on account.accountID = organ.accountID
+  WHERE petID = '" . $id . "'";
 
 
   $res = $conn->query($sql);
 
   while ($row = $res->fetch_assoc()) {
+
+    if ($row["memImage"] == null && $row["memFirstname"] == null) {
+      $userImage = $row["organImage"];
+      $userFirstname = $row["organFirstname"];
+    } else if ($row["organImage"] == null && $row["organFirstname"] == null) {
+      $userImage = $row["memImage"];
+      $userFirstname = $row["memFirstname"];
+    }
+
     $petType = $row["type"];
     $petSpecy = $row["species"];
     $petPro = $row["province"];
     $petPhone = $row["phoneNumber"];
     $petDetail = $row["details"];
     $petStatus = $row["petStatus"];
-    $petImage = $row["Image"];
-    $memImage = $row["memImage"];
-    $memName = $row["firstname"];
+    $petImage = $row["petImage"];
+    $memImage = $userImage;
+    $memName = $userFirstname;
+    $posterID = $row["posterID"];
   }
   ?>
+
 
   <!--Content-->
 
@@ -162,7 +180,6 @@
 
         <div class="w3-half" id="statusOfPet">
 
-
         </div>
       </div>
       <!--Detail Pet-->
@@ -198,7 +215,23 @@
         </div>
 
 
+        <div class="w3-row w3-padding">
+          <button style="border-radius: 14px;" class="w3-animate-opacity open-button" id="btnChat" onclick="openForm()"><img width="35px" src="./Images/icon/chatIcon.png">
+            <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">แชทสนทนา</a></button>
 
+          <div class="w3-animate-bottom chat-popup" id="myForm">
+            <form action="" class="form-container" method="POST">
+              <img width="35px" src="./Images/<?php echo $memImage; ?>">
+              <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;color: white;padding-right: 10px;"><?php echo $memName; ?><a style="background-color: #28a745;height:10px;width:10px" class="statusCircle"></a></a>
+
+
+              <textarea placeholder="พิมพ์ข้อความ.." name="msg" required id="msg"></textarea>
+
+              <a href="#" style="border-radius:10px; font-size: 1.2em; background-color: #373143;" class="btn" onclick="sendMessage(<?php echo $_SESSION['accountID'] ?>,<?php echo $posterID ?>);" id="sendAlert">ส่งข้อความ</a>
+              <button style="border-radius:10px; font-size: 1.2em; background-color: darkgray;" type="button" class="btn" onclick="closeForm()">ปิด</button>
+            </form>
+          </div>
+        </div>
 
 
       </div>
@@ -213,11 +246,6 @@
 
   </div>
 
-
-
-
-
-
   <style>
     .w3-8c71c0 {
       background-color: #8c71c0;
@@ -231,6 +259,8 @@
       background-color: #373143;
     }
   </style>
+
+
   <!-- Footer -->
   <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
     <table align=center>
@@ -255,11 +285,7 @@
         </td>
       </tr>
     </table>
-    <p><a href="register.php" class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</a></p>
-    <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
-    <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
-    <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
-    <p></p>
+
 
     <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
       <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
@@ -275,7 +301,6 @@
 
 
 </html>
-
 <script>
   function changeStatus(status) {
 
@@ -296,8 +321,6 @@
   $(document).ready(function() {
     changeStatus(<?php echo $petStatus; ?>)
   });
-
-
   // Script for side navigation
   function w3_open() {
     var x = document.getElementById("mySidebar ");

@@ -14,6 +14,9 @@
 <script src="./js/script.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./CSS/CustomCss.css">
+<link rel="stylesheet" href="CSS/notiflix-1.9.1.min.css">
+<script src="js/notiflix-1.9.1.min.js"></script>
+<script src="js/notiflix-aio-1.9.1.min.js"></script>
 
 <style>
     .statusCircle {
@@ -55,7 +58,7 @@
                 <div class="w3-half">
 
                     <div class="w3-container w3-mobile">
-                        <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" id="textSearch" />
+                        <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" id="textSearch" name="textSearch" />
                         <a href="#" style="font-size:18px; background-color: #726292; color: white;" class="w3-right w3-button w3-circle" title="Search" id="bntSearch"><i class="fa fa-search"></i></a>
                     </div>
                 </div>
@@ -102,7 +105,7 @@
                             <a style="font-weight: bold; font-size: 20px;">สายพันธ์</a>
                         </div>
                         <div style="font-size: 20px;" class="w3-half" style="width: 50%;">
-                            <select class="w3-border w3-rest  w3-select" name="species" id="speciesSelect" required>
+                            <select class="w3-border w3-rest  w3-select" name="species" id="speciesSelect" required disabled>
 
                             </select>
                         </div>
@@ -115,7 +118,7 @@
                             <a style="font-weight: bold; font-size: 20px;">จังหวัด</a>
                         </div>
                         <div style="font-size: 20px;" class="w3-half" style="width: 50%;">
-                            <select class="w3-border w3-rest  w3-select" name="option" id="provinceSelect">
+                            <select class="w3-border w3-rest  w3-select" name="option" id="provinceSelect" disabled>
                                 <option style="font-size: 20px;" value="">ทั้งหมด</option>
                                 <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                 <option value="กระบี่">กระบี่ </option>
@@ -206,7 +209,7 @@
                             <a style="font-weight: bold; font-size: 20px;">จาก</a>
                         </div>
                         <div style="font-size: 20px;" class="w3-half" style="width: 50%;">
-                            <select class="w3-border w3-rest  w3-select" name="option" id="fromSelect">
+                            <select class="w3-border w3-rest  w3-select" name="option" id="fromSelect" disabled>
                                 <option style="font-size: 20px;" value="">ทั้งหมด</option>
                                 <option style="font-size: 20px;" value="member">ทางบ้าน</option>
                                 <option style="font-size: 20px;" value="organization">มูลนิธิ</option>
@@ -221,7 +224,47 @@
                 <br>
                 <div class="w3-container">
                     <div class="w3-container w3-border" id="cardPet">
+                        <?php
 
+                        include "connectDB.php";
+
+                        $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image as petImage,member.firstname as memFirstname,member.lastname,member.Image as memImage  , organ.firstname as organFirstname, organ.lastname,organ.Image as organImage FROM pet LEFT JOIN account ON (pet.posterID = account.accountID) LEFT JOIN member ON member.accountID = account.accountID LEFT JOIN organization as organ on account.accountID = organ.accountID WHERE pet.petStatus != 2;";
+
+                        $res = $conn->query($sql);
+
+                        while ($row = $res->fetch_assoc()) {
+
+                            if ($row["memImage"] == null && $row["memFirstname"] == null) {
+                                $userImage = $row["organImage"];
+                                $userFirstname = $row["organFirstname"];
+                            } else if ($row["organImage"] == null && $row["organFirstname"] == null) {
+                                $userImage = $row["memImage"];
+                                $userFirstname = $row["memFirstname"];
+                            }
+
+
+                            //  if ($row["Image"] != null && $row["firstname"] != null) {
+                            echo  '<div style="padding:10px;" class="w3-quarter w3-container">';
+                            echo '<div class="w3-card-4 test" style="width:100%;max-width:300px;">';
+                            echo '<a href="petDetailOrganization.php?id=' . $row["petID"] . '">';
+                            echo '<img src="./Images/' . $row["petImage"] . '" alt="Avatar" style="width:100%;height:300px">';
+                            echo '</a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">';
+                            echo '<img width="35px" src="./Images/' . $userImage . '">';
+                            echo '<input type="hidden" id="PosterID" value=' . $row["petID"] . '>';
+                            echo '<a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' . $userFirstname . '</a>';
+                            if ($row["petStatus"] == 0) {
+                                $colorStatus = "green";
+                            } else if ($row["petStatus"] == 1) {
+                                $colorStatus = "yellow";
+                            } else if ($row["petStatus"] == 2) {
+                                $colorStatus = "red";
+                            }
+                            echo '<a style="background-color: ' . $colorStatus . ';" class="w3-right statusCircle"></a>';
+                            echo '<!--<p>Architect and engineer</p>--></div></div></div>';
+                        }
+                        //  }
+
+                        ?>
                     </div>
                 </div>
 
@@ -270,11 +313,7 @@
                 </td>
             </tr>
         </table>
-        <p><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></p>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
-        <p></p>
+
 
         <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
             <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
@@ -300,19 +339,21 @@
                 xmlHttp.readyState == "complete") {
                 resultJsonPet = xmlHttp.responseText;
 
-                var dataJson = JSON.parse(resultJsonPet); // conver string resultJsonpet to json type 
-                var length = Object.keys(dataJson).length; // find length of dataJson
+                if (resultJsonPet != "[[]]") {
+                    var dataJson = JSON.parse(resultJsonPet); // conver string resultJsonpet to json type 
+                    var length = Object.keys(dataJson).length; // find length of dataJson
 
-                console.log(length);
-                $("#cardPet").empty();
-                for (var i = 0; i < length; i++) {
-                    if (dataJson[i].petStatus == 0) {
-                        $colorStatus = "green";
-                    } else if (dataJson[i].petStatus == 1) {
-                        $colorStatus = "yellow";
+                    console.log(length);
+                    $("#cardPet").empty();
+                    for (var i = 0; i < length; i++) {
+                        if (dataJson[i].petStatus == 0) {
+                            $colorStatus = "green";
+                        } else if (dataJson[i].petStatus == 1) {
+                            $colorStatus = "yellow";
+                        }
+                        $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetailOrganization.php?id=' + dataJson[i].petID + '"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><input type="hidden" id="PosterID" value=' + dataJson[i].petID + '><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
+                        $("#cardPet").append($divCardPet);
                     }
-                    $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetailLogin.php?id=' + dataJson[i].petID + '"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><input type="hidden" id="PosterID" value=' + dataJson[i].petID + '><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
-                    $("#cardPet").append($divCardPet);
                 }
 
 
@@ -322,12 +363,19 @@
         function jsonPet() {
             createXMLHttpRequest();
             xmlHttp.onreadystatechange = stateChange;
-            var url = "jsonPet.php";
+
+            var textSearch = document.getElementById("textSearch").value;
+
+            var url = "jsonPet.php?textSearch=" + textSearch;
             //url = "greeting.php?day=Monday"
+            // alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }
-        jsonPet();
+        // jsonPet();
+
+
+
 
         // end of reload json pet 
 
@@ -373,6 +421,9 @@
             bntSearch = "";
         $("#typePetSelect").change(function() {
             typePetSelect = $(this).val();
+            $("#speciesSelect").removeAttr("disabled");
+            $("#provinceSelect").removeAttr("disabled");
+            $("#fromSelect").removeAttr("disabled");
         });
 
         $("#speciesSelect").change(function() {
@@ -393,6 +444,17 @@
 
 
 
+
+        function checkDisabled(x) {
+            var check = x.disabled;
+
+            if (check == true) {
+                alert("jame");
+            } else {
+                alert("logan");
+            }
+        }
+
         $("#bntSearch").click(function() {
 
             if (typePetSelect == "" || typePetSelect == 0) {
@@ -404,7 +466,6 @@
             }
 
         });
-
 
 
 
@@ -432,7 +493,7 @@
                             } else if (dataJson[i].petStatus == 1) {
                                 $colorStatus = "yellow";
                             }
-                            $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetail"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
+                            $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetailOrganization.php?id=' + dataJson[i].petID + '"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
                             $("#cardPet").append($divCardPet);
                         }
                     } else {
@@ -455,6 +516,7 @@
             xmlHttp.onreadystatechange = stateChangeFilter;
             var url = "jsonPetFilter.php?typePet=" + typePetSelect + "&species=" + speciesSelect + "&province=" + provinceSelect + "&from=" + fromSelect + "&text=" + textSearch;
             //url = "greeting.php?day=Monday"
+            //  alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }
@@ -513,6 +575,19 @@
 
 
 <script>
+    /* 
+
+
+  --------
+     --            --
+     --            --
+     --            --
+     --            -- 
+     --            --
+     ----------------
+
+*/
+
     function hideNav() {
         document.getElementById("menu").style.display = "none";
         document.getElementById("searchMenu").style.display = "block";

@@ -112,21 +112,31 @@
   include_once('connectDB.php');
 
   $id = $_GET['id'];
-  $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image,pet.posterID,member.firstname,member.lastname,member.Image as memImage FROM pet JOIN account ON (pet.posterID = account.accountID) JOIN member ON member.accountID = account.accountID WHERE petID = '" . $id . "'";
+  $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image as petImage,pet.posterID,member.firstname as memFirstname,member.lastname,member.Image as memImage  , organ.firstname as organFirstname, organ.lastname,organ.Image as organImage FROM pet LEFT JOIN account ON (pet.posterID = account.accountID) LEFT JOIN member ON member.accountID = account.accountID LEFT JOIN organization as organ on account.accountID = organ.accountID
+  WHERE petID = '" . $id . "'";
 
 
   $res = $conn->query($sql);
 
   while ($row = $res->fetch_assoc()) {
+
+    if ($row["memImage"] == null && $row["memFirstname"] == null) {
+      $userImage = $row["organImage"];
+      $userFirstname = $row["organFirstname"];
+    } else if ($row["organImage"] == null && $row["organFirstname"] == null) {
+      $userImage = $row["memImage"];
+      $userFirstname = $row["memFirstname"];
+    }
+
     $petType = $row["type"];
     $petSpecy = $row["species"];
     $petPro = $row["province"];
     $petPhone = $row["phoneNumber"];
     $petDetail = $row["details"];
     $petStatus = $row["petStatus"];
-    $petImage = $row["Image"];
-    $memImage = $row["memImage"];
-    $memName = $row["firstname"];
+    $petImage = $row["petImage"];
+    $memImage = $userImage;
+    $memName = $userFirstname;
     $posterID = $row["posterID"];
   }
   ?>
@@ -275,11 +285,7 @@
         </td>
       </tr>
     </table>
-    <p><a href="register.php" class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</a></p>
-    <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
-    <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
-    <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
-    <p></p>
+
 
     <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
       <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
