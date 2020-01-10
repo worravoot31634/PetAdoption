@@ -111,6 +111,8 @@ if (!$_SESSION['loginStatus']) {
         <?php
         include 'connectDB.php';
         $sql = "SELECT * FROM account join pet where accountID=posterID and username='".$_SESSION['username']."'";
+
+        //echo $sql;
         $rs = $conn->query($sql);
         if($rs->num_rows != 0){//Check that it's have in DB or not
             while($row = $rs->fetch_assoc()) {
@@ -261,7 +263,7 @@ if (!$_SESSION['loginStatus']) {
                             </div></a>
                         </div><!-- end of img and text side by side-->
                         <div class="w3-container" style="padding-right:15px;">
-                        <p style="font-size: 14px;clear: both;">'. $row['details'] .'
+                        <p style="word-break: break-all; font-size: 14px;clear: both;">'. $row['details'] .'
 
                         </p></div>
                         <div class="w3-center">

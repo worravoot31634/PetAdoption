@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION["userIDLogin"] = $_SESSION['accountID'];
+$_SESSION["userIDLogin"] = $_SESSION['userAccountID'];
 
     include('NavbarOrganization.php');
     include('connectDB.php');
@@ -758,7 +758,9 @@ body {
                     // get results from database
                     $sqlGetAllContacts ="SELECT * FROM chat";
                     $rsChat=$conn->query($sqlGetAllContacts);
-
+                    $contactFrom = null;
+                    $contactSend = null;
+                    $tempContact = null;
                     $i=0;
                     $j=0;
 
@@ -766,27 +768,40 @@ body {
                       if($row['toUserID'] == $_SESSION["userIDLogin"]){
                         //echo '<pre>' . print_r($row['toUserID'], TRUE) . '</pre>';
                         $contactFrom[$i++] = $row['fromUserID'];
+                        
                       }else if($row['fromUserID'] == $_SESSION["userIDLogin"]){
                         $contactSend[$j++] = $row['toUserID'];
+                      }else{
+                        echo 'แชทว่าง';
                       }
 
-
+                      
 
                     }
 
 
-
+                    if($contactFrom != null && $contactSend != null){
                     //Check Contact Lists
-                    $tempContact = array_merge($contactFrom,$contactSend);
-                    $tempContact = array_unique($tempContact);
+                        $tempContact = array_merge($contactFrom,$contactSend);
+                        $tempContact = array_unique($tempContact);
 
-                    //echo '<pre>' . print_r(count($tempContact), TRUE) . '</pre>';
+                        //echo '<pre>' . print_r(count($tempContact), TRUE) . '</pre>';
 
-                    $_SESSION["amountOfContact"] = count($tempContact);
+                        $_SESSION["amountOfContact"] = count($tempContact);
 
+                    }else if($contactFrom != null && $contactSend == null){
 
+                      $_SESSION["amountOfContact"] = count($contactFrom);
+                      $tempContact = array_unique($contactFrom);
+
+                    }else if($contactFrom == null && $contactSend != null){
+
+                      $_SESSION["amountOfContact"] = count($contactSend);
+                      $tempContact = array_unique($contactSend);
+
+                    }
                     
-
+                    
                     ?>
 
                     <!--Fetch Image of User-->
@@ -812,12 +827,13 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
               <?php
 
                     // get results from database
-                    $sqlFetchUserLogin="SELECT * FROM member WHERE memberID = " . $_SESSION["userIDLogin"];
-                    $rs=$conn->query($sqlFetchUserLogin);
-                    while($row = $rs->fetch_assoc()) {
+                    //$sqlFetchUserLogin="SELECT * FROM member m,account a ,organization o WHERE a.accountID = " . $_SESSION["userIDLogin"] . " AND a.accountID = o.accountID LIMIT 1";
+                    //echo $sqlFetchUserLogin;
+                    //$rs=$conn->query($sqlFetchUserLogin);
+                    
 
-                      echo   '<p style="font-size: 18px; font-weight: bold;">'. $row['firstname'] .' ' . $row['lastname'] .'</p>';
-                    }
+                      echo   '<p style="font-size: 18px; font-weight: bold;">'. $_SESSION['UserFirstname'] .' ' . $_SESSION['UserLastname'] .'</p>';
+                    
               ?>
 
 
@@ -848,19 +864,36 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
           <ul>
           <!--Fetch ContactList li-->
           <?php
-
+      
           $countContactList = 1;
                     //Get Data Contact
                     foreach($tempContact as $value){
 
-                        $sqlGetContactList = "SELECT * FROM member WHERE memberID = " . $value;
+
+                      $sqlCheckMemberORorganizaion1 = "SELECT * FROM organization WHERE accountID = " . $value;
+            $rs1=$conn->query($sqlCheckMemberORorganizaion1);
+            while($row = $rs1->fetch_assoc()) {
+              $sqlGetContactList = "SELECT * FROM organization WHERE accountID = " . $value;
+            }
+
+            $sqlCheckMemberORorganizaion2 = "SELECT * FROM member WHERE accountID = " . $value;
+            $rs2=$conn->query($sqlCheckMemberORorganizaion2);
+            while($row = $rs2->fetch_assoc()) {
+              $sqlGetContactList = "SELECT * FROM member WHERE accountID = " . $value;
+            }
+
+
+
+
+                        
+                        //echo $sqlGetContactList;
                         $rs=$conn->query($sqlGetContactList);
 
                         while($row = $rs->fetch_assoc()) {
 
 
                       echo'
-                        <li id="contact'. $countContactList .'" class="contact"  onclick="showChat('.$countContactList.');setFromUserID('.$row['memberID'].')">
+                        <li id="contact'. $countContactList .'" class="contact"  onclick="showChat('.$countContactList.');setFromUserID('.$row['accountID'].')">
                         <div class="wrap">
                             <span class="contact-status online"></span>
                             <img src="./Images/'. $row['Image'] .'" alt="" />
@@ -869,8 +902,9 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                                 <p id = "preview'. $countContactList .'" class="preview"><span> :</span>';
 
 
-                                $rowLastestChat = "SELECT * FROM chat WHERE (toUserID = ". $value   . " AND fromUserID = ". $_SESSION["accountID"] .") OR "
-                                ."(toUserID = ". $_SESSION["accountID"]   . " AND fromUserID = ". $value . ") ORDER BY timestamp DESC LIMIT 1";
+                                $rowLastestChat = "SELECT * FROM chat WHERE (toUserID = ". $value   . " AND fromUserID = ". $_SESSION["userAccountID"] .") OR "
+                                ."(toUserID = ". $_SESSION["userAccountID"]   . " AND fromUserID = ". $value . ") ORDER BY timestamp DESC LIMIT 1";
+                                //echo $rowLastestChat;
                                 $rs2=$conn->query($rowLastestChat);
 
                                 //echo $rowLastestChat;
@@ -912,11 +946,28 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
           //Get Data Contact
           foreach($tempContact as $value){
 
-              $sqlGetContactList = "SELECT * FROM member m ,account a WHERE m.accountID = a.accountID AND m.memberID = " . $value;
+            $sqlCheckMemberORorganizaion1 = "SELECT * FROM organization WHERE accountID = " . $value;
+            $rs1=$conn->query($sqlCheckMemberORorganizaion1);
+            while($row = $rs1->fetch_assoc()) {
+              $sqlGetContactList = "SELECT * FROM organization WHERE accountID = " . $value;
+            }
+
+            $sqlCheckMemberORorganizaion2 = "SELECT * FROM member WHERE accountID = " . $value;
+            $rs2=$conn->query($sqlCheckMemberORorganizaion2);
+            while($row = $rs2->fetch_assoc()) {
+              $sqlGetContactList = "SELECT * FROM member WHERE accountID = " . $value;
+            }
+            
+
+
+              
+              //echo $sqlGetContactList;
               $rs=$conn->query($sqlGetContactList);
 
 
+
               while($row = $rs->fetch_assoc()) {
+                
                 echo '<div id="Chat'. $countContactList .'" class="content"  style="display: none;">
                 <div class="contact-profile">
                     <img src="./Images/'. $row['Image']  .'" alt="" />
@@ -943,7 +994,7 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                       //echo "<h2>VALUE : " . $value . "</h2>";
 
 
-                        if($rowChat['toUserID'] == $value && $rowChat["fromUserID"] == $_SESSION["accountID"]){
+                        if($rowChat['toUserID'] == $value && $rowChat["fromUserID"] == $_SESSION["userAccountID"]){
                           //echo 'จาก User : ' . $rowChat['toUserID'];
                           echo '<li class="sent">
 
@@ -951,7 +1002,7 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
                           <p>'. $rowChat['message'] .'</p>
                       </li>';
 
-                    }else if ($rowChat['fromUserID'] == $value && $rowChat["toUserID"] == $_SESSION["accountID"]){
+                    }else if ($rowChat['fromUserID'] == $value && $rowChat["toUserID"] == $_SESSION["userAccountID"]){
                       //echo 'ส่ง User : ' . $rowChat['toUserID'];
                         echo '<li class="replies">
 

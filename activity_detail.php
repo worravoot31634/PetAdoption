@@ -67,16 +67,21 @@ while($row = $rs->fetch_assoc()) {
 
 
 
-    echo'<center>
-        <h1 style="margin-top: 50px;">'. $row['topic'] .'</h1>
-        <br>
-        <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="80%">
-    </center>
+    echo'<div class="w3-container w3-center" style="margin-top:55px;">
+        <a style="margin-top: 50px;font-size:30px;font-weight:bold;height:">'. $row['topic'] .'</a>
+        </div>
+       
+
+        <div class="w3-container w3-center" style="margin-top:20px;width:80%;margin-left:auto;margin-right:auto;">
+        <img src="./Images/'. $row['Image'] .'" style="width: 100%;max-width: 400px;height: auto;
+      }"">
+        </div>
+    
 
 
-    <div style="width: 80%;display: table;width: 80%;" class="contentCenter">
+    <div class="w3-container" style="border-radius:10px;background-color:lightgray;width: 80%;margin-top:20px;margin-left:auto;margin-right:auto;" class="contentCenter">
 
-        <p class="pragraph">
+        <p style="word-break: break-all;" class="pragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           '. $row['details'] .'
         </p>
 

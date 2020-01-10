@@ -99,7 +99,7 @@ while($row = $rs->fetch_assoc()) {
                         </div>
                     </div><!-- end of img and text side by side-->
 
-                    <p style="font-size: 1em;clear: both;">'. $row['details'] .'</p>
+                    <p style="padding:10px;word-break: break-all; font-size: 1em;clear: both;">'. $row['details'] .'</p>
             </a></div>
     </div>'; }
 
