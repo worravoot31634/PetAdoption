@@ -85,11 +85,11 @@ while($row = $rs->fetch_assoc()) {
         echo'<div class="w3-half" style="padding: 10px;">
         <a href= "activity_detail.php?id='.$id.'" class="activity-content-link">
         <div class="w3-container colorActivity" style= "border-radius:10px;">
-            
+
                 <div class="w3-half" style="height: 210px;">
                     <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
                 </div> <!-- end of img -->
-               
+
 
                 <div class="w3-half" style="border-radius:10px;height: 210px;background-color:white;margin-bottom:10px;margin-top:10px">
 
@@ -126,40 +126,43 @@ while($row = $rs->fetch_assoc()) {
     }
     </style>
     <!-- Footer -->
-    <footer class="w3-container w3-padding-32  w3-center "style="background-image: url('./Images/footer.png');" >
-        <table align=center>
-            <tr>
-                <td style="height: 3cm;">
+    <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
+      <table align=center>
+        <tr>
+          <td style="height: 3cm;">
 
-                </td>
-            </tr>
+          </td>
+        </tr>
 
-            <tr style="width:100%;">
-              <td>
-                <p style="font-size: 30px;color: #E2E0E0;">มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-              <td>
-            </tr>
-            <tr style="width:100%;">
+        <tr style="width:100%;">
+          <td>
+            <p style="font-size: 30px;color: #E2E0E0;">
+              มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <td>
+        </tr>
+        <tr style="width:100%;">
 
-              <td>
-                <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
-              </td>
-            </tr>
-          </table>
+          <td>
+            <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
+          </td>
+        </tr>
+      </table>
+      <p><a href="register.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
+      <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
+          class="fa fa-facebook "></i></a>
+      <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
+          class="fa fa-twitter "></i></a>
+      <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i
+          class="fa fa-google-plus "></i></a>
+      <p></p>
 
-        <p><a href="register.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
-          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
-          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
-          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
-        <p></p>
-
-        <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
-            <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
-            <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
-                    <i class="fa fa-chevron-circle-up "></i></span></a>
-        </div>
+      <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
+        <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
+        <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
+            <i class="fa fa-chevron-circle-up "></i></span></a>
+      </div>
     </footer>
 
     <script>
