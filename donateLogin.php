@@ -295,7 +295,7 @@ if(!$_SESSION['loginStatus']){
                                         </div>
                                         <!-- end of img and text side by side-->
                                         <b><p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p></b>
-                                        <b><p style='font-size: 1vw;clear: both;'>".$row['details']."</p></b>
+                                        <b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>".$row['details']."</p></b>
 
                                         <table style='width: 100%;'>
                                             <tr>
@@ -337,7 +337,7 @@ if(!$_SESSION['loginStatus']){
                                         </div>
                                     </div><!-- end of img and text side by side-->
                                     <b><p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p></b>
-                                    <b><p style='font-size: 1vw;clear: both;'>".$row['details']."</p></b>
+                                    <b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>".$row['details']."</p></b>
             
                                     <table style='width: 100%;''>
                                         <tr>
