@@ -123,21 +123,16 @@ if(!$_SESSION['loginStatus']){
 
         <tr>
             <td>
-                  
-         
-                        <div style="width: 100%; ">
+                        <div class="w3-half">
                         <form name="donateSearch"  >
-                        <table align=center style="width: 70%;">
-                            <tr style="width: 100%;" >
-                                <td style="width: 50%;"> 
-                                    <input class="advanceSearch" name="donateTitle" id="fromText"  placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" />
-                                </td>
-                                <td >
-                                    <a style="font-weight: bold; font-size: 20px;">จังหวัด&nbsp;&nbsp;</a>
-                                </td>
-                                <td style="width: 50%;" >
-                                    <div style="font-size: 20px;" class="w3-half" >
-                                                        <select class="w3-border w3-rest  w3-select" name="province" id="fromSelect">
+                            <div class="w3-container w3-mobile">
+                                <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px; width:100%;" size="100" type="text" id="textSearch" name="textSearch" />
+                            </div>   
+                        </div>
+                        <div class="w3-half" style="padding: 4px;">
+                            <div class="w3-container w3-mobile">
+                            <a style="font-weight: bold; font-size: 20px;">จังหวัด&nbsp;&nbsp;</a>
+                                                        <select class="w3-border w3-rest  w3-select" name="province" id="fromSelect" style="width:65%;">
                                                         <option style="font-size: 20px;" value="0">ทั้งหมด</option>
                                                             <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                                             <option value="กระบี่">กระบี่ </option>
@@ -217,11 +212,10 @@ if(!$_SESSION['loginStatus']){
                                                             <option value="อุบลราชธานี">อุบลราชธานี</option>
                                                             <option value="อ่างทอง">อ่างทอง </option>
                                                         </select>
-                                                        </div>  
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         <a href="#" id="bntSearch"  type="submit" style="font-size:18px; background-color: #726292; color: white;" 
                                                         class="w3-button w3-circle "title="Search"><i class="fa fa-search"></i></a>
-
+                            </div>   
+                        </div>
                                 </td>
                             </tr>
                         </table>

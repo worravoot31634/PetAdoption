@@ -56,7 +56,6 @@
         <tr>
             <td>
                 <div class="w3-half">
-
                     <div class="w3-container w3-mobile">
                         <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" id="textSearch" name="textSearch" />
                         <a href="#" style="font-size:18px; background-color: #726292; color: white;" class="w3-right w3-button w3-circle" title="Search" id="bntSearch"><i class="fa fa-search"></i></a>
