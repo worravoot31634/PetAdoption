@@ -6,7 +6,7 @@ $myPhoto = $_FILES["img"]["name"];
 
 //Upload Files
 $target_dir = "Images/";
-$target_file = $target_dir . basename($_FILES["ima"]["name"]);
+$target_file = $target_dir . basename($_FILES["img"]["name"]);
 $uploadOk = 1;
 
 
