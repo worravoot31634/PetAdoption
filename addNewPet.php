@@ -18,7 +18,12 @@ if ($_FILES["filePet"]["error"] > 0) {
 
 $sql = "INSERT INTO pet(type,species,province,phoneNumber,details,petStatus,Image,posterID) VALUES('" . $typePet . "','" . $specy . "','" . $province . "','" . $phone . "','" . $detail . "',0,'" . $file . "','" . $userLogin . "');";
 if ($conn->query($sql) === TRUE) {
-    header('LOCATION:addPet.php');
+
+    if ($_SESSION['roles'] == "member") {
+        header('LOCATION:addPet.php');
+    } else if ($_SESSION['roles'] == "organization") {
+        header('LOCATION:addPetOrganization.php');
+    }
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
