@@ -73,7 +73,12 @@ if(!$_SESSION['loginStatus']){
 
 
   <!-- Team Container -->
-
+<style>
+  pre {
+    font-family: 'Athiti', sans-serif;
+    
+}
+</style>
 
   <table align="center">
     <tr>
@@ -450,6 +455,8 @@ if(!$_SESSION['loginStatus']){
         dots[slideIndex - 1].className += " w3-white";
       }
     </script>
+    <style>
+
 
 
 

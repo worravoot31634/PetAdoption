@@ -73,7 +73,12 @@ if(!$_SESSION['loginStatus']){
   </div>
 
   <!-- Team Container -->
-
+  <style>
+  pre {
+    font-family: 'Athiti', sans-serif;
+    
+}
+</style>
 
   <table align="center">
     <tr>
