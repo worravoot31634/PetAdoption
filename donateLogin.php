@@ -168,7 +168,6 @@ if(!$_SESSION['loginStatus']){
 
 
 <br>
-<p id="unfiled"><p>
 <div class="w3-container" id="popup">
         <div class="w3-container w3-border reset" style="margin: 1%; position:relative" id="search" >
 
@@ -217,11 +216,11 @@ if(!$_SESSION['loginStatus']){
                                             <div style='display:inline-block'>
                                                 <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
                                             </div>
-                                        </div><!-- end of img and text side by side-->
+                                        </div>
+                                        <!-- end of img and text side by side-->
                                         <p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p>
                                         <p style='font-size: 1vw;clear: both;'>".$row['details']."</p>
 
-                                        
                                         <table style='width: 100%;'>
                                             <tr>
                                                 <td  style='width: 60%;'>
@@ -244,12 +243,10 @@ if(!$_SESSION['loginStatus']){
 
                     }else{
                         echo "  <!--row  half right side-->
-
                         <div class='w3-half' style='padding: 10px;'>
                                 <div class='w3-half colorActivity' style='height: 220px;'>
                                     <img src='./Images/".$row['DImage']."' srcset='' width='100%' height='auto' style='height: 220px;'>
                                 </div> <!-- end of img -->
-            
             
                                 <div class='w3-half colorActivity' style='height: 220px;'>
             
@@ -291,7 +288,7 @@ if(!$_SESSION['loginStatus']){
                     
      <!----Popup box---->
     
-     <div id="<?php echo $row['donateID']; ?>" class="w3-modal popup" >
+     <div id="<?php echo $row['donateID']; ?>" class="w3-modal " >
      
         <div class="w3-modal-content w3-card-4 w3-animate-zoom">
          <header class="w3-container w3-8c71c0"> 

@@ -22,14 +22,16 @@ obj = JSON.parse(xmlHttp.responseText);
 suml=obj.length;
 
 if(obj!=0){
-    url = "donateSubmitLogin.php";
+    url1 = "donateSubmitLogin.php";
 }else{
-    url = "donateSubmitOrganization.php";
+    url1 = "donateSubmitOrganization.php";
 }
 for(i=0;i<suml;i++){
+    k=(i-1);
     if(i%2==0){
-        $("#search").append("<div class='w3-row' style='width: 100%;margin:auto' id='search2'>"+
-                "<!--row  half right side1-->"+
+        $("#search").append(
+                "<div class='w3-row' style='width: 100%;margin:auto' id='search"+i+"' >"+
+                "<!--row  half right side11-->"+
                 "<div class='w3-half' style='padding: 10px;' >"+
                     "<div class='w3-half colorActivity' style='height: 220px;'>"+
                         "<img src='./Images/"+obj[i].DImage+ "' alt='' srcset='' width='100%' height='auto' style='height: 220px;'>"+
@@ -70,7 +72,7 @@ for(i=0;i<suml;i++){
                 "</a></div><!-- end of text -->"+
         "</div> <!-- end of row  half right side1-->");
     }else{
-        $("#search2").append(" <!--row  half right side2-->"+
+        $("#search"+k+"").append(" <!--row  half right side2-->"+
         
         "<div class='w3-half' style='padding: 10px;'>"+
                 "<div class='w3-half colorActivity' style='height: 220px;'>"+
@@ -128,7 +130,7 @@ for(i=0;i<suml;i++){
              "</td>"+
              "<td style='width: 50%;'>"+
                  "<div  class='w3-container w3-light-grey'>"+
-                                "<form action='"+url+"' id='from1' method='post'>"+
+                                "<form action='"+url1+"' id='from1' method='post'>"+
                                     "<br>"+
                                    " <p style='font-size: 18px;left: 10%;position:relative;'>ชื่อ-นามสกุล</p>"+
                                     "<center><input type='text' style='width:80%;border: none;border-radius: 2px;' name='donateName'></center>"+

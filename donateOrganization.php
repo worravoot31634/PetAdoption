@@ -295,7 +295,7 @@ if(!$_SESSION['loginStatus']){
                     
      <!----Popup box---->
     
-     <div id="<?php echo $row['donateID']; ?>" class="w3-modal popup" >
+     <div id="<?php echo $row['donateID']; ?>" class="w3-modal " >
      
         <div class="w3-modal-content w3-card-4 w3-animate-zoom">
          <header class="w3-container w3-8c71c0"> 
