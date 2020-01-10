@@ -23,7 +23,7 @@
     <a href="adminCheckSys.php" class="w3-bar-item w3-button ">เช็คผู้ใช้ที่อยู่ในระบบ</a>
     <a href="adminRegis.php" class="w3-bar-item w3-button ">สมัครสมาชิกให้องค์กร</a>
     <div class="w3-dropdown-hover">
-      <button class=" w3-button"><b>Oat</b></button>
+      <button class=" w3-button"><b><?php echo $_SESSION['UserFirstname'] . ' ' . $_SESSION['UserLastname']; ?></b></button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="home.php" class="w3-bar-item w3-button"><b>ออกจากระบบ</b></a>
       </div>
@@ -54,7 +54,7 @@
   <a href="adminCheckSys.php" class="w3-bar-item w3-button ">เช็คผู้ใช้ที่อยู่ในระบบ</a>
   <a href="adminRegis.php" class="w3-bar-item w3-button ">สมัครสมาชิกให้องค์กร</a>
   <div class="w3-dropdown-hover">
-    <button class=" w3-button"><b>Oat</b></button>
+    <button class=" w3-button"><b><?php echo $_SESSION['UserFirstname'] . ' ' . $_SESSION['UserLastname']; ?></b></button>
     <div class="w3-dropdown-content w3-bar-block w3-card-4">
       <a href="index.php" class="w3-bar-item w3-button"><b>ออกจากระบบ</b></a>
     </div>

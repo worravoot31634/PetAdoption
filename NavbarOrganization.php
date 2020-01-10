@@ -38,7 +38,7 @@ if (!isset($_SESSION)) {
         <a href="donateOrganization.php" class="w3-bar-item w3-button ">บริจาค</a>
         <a href="activityOrganization.php" class="w3-bar-item w3-button ">กิจกรรม</a>
         <div class="w3-dropdown-hover">
-            <button class=" w3-button"><b>Jame Logan</b></button>
+            <button class=" w3-button"><b><?php echo $_SESSION['UserFirstname'] . ' ' . $_SESSION['UserLastname']; ?></b></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
                 <a href="myPost.php" class="w3-bar-item w3-button"><b>โพสต์ของฉัน</b></a>
                 <a href="chatMessageOrganization.php" class="w3-bar-item w3-button"><b>ประวัติแชท</b></a>
@@ -71,7 +71,7 @@ if (!isset($_SESSION)) {
     <a href="donateOrganization.php" class="w3-bar-item w3-button ">บริจาค</a>
     <a href="activityOrganization.php" class="w3-bar-item w3-button ">กิจกรรม</a>
     <div class="w3-dropdown-hover">
-        <button class=" w3-button"><b>Jame Logan</b></button>
+        <button class=" w3-button"><b><?php echo $_SESSION['UserFirstname'] . ' ' . $_SESSION['UserLastname']; ?></b></button>
         <div class="w3-dropdown-content w3-bar-block w3-card-4">
             <a href="myPost.php" class="w3-bar-item w3-button"><b>โพสต์ของฉัน</b></a>
             <a href="chatMessageOrganization.php" class="w3-bar-item w3-button"><b>ประวัติแชท</b></a>
