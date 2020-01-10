@@ -8,19 +8,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./CSS/CustomCss.css">
-
+<link rel="stylesheet" href="CSS/notiflix-1.9.1.min.css">
+<script src="js/notiflix-1.9.1.min.js"></script>
+<script src="js/notiflix-aio-1.9.1.min.js"></script>
 <style>
     .statusCircle {
         height: 30px;
@@ -147,35 +143,32 @@
 <body id="myPage">
 
 
-<?php
-    include('NavbarAdmin.php');
+    <?php
+    include('NavbarAdmin.html');
     ?>
 
 
     <!--hide w3-hide-small and medium-->
     <!--Content-->
     <div class="w3-container w3-hide-medium w3-hide-small">
-        <div class="w3-row"
-            style="width: 50%;border-radius: 5px;background-color: #726292;padding-top: 150px;position: fixed;bottom: 0;top:0;float:right;right:0;">
+        <div class="w3-row" style="width: 50%;border-radius: 5px;background-color: #726292;padding-top: 150px;position: fixed;bottom: 0;top:0;float:right;right:0;">
             <div class="w3-row">
                 <br>
                 <center>
                     <p style="font-size: 30px;color:white;font-weight: bold;">สมัครสมาชิกให้องค์กร</p>
                 </center>
-                <form action="" method="POST">
+                <form action="addDataAdminRegis.php" method="POST" enctype="multipart/form-data" autocomplete="on">
                     <div class="w3-container">
                         <div class="w3-row">
                             <div class="w3-half">
                                 <p class="textPositionAdRegis">ชื่อองค์กร</p>
 
-                                <center><input type="text" name="organization" id="" class="inputRegis"
-                                        style="border: none;" placeholder="กรอกชื่อ" required>
+                                <center><input type="text" name="nameOrgan" id="" class="inputRegis" style="border: none;" placeholder="กรอกชื่อ" required>
                                 </center>
                             </div>
                             <div class="w3-half">
                                 <p class="textPositionAdRegis">ชื่อองค์กร</p>
-                                <center><input type="file" name="fileOrganize" id=""
-                                        style="border:none;background-color: #ffffff;" class="inputRegis" required>
+                                <center><input type="file" name="fileOrgan" id="" style="border:none;background-color: #ffffff;" class="inputRegis" required>
                                 </center>
                             </div>
                         </div>
@@ -186,15 +179,12 @@
                             <div class="w3-half">
                                 <p class="textPositionAdRegis">ชื่อผู้ใช้</p>
 
-                                <center><input type="text" name="organization" id="" class="inputRegis"
-                                        style="border: none;" placeholder="กรอกชื่อผู้ใช้" required>
+                                <center><input type="text" name="usernameOrgan" id="" class="inputRegis" style="border: none;" placeholder="กรอกชื่อผู้ใช้" required>
                                 </center>
                             </div>
                             <div class="w3-half">
                                 <p class="textPositionAdRegis">รหัสผ่าน</p>
-                                <center><input type="password" name="fileOrganize" id=""
-                                        style="border:none;background-color: #ffffff;" class="inputRegis"
-                                        placeholder="กรอกรหัสผ่าน" required>
+                                <center><input type="password" name="passwordOrgan" id="" style="border:none;background-color: #ffffff;" class="inputRegis" placeholder="กรอกรหัสผ่าน" required>
                                 </center>
                             </div>
                         </div>
@@ -205,17 +195,12 @@
                             <div class="w3-half">
                                 <p class="textPositionAdRegis">อีเมล</p>
 
-                                <center><input type="email" name="organization" id="" class="inputRegis"
-                                        style="border: none;" placeholder="example@email.com" required>
+                                <center><input type="email" name="emailOrgan" id="" class="inputRegis" style="border: none;" placeholder="example@email.com" required>
                                 </center>
                             </div>
                             <div class="w3-half">
                                 <p class="textPositionAdRegis">หมายเลขโทรศัพท์</p>
-                                <center><input type="phone" name="fileOrganize" id=""
-                                        style="border:none;background-color: #ffffff;" class="inputRegis"
-                                        placeholder="0812345678"
-                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                        required>
+                                <center><input type="phone" name="phoneOrgan" id="" style="border:none;background-color: #ffffff;" class="inputRegis" placeholder="0812345678" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
                                 </center>
                             </div>
                         </div>
@@ -225,7 +210,7 @@
                         <div class="w3-row">
 
                             <p class="textAreaPositionAdRegis">ที่อยู่</p>
-                            <center><textarea style="width: 90%;" rows="5" required></textarea>
+                            <center><textarea style="width: 90%;" rows="5" id="addressOrgan" name="addressOrgan" required></textarea>
                             </center>
 
                         </div>
@@ -253,46 +238,40 @@
             <center>
                 <p style="font-size: 30px;color:white;font-weight: bold;margin-top: 80px;">สมัครสมาชิกให้องค์กร</p>
             </center>
-            <p class="textPositionAdRegis">ชื่อองค์กร</p>
+            <form action="addDataAdminRegis.php" method="POST" enctype="multipart/form-data">
+                <p class="textPositionAdRegis">ชื่อองค์กร</p>
 
-            <center><input type="text" name="organization" id="" class="inputRegis" style="border: none;"
-                    placeholder="กรอกชื่อ" required>
-            </center>
+                <center><input type="text" name="nameOrgan" id="" class="inputRegis" style="border: none;" placeholder="กรอกชื่อ" required>
+                </center>
 
-            <p class="textPositionAdRegis">ชื่อองค์กร</p>
-            <center><input type="file" name="fileOrganize" id="" style="border:none;background-color: #ffffff;"
-                    class="inputRegis" required>
-            </center>
+                <p class="textPositionAdRegis">ชื่อองค์กร</p>
+                <center><input type="file" name="fileOrgan" id="" style="border:none;background-color: #ffffff;" class="inputRegis" required>
+                </center>
 
-            <p class="textPositionAdRegis">ชื่อผู้ใช้</p>
+                <p class="textPositionAdRegis">ชื่อผู้ใช้</p>
 
-            <center><input type="text" name="organization" id="" class="inputRegis" style="border: none;"
-                    placeholder="กรอกชื่อผู้ใช้" required>
-            </center>
+                <center><input type="text" name="usernameOrgan" id="" class="inputRegis" style="border: none;" placeholder="กรอกชื่อผู้ใช้" required>
+                </center>
 
 
-            <p class="textPositionAdRegis">รหัสผ่าน</p>
-            <center><input type="password" name="fileOrganize" id="" style="border:none;background-color: #ffffff;"
-                    class="inputRegis" placeholder="กรอกรหัสผ่าน" required>
-            </center>
-            <p class="textPositionAdRegis">อีเมล</p>
+                <p class="textPositionAdRegis">รหัสผ่าน</p>
+                <center><input type="password" name="passwordOrgan" id="" style="border:none;background-color: #ffffff;" class="inputRegis" placeholder="กรอกรหัสผ่าน" required>
+                </center>
+                <p class="textPositionAdRegis">อีเมล</p>
 
-            <center><input type="email" name="organization" id="" class="inputRegis" style="border: none;"
-                    placeholder="example@email.com" required>
-            </center>
+                <center><input type="email" name="emailOrgan" id="" class="inputRegis" style="border: none;" placeholder="example@email.com" required>
+                </center>
 
-            <p class="textPositionAdRegis">หมายเลขโทรศัพท์</p>
-            <center><input type="phone" name="fileOrganize" id="" style="border:none;background-color: #ffffff;"
-                    class="inputRegis"
-                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
-            </center>
+                <p class="textPositionAdRegis">หมายเลขโทรศัพท์</p>
+                <center><input type="phone" name="phoneOrgan" id="" style="border:none;background-color: #ffffff;" class="inputRegis" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                </center>
 
-            <p class="textAreaPositionAdRegis">ที่อยู่</p>
-            <center><textarea style="width: 90%;" rows="5" required></textarea>
-            </center>
+                <p class="textAreaPositionAdRegis">ที่อยู่</p>
+                <center><textarea style="width: 90%;" rows="5" name="addressOrgan" required></textarea>
+                </center>
 
-            <center><button class="btnAdRegis" style="margin-bottom: 50px;">สมัครสมาชิก</button>
-            </center>
+                <center><button class="btnAdRegis" style="margin-bottom: 50px;">สมัครสมาชิก</button>
+                </center>
             </form>
         </div>
     </div>
