@@ -83,25 +83,27 @@ while($row = $rs->fetch_assoc()) {
 
 
         echo'<div class="w3-half" style="padding: 10px;">
-            <a href= "activity_detail.php?id='.$id.'" class="activity-content-link">
-                <div class="w3-half colorActivity" style="height: 210px;">
+        <a href= "activity_detail.php?id='.$id.'" class="activity-content-link">
+        <div class="w3-container colorActivity" style= "border-radius:10px;">
+            
+                <div class="w3-half" style="height: 210px;">
                     <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
                 </div> <!-- end of img -->
+               
 
-
-                <div class="w3-half colorActivity" style="height: 210px;">
+                <div class="w3-half" style="border-radius:10px;height: 210px;background-color:white;margin-bottom:10px;margin-top:10px">
 
                     <!--img and text side by side-->
                     <div style="margin-top: 5px;float: left;">
 
-                        <div style="display:inline-block">
-                            <h6 class="w3-left" style="font-size: 14px;">'. $row['topic'] .'</h6>
+                        <div class= "w3-container" style="display:inline-block">
+                            <a class="w3-left" style="word-break: break-all;font-size: 22px;font-weight:bold">'. $row['topic'] .'</a>
                         </div>
                     </div><!-- end of img and text side by side-->
 
                     <p style="padding:10px;word-break: break-all; font-size: 1em;clear: both;">'. $row['details'] .'</p>
-            </a></div>
-    </div>'; }
+            </div>
+    </div></div></a>'; }
 
 
     ?>
