@@ -266,7 +266,7 @@ if(obj[0].roles!="nonMember"){
         "<div style='padding-top : 5%;'></div>"+
         "<div style='opacity: 0.9;' class='center3'>"+
         "<img width='10%' src='images/icon/alert.png '>"+
-        "<p style='font-size : 7vw;'>ไม่พบข้อมูลการสนทนา</p>"+
+        "<p style='font-size : 7vw;'>ไม่พบข้อมูลการค้นหา</p>"+
         "</div>");
 }
 
