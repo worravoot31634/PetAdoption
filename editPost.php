@@ -97,7 +97,7 @@
                 <div class="w3-half w3-center">
                     <img src="./Images/<?php echo $Image;?>" alt="" srcset="" width="70%" height="50%">
                     <div style="clear:both;">
-                        <input type="file" value="โพสต์" name="img" class="submitClass" style="margin-bottom: 10px;">
+                        <input type="file" value="โพสต์" name="img" class="submitClass" style="margin-bottom: 10px;" required>
                     </div>
 
                 </div>

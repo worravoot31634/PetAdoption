@@ -33,7 +33,6 @@ if (!$_SESSION['loginStatus']) {
         border-radius: 50%;
         display: inline-block;
     }
-
     .btnEdit {
         width: 40%;
         border-radius: 3px;
@@ -46,6 +45,29 @@ if (!$_SESSION['loginStatus']) {
         background-color: #373143;
     }
 
+    .btnDeletePostPet {
+        width: 20%;
+        border-radius: 3px;
+        border: none;
+        opacity: 0.9;
+        background-color: red;
+        color: #ffffff;
+    }
+
+    .btnDeletePostPet:hover {
+        background-color: #7b0000;
+        opacity: 0.9;
+    }
+
+
+    .btnDeletePostPet {
+        width: 20%;
+        border-radius: 3px;
+        border: none;
+        opacity: 0.9;
+        background-color: red;
+        color: #ffffff;
+    }
     .activity-content-link {
         text-decoration: none;
         color: black;
@@ -75,8 +97,7 @@ if (!$_SESSION['loginStatus']) {
         ?>
 
 
-    <!--content-->
-    <div class="w3-container" style="margin-top: 80px;left: 2%;position:relative">
+<div class="w3-container" style="margin-top: 80px;left: 2%;position:relative">
         <div style="display:inline-block">
             <p style="font-size: 28px;font-weight: bold;">โพสต์ของฉัน</p>
         </div>
@@ -85,45 +106,44 @@ if (!$_SESSION['loginStatus']) {
         </div>
     </div>
 
-
-
-
-
-
-
-
-    <div class="w3-container">
+    <div class="w3-container" style="width:80%;margin-left: auto;margin-right: auto;">
         <div class="w3-container w3-border">
-
-<?php
-          //$sql="SELECT * FROM pet";
-          $sql = "SELECT * FROM account join pet where accountID=posterID and username='".$_SESSION['username']."'";
-          $rs=$conn->query($sql);
-
-
-  if($rs->num_rows != 0){
-        while($row = $rs->fetch_assoc()) {
-                  $id = $row['petID'];
-          echo' <div style="padding:10px;" class="w3-quarter w3-container">
+        <?php
+        include 'connectDB.php';
+        $sql = "SELECT * FROM account join pet where accountID=posterID and username='".$_SESSION['username']."'";
+        $rs = $conn->query($sql);
+        if($rs->num_rows != 0){//Check that it's have in DB or not
+            while($row = $rs->fetch_assoc()) {
+        ?>
+            <div style="padding:10px;" class="w3-quarter w3-container">
                 <div class="w3-card-4 test" style="width:100%;max-width:300px;">
+                    <img src="./Images/<?php echo $row["Image"]; ?>" alt="Avatar" width="100%" height="300px">
+                    <div id="colorStatus" class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
+                        <a href="editAddPetOrganization.php?id=<?php echo $row["petID"]?>">
+                        <button class="btnEdit">แก้ไข</button></a>
 
-                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 300px;">
+                        <button onclick = "deletePostPet(<?php echo $row['petID']?>)" id="btnDeletePost" class="btnEdit btnDeletePostPet">ลบ</button>
 
-                    <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-                    <a href="editAddPetOrganization.php?id='.$id.'"><button class="btnEdit">แก้ไข</button></a>
-                        <a style="background-color: red;" class="w3-right statusCircle"></a>
+                        <a style="cursor:pointer; background-color: <?php if($row["petStatus"]==0) {
+                            echo "green";
+                        }elseif($row["petStatus"]==1){
+                            echo "yellow";
+                        }else{
+                            echo "red";
+                        }
+                        ?>;" id="circle" class="w3-right statusCircle"  onclick="updateStatusPet(<?php echo $row['petID'] ?>)"></a>
                         <!--<p>Architect and engineer</p>-->
                     </div>
                 </div>
-            </div>'; } }
+            </div>
+            <?php 
+            }
+        }
+            ?>
 
-?>
-
-        </div>
+        
     </div>
-
-
-
+    </div>
 
 
 
@@ -139,7 +159,7 @@ if (!$_SESSION['loginStatus']) {
 
 
 
-    <div class="w3-container w3-border" style="margin: 1%; position:relative">
+    <div class="w3-container w3-border" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
 
       <?php
 
@@ -168,21 +188,22 @@ if (!$_SESSION['loginStatus']) {
 
                         <!--img and text side by side-->
                         <div style="margin-top: 5px;float: left;">
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">'. $row['donateTitle'] .'
-                            </div>
+                            <div class="w3-container" style="display:inline-block">
+                                <a class="w3-left" style="font-size: 22px;font-weight:bold;">'. $row['donateTitle'] .'
+                            </div></a>
                         </div><!-- end of img and text side by side-->
-
-                        <p style="font-size: 1vw;clear: both;">'. $row['details'] .'
+<div class="w3-container" style="padding-right:15px;">
+                        <p style="font-size: 14px;clear: both;">'. $row['details'] .'
 
                         </p>
-                        <div>
+                        </div>
+                        <div class="w3-row w3-center">
                         <form action="reportChart.php" method="Post">
                         <input type="hidden" value="'.$id.'" name="id">
                             <a href="reportChart.php"><button type="submit" class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button></a>
                             </form>
                                 <a href="editDonate.php?id='.$id.'"><button class="btnEdit"  style="width: 20%;margin: 5px;">แก้ไข</button></a>
-
+                                <button onclick = "deleteDonate('.$row['donateID'].')" id="btnDeletePost" class="btnEdit btnDeletePostPet">ลบ</button>
                         </div>
                 </a></div>
         </div>
@@ -205,7 +226,7 @@ if (!$_SESSION['loginStatus']) {
         </div>
     </div>
 
-    <div class="w3-container w3-border" style="margin: 1%; position:relative">
+    <div class="w3-container w3-border" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
 
         <!--row of half content activity-->
 
@@ -235,17 +256,19 @@ if (!$_SESSION['loginStatus']) {
                         <!--img and text side by side-->
                         <div style="margin-top: 5px;float: left;">
 
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">'. $row['topic'] .'
-                            </div>
+                            <div class="w3-container" style="display:inline-block">
+                                <a class="w3-left" style="font-size: 22px;font-weight:bold;">'. $row['topic'] .'
+                            </div></a>
                         </div><!-- end of img and text side by side-->
+                        <div class="w3-container" style="padding-right:15px;">
+                        <p style="font-size: 14px;clear: both;">'. $row['details'] .'
 
-                        <p style="font-size: 1vw;clear: both;">'. $row['details'] .'
+                        </p></div>
+                        <div class="w3-center">
 
-                        </p>
-                        <div>
-
-                            <a href="editPost.php?id='.$id.'"><button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
+                            <a href="editPost.php?id='.$id.'">
+                            <button class="btnEdit" style="width: 20%;margin: 5px;">แก้ไข</button></a>
+                            <button onclick = "deleteActivity('.$row['activityID'].')" id="btnDeletePost" class="btnEdit btnDeletePostPet">ลบ</button>
                         </div>
                 </a></div>
         </div>
@@ -363,7 +386,7 @@ if (!$_SESSION['loginStatus']) {
 </html>
 
 
-
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script>
     function hideNav() {
         document.getElementById("menu").style.display = "none";
@@ -378,4 +401,162 @@ if (!$_SESSION['loginStatus']) {
 
 
     }
+
+
+
+
+
+    function updateStatusPet(id){
+
+var userdata = {'petID':id};
+console.log(userdata);
+
+$(document).ready(function() {
+    $.ajax({
+        type: "POST",
+        url: "updateStatusPet.php",
+        data: userdata,
+        success: function(data){
+                console.log(data);
+
+                if(data == true){ 
+                    console.log('UPDATED');
+
+                   
+                    location.reload();
+                    
+                }
+
+
+        }
+        
+    });
+});
+
+
+}
+
+
+
+
+function deletePostPet(id){
+
+var userdata = {'petID':id};
+console.log(userdata);
+
+
+if (confirm("คุณต้องการลบโพสต์สัตว์เลี้ยงใช่หรือไม่ ?")) {
+    
+    $(document).ready(function() {
+    $.ajax({
+        type: "POST",
+        url: "deletePostPet.php",
+        data: userdata,
+        success: function(data){
+                console.log(data);
+
+                if(data == true){ 
+                    console.log('DELETED postpet');
+
+                   
+                    location.reload();
+                    
+                }
+
+
+        }
+        
+    });
+});
+
+}else{
+
+}
+
+
+
+
+}
+
+
+function deleteActivity(id){
+
+var userdata = {'activityID':id};
+console.log(userdata);
+
+
+if (confirm("คุณต้องการลบกิจกรรมใช่หรือไม่ ?")) {
+    
+    $(document).ready(function() {
+    $.ajax({
+        type: "POST",
+        url: "deleteActivity.php",
+        data: userdata,
+        success: function(data){
+                console.log(data);
+
+                if(data == true){ 
+                    console.log('DELETED activity');
+
+                   
+                    location.reload();
+                    
+                }
+
+
+        }
+        
+    });
+});
+
+}else{
+
+}
+
+
+
+
+}
+
+
+
+function deleteDonate(id){
+
+var userdata = {'donateID':id};
+console.log(userdata);
+
+
+if (confirm("คุณต้องการลบการบริจาคใช่หรือไม่ ?")) {
+    
+    $(document).ready(function() {
+    $.ajax({
+        type: "POST",
+        url: "deleteDonate.php",
+        data: userdata,
+        success: function(data){
+                console.log(data);
+
+                if(data == true){ 
+                    console.log('DELETED donate');
+
+                   
+                    location.reload();
+                    
+                }
+
+
+        }
+        
+    });
+});
+
+}else{
+
+}
+
+
+
+
+}
+
 </script>

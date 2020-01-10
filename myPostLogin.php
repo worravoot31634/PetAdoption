@@ -80,7 +80,7 @@ if (!$_SESSION['loginStatus']) {
 
 
     <?php
-    include('NavbarMember.php');
+        include('NavbarMember.php');
     ?>
 
 
