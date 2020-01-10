@@ -1,11 +1,3 @@
-﻿<?php
-// Start the session
-session_start();
-if(!$_SESSION['loginStatus']){
-  $_SESSION['message'] = 'Please login first';
-  header("Location: login.php");
-}
-?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -24,7 +16,7 @@ if(!$_SESSION['loginStatus']){
     crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>-->
+    crossorigin="anonymous"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
@@ -50,123 +42,125 @@ if(!$_SESSION['loginStatus']){
 <?php
     include('NavbarOrganization.php');
     ?>
-    <!--Content-->
+
     <?php
         include('connectDB.php');
         ?>
 
-        <!--header text and image of activity-->
-        <center>
-            <div class="w3-container" style="margin-top:40px;display:inline-block">
-                <img src="./Images/icon/cat.png" alt="" srcset="" width="50px">
-                <div style="display:inline-block;">
-                    <p style="font-size: 30px;font-weight:bold;vertical-align: middle;">กิจกรรม</p>
-                </div>
+    <!--Content-->
+
+    <!--header text and image of activity-->
+    <center>
+        <div class="w3-container" style="margin-top:60px;display:inline-block">
+            <img src="./Images/icon/cat.png" alt="" srcset="" width="50px">
+            <div style="display:inline-block;">
+                <p style="font-size: 30px;font-weight:bold;vertical-align: middle;">กิจกรรม</p>
             </div>
-        </center>
-        <!--end header text and image of activity-->
+        </div>
+    </center>
+    <!--end header text and image of activity-->
 
 
 
 
 
-        <div class="w3-container ">
+    <div class="w3-container ">
 
-            <!--row of half content activity-->
-
-            <!--row  half right side-->
-    <?php
-
-    $sql="SELECT * FROM activity";
-    $rs=$conn->query($sql);
+        <!--row of half content activity-->
 
 
-    while($row = $rs->fetch_assoc()) {
+        <!--row  half right side-->
+<?php
 
-      $id = $row['activityID'];
-
-
-
-            echo'<div class="w3-half" style="padding: 10px;">
-                  <a href= "activityDetailOrganization.php?id='.$id.'" class="activity-content-link">
-                    <div class="w3-half colorActivity" style="height: 210px;">
-                        <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
-                    </div> <!-- end of img -->
+$sql="SELECT * FROM activity";
+$rs=$conn->query($sql);
 
 
-                    <div class="w3-half colorActivity" style="height: 210px;">
+while($row = $rs->fetch_assoc()) {
 
-                        <!--img and text side by side-->
-                        <div style="margin-top: 5px;float: left;">
-
-                            <div style="display:inline-block">
-                                <h6 class="w3-left" style="font-size: 14px;">'. $row['topic'] .'</h6>
-                            </div>
-                        </div><!-- end of img and text side by side-->
-
-                        <p style="font-size: 1em;clear: both;">'. $row['details'] .'</p>
-                </a></div>
-        </div>'; }
+	$id = $row['activityID'];
 
 
-        ?>
+
+        echo'<div class="w3-half" style="padding: 10px;">
+        <a href= "activity_detail.php?id='.$id.'" class="activity-content-link">
+        <div class="w3-container colorActivity" style= "border-radius:10px;">
+
+                <div class="w3-half" style="height: 210px;">
+                    <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="100%" height="auto" style="height: 210px;">
+                </div> <!-- end of img -->
+
+
+                <div class="w3-half" style="border-radius:10px;height: 210px;background-color:white;margin-bottom:10px;margin-top:10px">
+
+                    <!--img and text side by side-->
+                    <div style="margin-top: 5px;float: left;">
+
+                        <div class= "w3-container" style="display:inline-block">
+                            <a class="w3-left" style="word-break: break-all;font-size: 22px;font-weight:bold">'. $row['topic'] .'</a>
+                        </div>
+                    </div><!-- end of img and text side by side-->
+
+                    <p style="padding:10px;word-break: break-all; font-size: 1em;clear: both;">'. $row['details'] .'</p>
+            </div>
+    </div></div></a>'; }
+
+
+    ?>
+
     </div>
+    <!--end of row of half content activity-->
     </div>
+
 
 
     <style>
-        .w3-8c71c0 {
-          background-color: #8c71c0;
-        }
-
-        .w3-564b6c {
-          background-color: #564b6c;
-        }
-
-        .w3-373143 {
-          background-color: #373143;
-        }
-      </style>
-      <!-- Footer -->
-      <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
+    .w3-8c71c0 {
+    background-color: #8c71c0;
+    }
+    .w3-564b6c{
+    background-color: #564b6c;
+    }
+    .w3-373143{
+    background-color: #373143;
+    }
+    </style>
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-32  w3-center "style="background-image: url('./Images/footer.png');" >
         <table align=center>
-          <tr>
-            <td style="height: 3cm;">
+            <tr>
+                <td style="height: 3cm;">
 
-            </td>
-          </tr>
+                </td>
+            </tr>
 
-          <tr style="width:100%;">
-            <td>
-              <p style="font-size: 30px;color: #E2E0E0;">
-                มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <td>
-          </tr>
-          <tr style="width:100%;">
+            <tr style="width:100%;">
+              <td>
+                <p style="font-size: 30px;color: #E2E0E0;">มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <td>
+            </tr>
+            <tr style="width:100%;">
 
-            <td>
-              <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
-            </td>
-          </tr>
-        </table>
+              <td>
+                <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
+              </td>
+            </tr>
+          </table>
 
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
-            class="fa fa-facebook "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
-            class="fa fa-twitter "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i
-            class="fa fa-google-plus "></i></a>
+        <p><a href="register.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
+          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
+          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
+          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
         <p></p>
 
         <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
-          <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
-          <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
-              <i class="fa fa-chevron-circle-up "></i></span></a>
+            <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
+            <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
+                    <i class="fa fa-chevron-circle-up "></i></span></a>
         </div>
-      </footer>
-
+    </footer>
 
     <script>
         // Script for side navigation
@@ -213,6 +207,8 @@ if(!$_SESSION['loginStatus']){
 
         }
     </script>
+
+
 
 </body>
 
