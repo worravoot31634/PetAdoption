@@ -19,7 +19,7 @@ $sqlCheckChat = "SELECT * FROM chat WHERE toUserID = " . $_SESSION["accountID"] 
         header("Location:ChatEmptyUser.php");
     }else{
 
-        header("Location:ChatEmptyOrganization.php");
+        header("Location:chatMessageLogin.php");
     }
 
 
