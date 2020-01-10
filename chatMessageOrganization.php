@@ -1,14 +1,9 @@
 <?php
-if(!isset($_SESSION))
-{
-    session_start();
-}
-
+session_start();
 $_SESSION["userIDLogin"] = $_SESSION['accountID'];
 
     include('NavbarOrganization.php');
     include('connectDB.php');
-
 
 
 
@@ -790,7 +785,7 @@ body {
                     $_SESSION["amountOfContact"] = count($tempContact);
 
 
-
+                    
 
                     ?>
 

@@ -7,8 +7,8 @@ if(!isset($_SESSION))
 
 include 'connectDB.php';
 
-$sqlCheckChat = "SELECT * FROM chat WHERE toUserID = " . $_SESSION["accountID"] . "
-     OR FromUserID = " . $_SESSION["accountID"] . " ";
+$sqlCheckChat = "SELECT * FROM chat WHERE toUserID = " . $_SESSION["userAccountID"] . "
+     OR FromUserID = " . $_SESSION["userAccountID"] . " ";
 
      
 
@@ -19,7 +19,7 @@ $sqlCheckChat = "SELECT * FROM chat WHERE toUserID = " . $_SESSION["accountID"] 
         header("Location:ChatEmptyOrganization.php");
     }else{
 
-        header("Location:chatMessageOrganizaion.php");
+        header("Location:chatMessageLogin.php");
     }
 
 
