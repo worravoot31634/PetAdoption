@@ -1179,7 +1179,17 @@ $append = "#message" + idNum + " ul";
           //Get Data Contact
           foreach($tempContact as $value){
 
-              $sqlGetContactList = "SELECT * FROM member WHERE memberID = " . $value;
+            $sqlCheckMemberORorganizaion1 = "SELECT * FROM organization WHERE accountID = " . $value;
+            $rs1=$conn->query($sqlCheckMemberORorganizaion1);
+            while($row = $rs1->fetch_assoc()) {
+              $sqlGetContactList = "SELECT * FROM organization WHERE accountID = " . $value;
+            }
+
+            $sqlCheckMemberORorganizaion2 = "SELECT * FROM member WHERE accountID = " . $value;
+            $rs2=$conn->query($sqlCheckMemberORorganizaion2);
+            while($row = $rs2->fetch_assoc()) {
+              $sqlGetContactList = "SELECT * FROM member WHERE accountID = " . $value;
+            }
               
               $rs=$conn->query($sqlGetContactList);
 
