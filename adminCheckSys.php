@@ -127,6 +127,29 @@
                             }
                         }
                     }
+
+
+                    $sqlMem = "SELECT ac.accountID,mem.Image,mem.firstname,ac.roles,ac.statusLogin FROM  account as ac  JOIN member as mem on ac.accountID = mem.accountID";
+                    $resMem = $conn->query($sqlMem);
+
+                    if ($resMem->num_rows > 0) {
+                        while ($rowMem = $resMem->fetch_assoc()) {
+
+                            echo '<tr>';
+                            echo '<td><img src="./Images/' . $rowMem["Image"] . '" alt="" srcset="" width="40px" height="40px" style="border-radius: 50%;"></td>';
+                            echo '<td>' . $rowMem["firstname"] . '</td>';
+                            echo '<td>' . $rowMem["roles"] . '</td>';
+                            if ($rowMem["statusLogin"] == 1) {
+                                echo '<td>Online</td>';
+                                echo '<td><a  class="btnCloseStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" onclick="CheckSys(' . $rowMem["accountID"] . ')">ปิดการใช้งานระบบ</a></td>';
+                                echo  '</tr>';
+                            } else {
+                                echo '<td>Offline</td>';
+                                echo '<td><a  class="btnClosedStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" disabled">ออกจากระบบแล้ว</a></td>';
+                                echo  '</tr>';
+                            }
+                        }
+                    }
                     ?>
                 </table>
 
