@@ -91,10 +91,12 @@
                         $rs = $conn->query($sql);
 
                         if ($rs->num_rows != 0) { //Check that it's have in DB or not
-                            while ($row = $rs->fetch_assoc()) { ?>
+                            while ($row = $rs->fetch_assoc()) {
+                                $id = $row['petID'];
+                              ?>
                                 <div style="padding:10px;" class="w3-quarter w3-container">
                                     <div class="w3-card-4 test" style="width:100%;max-width:300px;">
-                                        <img src="./Images/<?php echo $row['pimage'] ?>" alt="Avatar" style="width:100%;">
+                                        <?php echo'<a href= "petDetail.php?id='.$id.' " >'?>  <img src="./Images/<?php echo $row['pimage'] ?>" alt="Avatar" width="100%" height="300px"></a>
                                         <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
                                             <img width="35px" src="./Images/<?php echo $row['mimage'] ?>">
                                             <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;"><?php echo $row['firstname'] ?></a>
@@ -156,7 +158,7 @@
                 while ($row = $rs->fetch_assoc()) {
             ?>
                     <div class="w3-half" style="padding: 10px;">
-                        <a href="activityDetail" class="activity-content-link">
+
                             <div class="w3-half colorActivity" style="height: 220px;">
                                 <img src="./Images/<?php echo $row['dimage'] ?>" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
                             </div> <!-- end of img -->
@@ -181,8 +183,8 @@
                                 <p style="font-size: 1vw;clear: both;"><?php echo $row['details'] ?>
                                 </p>
                                 <div>
-                                    <button class="btnEdit" style="margin: 5px;">รายละเอียดการบริจาค</button>
-                                    <button class="btnEdit" style="width: 20%;">บริจาค</button>
+
+                                       &nbsp; &nbsp;<a href= "login.php"><button class="btnEdit" style="width: 20%;">บริจาค</button></a>
                                 </div>
                         </a></div><!-- end of text -->
         </div> <!-- end of row  half left side-->
@@ -194,6 +196,7 @@
     </div>
     <!--end of row of half content activity-->
     </div>
+
 
 
 
@@ -220,16 +223,19 @@
         <div class="w3-row" style="width: 100%;margin:auto">
             <!--row  half left side-->
             <?php
+
             include 'connectDB.php';
+
             $sql = "SELECT *,activity.image as aimage,organization.image as oimage FROM activity join organization on activity.organizationID=organization.organizationID where topic like '%" . $_POST["keyword"] . "%' or firstname like '%" . $_POST["keyword"] . "%'";
             $rs = $conn->query($sql);
             if ($rs->num_rows != 0) { //Check that it's have in DB or not
                 while ($row = $rs->fetch_assoc()) {
+                  $id = $row['activityID'];
             ?>
                     <div class="w3-half" style="padding: 10px;">
-                        <a href="activityDetail" class="activity-content-link">
+
                             <div class="w3-half colorActivity" style="height: 220px;">
-                                <img src="./Images/<?php echo $row['mimage'] ?>" alt="" srcset="" width="100%" height="auto" style="height: 220px;">
+                                <?php echo'<a href= "activity_detail.php?id='.$id.' " >'?>  <img src="./Images/<?php echo $row['aimage'] ?>" alt="" srcset="" width="100%" height="auto" style="height: 220px;"></a>
                             </div> <!-- end of img -->
 
 
@@ -253,7 +259,6 @@
                                 </p>
                                 <div>
                                     <div>
-                                        <button class="btnEdit" style="margin: 5px;">รายละเอียดกิจกรรม</button>
                                     </div>
                                 </div>
                         </a></div><!-- end of text -->
