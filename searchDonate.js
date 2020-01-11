@@ -33,7 +33,7 @@ if(obj[0].roles!="nonMember"){
         if(i%2==0){
             $("#search").append(
                     "<div class='w3-row' style='width: 100%;margin:auto' id='search"+i+"' >"+
-                    "<!--row  half right side11-->"+
+                    "<!--row  half right side12-->"+
                     "<div class='w3-half' style='padding: 10px;' >"+
                         "<div class='w3-half colorActivity' style='height: 220px;'>"+
                             "<img src='./Images/"+obj[i].DImage+ "' alt='' srcset='' width='100%' height='auto' style='height: 220px;'>"+
@@ -41,37 +41,40 @@ if(obj[0].roles!="nonMember"){
 
                         "<div class='w3-half colorActivity' style='height: 220px;'>"+
 
-                            "<!--img and text side by side-->"+
-                            "<div style='margin-top: 5px;float: left;''>"+
-                                "<div style='display:inline-block'>"+
-                                    "<img src='./Images/"+obj[i].OImage +"'alt='' srcset='' width='100%'"+
-                                        "style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>"+
+                        "<!--img and text side by side-->"+
+                        "<div style='margin-top: 10px;float: left;'>"+
+                            "<div style='display:inline-block;padding:10px; height:10px'>"+
+                                "<img src='./Images/"+obj[i].OImage+ "' alt='' srcset='' width='100%'style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;margin-top: 5px;'>"+
+                                    "<b><p class='w3-left' style='font-size: 20px;'>&nbsp;"+obj[i].fname+" "+obj[i].lname+"</p></b>"+
+                            "</div>"+
+                            "<div style='padding:10px;height:70%;'>"+
+                                "<div style='height:30px'>"+
+                                    "<b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
                                 "</div>"+
-                                "<div style='display:inline-block'>"+
-                                    "<h6 class='w3-left' style='font-size: 14px;'>"+obj[i].fname +" "+obj[i].lname+"</h6>"+
+                                "<div>"+
+                                    "<b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>"+obj[i].details+"</p></b>"+
+                                "</div>"+
+                                "<div>"+
+                                    "<table style='width: 100%;'>"+
+                                    "<tr>"+
+                                        "<td  style='width: 60%;'>"+
+                                        "<div class='container' >"+
+                                            "<div class='progress' style='height: 0.6cm;'>"+
+                                                "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
+                                                +obj[i].sumDonate+" บาท"+
+                                                "</div>"+
+                                            "</div>"+
+                                        "</div>"+
+                                    "</td>"+
+                                    "<td style='width: 40%;'>"+
+                                    "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
+                                    "</td>+"+
+                                    "</tr>"+
+                                    "</table>"+
                                 "</div>"+
                             "</div>"+
-                        " <!-- end of img and text side by side-->"+
-                            "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
-                            "<b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>"+obj[i].details+"</p></b>"+
-
-                            "<table style='width: 100%;'>"+
-                                "<tr>"+
-                                    "<td  style='width: 60%;'>"+
-                                "<div class='container' >"+
-                                    "<div class='progress' style='height: 0.6cm;'>"+
-                                        "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
-                                        +obj[i].sumDonate+" บาท"+
-                                        "</div>"+
-                                    "</div>"+
-                                "</div>"+
-                                "</td>"+
-                                "<td style='width: 40%;'>"+
-                                "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
-                                "</td>"+
-                            " </tr>"+
-                            "</table>"+
-                    "</a></div><!-- end of text -->"+
+                        "</div>"+
+                    "<!-- end of img and text side by side-->"+
             "</div> <!-- end of row  half right side1-->");
         }else{
             $("#search"+k+"").append(" <!--row  half right side2-->"+
@@ -172,7 +175,51 @@ if(obj[0].roles!="nonMember"){
         if(i%2==0){
             $("#search").append(
                     "<div class='w3-row' style='width: 100%;margin:auto' id='search"+i+"' >"+
-                    "<!--row  half right side11-->"+
+                    "<!--row  half right side1-->"+
+                        "<div class='w3-half' style='padding: 10px;' >"+
+                            "<div class='w3-half colorActivity' style='height: 220px;'>"+
+                                "<img src='./Images/"+obj[i].DImage+ "' alt='' srcset='' width='100%' height='auto' style='height: 220px;'>"+
+                            "</div> <!-- end of img -->"+
+
+                            "<div class='w3-half colorActivity' style='height: 220px;'>"+
+
+                            "<!--img and text side by side-->"+
+                            "<div style='margin-top: 10px;float: left;'>"+
+                                "<div style='display:inline-block;padding:10px; height:10px'>"+
+                                    "<img src='./Images/"+obj[i].OImage+ "' alt='' srcset='' width='100%'style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;margin-top: 5px;'>"+
+                                        "<b><p class='w3-left' style='font-size: 20px;'>&nbsp;"+obj[i].fname+" "+obj[i].lname+"</p></b>"+
+                                "</div>"+
+                                "<div style='padding:10px;height:70%;'>"+
+                                    "<div style='height:30px'>"+
+                                        "<b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
+                                    "</div>"+
+                                    "<div>"+
+                                        "<b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>"+obj[i].details+"</p></b>"+
+                                    "</div>"+
+                                    "<div>"+
+                                        "<table style='width: 100%;'>"+
+                                        "<tr>"+
+                                            "<td  style='width: 60%;'>"+
+                                            "<div class='container' >"+
+                                                "<div class='progress' style='height: 0.6cm;'>"+
+                                                    "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
+                                                    +obj[i].sumDonate+" บาท"+
+                                                    "</div>"+
+                                                "</div>"+
+                                            "</div>"+
+                                        "</td>"+
+                                        "<td style='width: 40%;'>"+
+                                        "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
+                                        "</td>"+
+                                        "</tr>"+
+                                        "</table>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</div>"+
+                        "<!-- end of img and text side by side-->"+
+                "</div> <!-- end of row  half right side1-->");
+        }else{
+            $("#search"+k+"").append("<!--row  half right side2-->"+
                     "<div class='w3-half' style='padding: 10px;' >"+
                         "<div class='w3-half colorActivity' style='height: 220px;'>"+
                             "<img src='./Images/"+obj[i].DImage+ "' alt='' srcset='' width='100%' height='auto' style='height: 220px;'>"+
@@ -180,80 +227,41 @@ if(obj[0].roles!="nonMember"){
 
                         "<div class='w3-half colorActivity' style='height: 220px;'>"+
 
-                            "<!--img and text side by side-->"+
-                            "<div style='margin-top: 5px;float: left;''>"+
-                                "<div style='display:inline-block'>"+
-                                    "<img src='./Images/"+obj[i].OImage +"'alt='' srcset='' width='100%'"+
-                                        "style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>"+
-                                "</div>"+
-                                "<div style='display:inline-block'>"+
-                                    "<h6 class='w3-left' style='font-size: 14px;'>"+obj[i].fname +" "+obj[i].lname+"</h6>"+
-                                "</div>"+
+                        "<!--img and text side by side-->"+
+                        "<div style='margin-top: 10px;float: left;'>"+
+                            "<div style='display:inline-block;padding:10px; height:10px'>"+
+                                "<img src='./Images/"+obj[i].OImage+ "' alt='' srcset='' width='100%'style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;margin-top: 5px;'>"+
+                                    "<b><p class='w3-left' style='font-size: 20px;'>&nbsp;"+obj[i].fname+" "+obj[i].lname+"</p></b>"+
                             "</div>"+
-                        " <!-- end of img and text side by side-->"+
-                            "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
-                            "<b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>"+obj[i].details+"</p></b>"+
-
-                            "<table style='width: 100%;'>"+
-                                "<tr>"+
-                                    "<td  style='width: 60%;'>"+
-                                "<div class='container' >"+
-                                    "<div class='progress' style='height: 0.6cm;'>"+
-                                        "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
-                                        +obj[i].sumDonate+" บาท"+
+                            "<div style='padding:10px;height:70%;'>"+
+                                "<div style='height:30px'>"+
+                                    "<b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
+                                "</div>"+
+                                "<div>"+
+                                    "<b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>"+obj[i].details+"</p></b>"+
+                                "</div>"+
+                                "<div>"+
+                                    "<table style='width: 100%;'>"+
+                                    "<tr>"+
+                                        "<td  style='width: 60%;'>"+
+                                        "<div class='container' >"+
+                                            "<div class='progress' style='height: 0.6cm;'>"+
+                                                "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
+                                                +obj[i].sumDonate+" บาท"+
+                                                "</div>"+
+                                            "</div>"+
                                         "</div>"+
-                                    "</div>"+
-                                "</div>"+
-                                "</td>"+
-                                "<td style='width: 40%;'>"+
-                                "<a href = 'login.php'><button class='btnEdit'style='width:80%'>บริจาค</button></a>"+
-                                "</td>"+
-                            " </tr>"+
-                            "</table>"+
-                    "</a></div><!-- end of text -->"+
-            "</div> <!-- end of row  half right side1-->");
-        }else{
-            $("#search"+k+"").append(" <!--row  half right side2-->"+
-            
-            "<div class='w3-half' style='padding: 10px;'>"+
-                    "<div class='w3-half colorActivity' style='height: 220px;'>"+
-                    " <img src='./Images/"+obj[i].DImage+"' srcset='' width='100%' height='auto' style='height: 220px;'>"+
-                    "</div> <!-- end of img -->"+
-
-
-                    "<div class='w3-half colorActivity' style='height: 220px;'>"+
-
-                    "<!--img and text side by side-->"+
-                    "<div style='margin-top: 5px;float: left;''>"+
-                        "<div style='display:inline-block'>"+
-                        "<img src='./Images/"+obj[i].OImage +"'alt='' srcset='' width='100%'"+
-                            " style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>"+
-                    " </div>"+
-                        "  <div style='display:inline-block'>"+
-                                "<h6 class='w3-left' style='font-size: 14px;'>"+obj[i].fname +" "+obj[i].lname+"</h6>"+
-                            "</div>"+
-                        "</div><!-- end of img and text side by side-->"+
-
-                        "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
-                        "<b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>"+obj[i].details+"</p></b>"+
-                        "<table style='width: 100%;''>"+
-                            "<tr>"+
-                                "<td  style='width: 60%;'>"+
-                            "<div class='container' >"+
-                                "<div class='progress' style='height: 0.6cm;'>"+
-                                    "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
-                                    +obj[i].sumDonate+" บาท"+
-                                    "</div>"+
+                                    "</td>"+
+                                    "<td style='width: 40%;'>"+
+                                    "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
+                                    "</td>"+
+                                    "</tr>"+
+                                    "</table>"+
                                 "</div>"+
                             "</div>"+
-                            "</td>"+
-                            " <td style='width: 40%;'>"+
-                            "<a href = 'login.php'><button class='btnEdit'style='width:80%'>บริจาค</button></a>"+
-                            "</td>"+
-                            "</tr>"+
-                        "</table>"+
-            " </a></div><!-- end of text -->"+
-        "</div> <!-- end of row  half right side2-->");
+                        "</div>"+
+                    "<!-- end of img and text side by side-->"+
+            "</div> <!-- end of row  half right side2-->");
         }
     }
 

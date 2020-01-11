@@ -277,35 +277,40 @@
                                     <div class='w3-half colorActivity' style='height: 220px;'>
 
                                         <!--img and text side by side-->
-                                        <div style='margin-top: 5px;float: left;''>
-                                            <div style='display:inline-block'>
-                                                <img src='./Images/".$row['OImage']."' alt='' srcset='' width='100%'
-                                                    style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>
+                                        <div style='margin-top: 10px;float: left;'>
+                                            <div style='display:inline-block;padding:10px; height:10px'>
+                                                <img src='./Images/".$row['OImage']."' alt='' srcset='' width='100%'style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;margin-top: 5px;'>
+                                                    <b><p class='w3-left' style='font-size: 20px;'>&nbsp;".$row['fname']." ".$row['lname']."</p></b>
                                             </div>
-                                            <div style='display:inline-block'>
-                                                <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
+                                            <div style='padding:10px;height:70%;'>
+                                                <div style='height:30px'>
+                                                    <b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>".$row['donateTitle']."</p></b>
+                                                </div>
+                                                <div>
+                                                    <b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>".$row['details']."</p></b>
+                                                </div>
+                                                <div >
+                                                    <table style='width: 100%;'>
+                                                    <tr>
+                                                        <td  style='width: 60%;'>
+                                                        <div class='container' >
+                                                            <div class='progress' style='height: 0.6cm;'>
+                                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
+                                                                ".$row2['sumDonate']." บาท
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td style='width: 40%;'>
+                                                    <a href = 'login.php'><button class='btnEdit'style='width:80%'>บริจาค</button></a>
+                                                    </td>
+                                                    </tr>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- end of img and text side by side-->
-                                        <b><p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p></b>
-                                        <b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>".$row['details']."</p></b>
-
-                                        <table style='width: 100%;'>
-                                            <tr>
-                                                <td  style='width: 60%;'>
-                                            <div class='container' >
-                                                <div class='progress' style='height: 0.6cm;'>
-                                                    <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
-                                                    ".$row2['sumDonate']." บาท
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </td>
-                                            <td style='width: 40%;'>
-                                            <a href = 'login.php'><button class='btnEdit'style='width:80%'>บริจาค</button></a>
-                                            </td>
-                                            </tr>
-                                        </table>
+                                        
                                 </a></div><!-- end of text -->
                         </div> <!-- end of row  half right side-->";
 
@@ -318,36 +323,42 @@
                                 </div> <!-- end of img -->
 
                                 <div class='w3-half colorActivity' style='height: 220px;'>
-
+                                
                                 <!--img and text side by side-->
-                                <div style='margin-top: 5px;float: left;''>
-                                    <div style='display:inline-block'>
-                                        <img src='./Images/".$row['OImage']."' alt='' srcset='' width='100%'
-                                            style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;'>
-                                    </div>
-                                        <div style='display:inline-block'>
-                                            <h6 class='w3-left' style='font-size: 14px;'>".$row['fname']." ".$row['lname']."</h6>
+                                    <div style='margin-top: 10px;float: left;'>
+                                        <div style='display:inline-block;padding:10px; height:10px'>
+                                            <img src='./Images/".$row['OImage']."' alt='' srcset='' width='100%'style='border-radius: 100%;width: 20px;height: 20px;float: left;margin-right: 5px;margin-left:5px;margin-top: 5px;'>
+                                                <b><p class='w3-left' style='font-size: 20px;'>&nbsp;".$row['fname']." ".$row['lname']."</p></b>
                                         </div>
-                                    </div><!-- end of img and text side by side-->
-                                    <b><p style='font-size: 1vw;clear: both;'>".$row['donateTitle']."</p></b>
-                                    <b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>".$row['details']."</p></b>
+                                        <div style='padding:10px;height:70%;'>
+                                            <div style='height:30px'>
+                                                <b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>".$row['donateTitle']."</p></b>
+                                            </div>
+                                            <div>
+                                                <b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>".$row['details']."</p></b>
+                                            </div>
+                                            <div >
+                                                <table style='width: 100%;'>
+                                                <tr>
+                                                    <td  style='width: 60%;'>
+                                                    <div class='container' >
+                                                        <div class='progress' style='height: 0.6cm;'>
+                                                            <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
+                                                            ".$row2['sumDonate']." บาท
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style='width: 40%;'>
+                                                <a href = 'login.php'><button class='btnEdit'style='width:80%'>บริจาค</button></a>
+                                                </td>
+                                                </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- end of img and text side by side-->
 
-                                    <table style='width: 100%;''>
-                                        <tr>
-                                            <td  style='width: 60%;'>
-                                        <div class='container' >
-                                            <div class='progress' style='height: 0.6cm;'>
-                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100'  style='width:".$presen."% ;''>
-                                                  ".$row2['sumDonate']." บาท
-                                                </div>
-                                              </div>
-                                          </div>
-                                          </td>
-                                          <td style='width: 40%;'>
-                                          <a href = 'login.php'><button class='btnEdit'style='width:80%'>บริจาค</button></a>
-                                          </td>
-                                        </tr>
-                                    </table>
                             </a></div><!-- end of text -->
                     </div> <!-- end of row  half right side-->";
 
