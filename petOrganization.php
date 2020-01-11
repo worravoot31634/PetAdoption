@@ -33,7 +33,7 @@
 
 
     <?php
-    include('NavbarMember.php');
+    include('NavbarOrganization.php');
     ?>
 
 
