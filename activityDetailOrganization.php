@@ -1,11 +1,3 @@
-﻿<?php
-// Start the session
-session_start();
-if(!$_SESSION['loginStatus']){
-  $_SESSION['message'] = 'Please login first';
-  header("Location: login.php");
-}
-?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -56,7 +48,7 @@ if(!$_SESSION['loginStatus']){
 <?php
     include('NavbarOrganization.php');
     ?>
-    
+
     <?php
         include('connectDB.php');
         ?>
@@ -75,16 +67,21 @@ while($row = $rs->fetch_assoc()) {
 
 
 
-    echo'<center>
-        <h1 style="margin-top: 50px;">'. $row['topic'] .'</h1>
-        <br>
-        <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="80%">
-    </center>
+    echo'<div class="w3-container w3-center" style="margin-top:55px;">
+        <a style="margin-top: 50px;font-size:30px;font-weight:bold;height:">'. $row['topic'] .'</a>
+        </div>
 
 
-    <div style="width: 80%;display: table;width: 80%;" class="contentCenter">
+        <div class="w3-container w3-center" style="margin-top:20px;width:80%;margin-left:auto;margin-right:auto;">
+        <img src="./Images/'. $row['Image'] .'" style="width: 100%;max-width: 400px;height: auto;
+      }"">
+        </div>
 
-        <p class="pragraph">
+
+
+    <div class="w3-container" style="border-radius:10px;background-color:lightgray;width: 80%;margin-top:20px;margin-left:auto;margin-right:auto;" class="contentCenter">
+
+        <p style="word-break: break-all;" class="pragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           '. $row['details'] .'
         </p>
 
@@ -105,7 +102,6 @@ while($row = $rs->fetch_assoc()) {
 ?>
     <br>
     <!--end Content-->
-
 
 
 
@@ -154,6 +150,7 @@ while($row = $rs->fetch_assoc()) {
                     <i class="fa fa-chevron-circle-up "></i></span></a>
         </div>
     </footer>
+
     <script>
         // Script for side navigation
         function w3_open() {

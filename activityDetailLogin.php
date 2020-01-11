@@ -1,11 +1,3 @@
-﻿<?php
-// Start the session
-session_start();
-if(!$_SESSION['loginStatus']){
-  $_SESSION['message'] = 'Please login first';
-  header("Location: login.php");
-}
-?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -60,108 +52,104 @@ if(!$_SESSION['loginStatus']){
     <?php
         include('connectDB.php');
         ?>
+    <!--Content-->
 
-        <!--Content-->
-
-    <?php
-
-
-    $id = $_GET["id"];
-
-    $sql="SELECT * FROM activity Where activityID = $id";
-
-    $rs=$conn->query($sql);
-
-    while($row = $rs->fetch_assoc()) {
+<?php
 
 
+$id = $_GET["id"];
 
-        echo'<center>
-            <h1 style="margin-top: 50px;">'. $row['topic'] .'</h1>
-            <br>
-            <img src="./Images/'. $row['Image'] .'" alt="" srcset="" width="80%">
-        </center>
+$sql="SELECT * FROM activity Where activityID = $id";
 
+$rs=$conn->query($sql);
 
-        <div style="width: 80%;display: table;width: 80%;" class="contentCenter">
-
-            <p class="pragraph">
-              '. $row['details'] .'
-            </p>
+while($row = $rs->fetch_assoc()) {
 
 
+
+    echo'<div class="w3-container w3-center" style="margin-top:55px;">
+        <a style="margin-top: 50px;font-size:30px;font-weight:bold;height:">'. $row['topic'] .'</a>
         </div>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div>
-                </div>
-                <div>
-                </div>
-              <div>
-                </div>
-            </div>
-        </div>'; }
 
-    ?>
-        <br>
-        <!--end Content-->
+
+        <div class="w3-container w3-center" style="margin-top:20px;width:80%;margin-left:auto;margin-right:auto;">
+        <img src="./Images/'. $row['Image'] .'" style="width: 100%;max-width: 400px;height: auto;
+      }"">
+        </div>
+
+
+
+    <div class="w3-container" style="border-radius:10px;background-color:lightgray;width: 80%;margin-top:20px;margin-left:auto;margin-right:auto;" class="contentCenter">
+
+        <p style="word-break: break-all;" class="pragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          '. $row['details'] .'
+        </p>
+
+
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div>
+            </div>
+            <div>
+            </div>
+          <div>
+            </div>
+        </div>
+    </div>'; }
+
+?>
+    <br>
+    <!--end Content-->
 
 
 
     <style>
-        .w3-8c71c0 {
-          background-color: #8c71c0;
-        }
-
-        .w3-564b6c {
-          background-color: #564b6c;
-        }
-
-        .w3-373143 {
-          background-color: #373143;
-        }
-      </style>
-      <!-- Footer -->
-      <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
+    .w3-8c71c0 {
+    background-color: #8c71c0;
+    }
+    .w3-564b6c{
+    background-color: #564b6c;
+    }
+    .w3-373143{
+    background-color: #373143;
+    }
+    </style>
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-32  w3-center "style="background-image: url('./Images/footer.png');" >
         <table align=center>
-          <tr>
-            <td style="height: 3cm;">
+            <tr>
+                <td style="height: 3cm;">
 
-            </td>
-          </tr>
+                </td>
+            </tr>
 
-          <tr style="width:100%;">
-            <td>
-              <p style="font-size: 30px;color: #E2E0E0;">
-                มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <td>
-          </tr>
-          <tr style="width:100%;">
+            <tr style="width:100%;">
+              <td>
+                <p style="font-size: 30px;color: #E2E0E0;">มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <td>
+            </tr>
+            <tr style="width:100%;">
 
-            <td>
-              <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
-            </td>
-          </tr>
-        </table>
-
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
-            class="fa fa-facebook "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
-            class="fa fa-twitter "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i
-            class="fa fa-google-plus "></i></a>
+              <td>
+                <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
+              </td>
+            </tr>
+          </table>
+          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
+          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
+          <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
         <p></p>
 
         <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
-          <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
-          <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
-              <i class="fa fa-chevron-circle-up "></i></span></a>
+            <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
+            <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
+                    <i class="fa fa-chevron-circle-up "></i></span></a>
         </div>
-      </footer>
-
+    </footer>
 
     <script>
         // Script for side navigation

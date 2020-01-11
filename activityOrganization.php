@@ -83,7 +83,7 @@ while($row = $rs->fetch_assoc()) {
 
 
         echo'<div class="w3-half" style="padding: 10px;">
-        <a href= "activity_detail.php?id='.$id.'" class="activity-content-link">
+        <a href= "activityDetailOrganization.php?id='.$id.'" class="activity-content-link">
         <div class="w3-container colorActivity" style= "border-radius:10px;">
 
                 <div class="w3-half" style="height: 210px;">
@@ -149,7 +149,7 @@ while($row = $rs->fetch_assoc()) {
             </tr>
           </table>
 
-      
+
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
           <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
