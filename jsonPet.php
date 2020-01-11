@@ -7,10 +7,10 @@ include('connectDB.php');
 
 //echo $_GET["textSearch"];
 if (is_null($_GET["textSearch"])) {
-    //echo "null";
+    // echo "null";
     $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image as petImage,member.firstname as memFirstname,member.lastname,member.Image as memImage  , organ.firstname as organFirstname, organ.lastname,organ.Image as organImage FROM pet LEFT JOIN account ON (pet.posterID = account.accountID) LEFT JOIN member ON member.accountID = account.accountID LEFT JOIN organization as organ on account.accountID = organ.accountID WHERE pet.petStatus != 2";
 } else {
-    //  echo "not null";
+    // echo "not null";
     $textSearch = $_GET["textSearch"];
     $sql = "SELECT pet.petID,pet.type,pet.species,pet.province,pet.phoneNumber,pet.details,pet.petStatus,pet.Image as petImage,member.firstname as memFirstname,member.lastname,member.Image as memImage  , organ.firstname as organFirstname, organ.lastname,organ.Image as organImage FROM pet LEFT JOIN account ON (pet.posterID = account.accountID) LEFT JOIN member ON member.accountID = account.accountID LEFT JOIN organization as organ on account.accountID = organ.accountID  WHERE  pet.petStatus != 2 and  pet.type LIKE '%" . $textSearch . "%' or pet.species LIKE '%" . $textSearch . "%' or pet.province LIKE '%" . $textSearch . "%' or account.roles LIKE '%" . $textSearch . "%'  or member.firstname LIKE '%" . $textSearch . "%' or organ.firstname LIKE '%" . $textSearch . "%' ";
 }
@@ -42,6 +42,8 @@ if ($result->num_rows > 0) {
             'memImage' => $userImage
         );
     }
+} else {
+    $jsonPetArr[] = array();
 }
 
 $jsonPetArrEn =  json_encode($jsonPetArr, JSON_UNESCAPED_UNICODE);

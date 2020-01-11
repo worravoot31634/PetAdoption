@@ -291,42 +291,39 @@
     </style>
     <!-- Footer -->
     <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
-      <table align=center>
-        <tr>
-          <td style="height: 3cm;">
+        <table align=center>
+            <tr>
+                <td style="height: 3cm;">
 
-          </td>
-        </tr>
+                </td>
+            </tr>
 
-        <tr style="width:100%;">
-          <td>
-            <p style="font-size: 30px;color: #E2E0E0;">
-              มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          <td>
-        </tr>
-        <tr style="width:100%;">
+            <tr style="width:100%;">
+                <td>
+                    <p style="font-size: 30px;color: #E2E0E0;">
+                        มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <td>
+            </tr>
+            <tr style="width:100%;">
 
-          <td>
-            <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
-          </td>
-        </tr>
-      </table>
-      <p><a href="register.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
-      <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
-          class="fa fa-facebook "></i></a>
-      <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
-          class="fa fa-twitter "></i></a>
-      <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i
-          class="fa fa-google-plus "></i></a>
-      <p></p>
+                <td>
+                    <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
+                </td>
+            </tr>
+        </table>
+        <p><a href="register.php"><button class="w3-button w3-8c71c0 w3-round-xxlarge" style="font-size: 20px;">สมัครสมาชิก</button></a></p>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
+        <p></p>
 
-      <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
-        <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
-        <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
-            <i class="fa fa-chevron-circle-up "></i></span></a>
-      </div>
+        <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
+            <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
+            <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
+                    <i class="fa fa-chevron-circle-up "></i></span></a>
+        </div>
     </footer>
 
     <script>
@@ -361,7 +358,10 @@
                         $divCardPet = '<div style="padding:10px;" class="w3-quarter w3-container"><div class="w3-card-4 test" style="width:100%;max-width:300px;"><a href="petDetail.php?id=' + dataJson[i].petID + '"><img src="./Images/' + dataJson[i].Image + '" alt="Avatar" style="width:100%;height:300px"></a><div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;"><img width="35px" src="./Images/' + dataJson[i].memImage + '"><input type="hidden" id="PosterID" value=' + dataJson[i].petID + '><a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">' + dataJson[i].firstname + '</a><a style="background-color: ' + $colorStatus + ';" class="w3-right statusCircle"></a><!--<p>Architect and engineer</p>--></div></div></div>';
                         $("#cardPet").append($divCardPet);
                     }
-                }
+                } else {
+                    $("#cardPet").empty();
+                    $("#cardPet").append("<p style='font-size:50px;text-align: center;'>ไม่เจอผลลัพธ์</p>");
+                } // end of if check null dataJson
 
 
             }
