@@ -296,27 +296,25 @@ if(!$_SESSION['loginStatus']){
                                             <div>
                                                 <b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>".$row['details']."</p></b>
                                             </div>
-                                            <div >
-                                                <table style='width: 100%;'>
-                                                <tr>
-                                                    <td  style='width: 60%;'>
-                                                    <div class='container' >
-                                                        <div class='progress' style='height: 0.6cm;'>
-                                                            <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
-                                                            ".$row2['sumDonate']." บาท
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td style='width: 40%;'>
-                                                <button onclick="."document.getElementById('".$row['donateID']."').style.display='block' "."  class='btnEdit'style='width:80%'>บริจาค</button>
-                                                </td>
-                                                </tr>
-                                                </table>
-                                            </div>
                                         </div>
                                     </div>
                                 <!-- end of img and text side by side-->
+                                    <table style='width: 100%;'>
+                                    <tr>
+                                        <td  style='width: 60%;'>
+                                        <div class='container' >
+                                            <div class='progress' style='height: 0.6cm;'>
+                                                <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
+                                                ".$row2['sumDonate']." บาท
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style='width: 40%;'>
+                                    <button onclick=document.getElementById('".$row['donateID']."').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>
+                                    </td>
+                                    </tr>
+                                    </table>
                                 </a></div><!-- end of text -->
                         </div> <!-- end of row  half right side-->";
 
@@ -343,27 +341,25 @@ if(!$_SESSION['loginStatus']){
                                             <div>
                                                 <b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>".$row['details']."</p></b>
                                             </div>
-                                            <div >
-                                                <table style='width: 100%;'>
-                                                <tr>
-                                                    <td  style='width: 60%;'>
-                                                    <div class='container' >
-                                                        <div class='progress' style='height: 0.6cm;'>
-                                                            <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
-                                                            ".$row2['sumDonate']." บาท
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td style='width: 40%;'>
-                                                <button onclick="."document.getElementById('".$row['donateID']."').style.display='block' "."  class='btnEdit'style='width:80%'>บริจาค</button>
-                                                </td>
-                                                </tr>
-                                                </table>
-                                            </div>
                                         </div>
                                     </div>
                                 <!-- end of img and text side by side-->
+                                <table style='width: 100%;'>
+                                <tr>
+                                    <td  style='width: 60%;'>
+                                    <div class='container' >
+                                        <div class='progress' style='height: 0.6cm;'>
+                                            <div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:".$presen."% ;''>
+                                            ".$row2['sumDonate']." บาท
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style='width: 40%;'>
+                                <button onclick=document.getElementById('".$row['donateID']."').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>
+                                </td>
+                                </tr>
+                                </table>
                             </a></div><!-- end of text -->
                     </div> <!-- end of row  half right side-->";
                    

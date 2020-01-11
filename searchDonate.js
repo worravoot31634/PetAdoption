@@ -38,7 +38,6 @@ if(obj[0].roles!="nonMember"){
                         "<div class='w3-half colorActivity' style='height: 220px;'>"+
                             "<img src='./Images/"+obj[i].DImage+ "' alt='' srcset='' width='100%' height='auto' style='height: 220px;'>"+
                         "</div> <!-- end of img -->"+
-                        "<p>aklsdhkjasdkjhasklsdahds</p>"+
                         "<div class='w3-half colorActivity' style='height: 220px;'>"+
 
                         "<!--img and text side by side-->"+
@@ -54,8 +53,9 @@ if(obj[0].roles!="nonMember"){
                                 "<div>"+
                                     "<b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>"+obj[i].details+"</p></b>"+
                                 "</div>"+
-                                "<div>"+
-                                    "<table style='width: 100%;'>"+
+                            "</div>"+
+                        "</div>"+
+                        "<table style='width: 100%;'>"+
                                     "<tr>"+
                                         "<td  style='width: 60%;'>"+
                                         "<div class='container' >"+
@@ -68,12 +68,9 @@ if(obj[0].roles!="nonMember"){
                                     "</td>"+
                                     "<td style='width: 40%;'>"+
                                     "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
-                                    "</td>+"+
+                                    "</td>"+
                                     "</tr>"+
                                     "</table>"+
-                                "</div>"+
-                            "</div>"+
-                        "</div>"+
                     "<!-- end of img and text side by side-->"+
             "</div> <!-- end of row  half right side1-->");
         }else{
@@ -98,26 +95,24 @@ if(obj[0].roles!="nonMember"){
                         "<div>"+
                             "<b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>"+obj[i].details+"</p></b>"+
                         "</div>"+
-                        "<div>"+
-                            "<table style='width: 100%;'>"+
-                            "<tr>"+
-                                "<td  style='width: 60%;'>"+
-                                "<div class='container' >"+
-                                    "<div class='progress' style='height: 0.6cm;'>"+
-                                        "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
-                                        +obj[i].sumDonate+" บาท"+
-                                        "</div>"+
-                                    "</div>"+
-                                "</div>"+
-                            "</td>"+
-                            "<td style='width: 40%;'>"+
-                            "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
-                            "</td>+"+
-                            "</tr>"+
-                            "</table>"+
-                        "</div>"+
                     "</div>"+
                 "</div>"+
+                "<table style='width: 100%;'>"+
+                                    "<tr>"+
+                                        "<td  style='width: 60%;'>"+
+                                        "<div class='container' >"+
+                                            "<div class='progress' style='height: 0.6cm;'>"+
+                                                "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
+                                                +obj[i].sumDonate+" บาท"+
+                                                "</div>"+
+                                            "</div>"+
+                                        "</div>"+
+                                    "</td>"+
+                                    "<td style='width: 40%;'>"+
+                                    "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
+                                    "</td>"+
+                                    "</tr>"+
+                                    "</table>"+
             "<!-- end of img and text side by side-->"+
     "</div> <!-- end of row  half right side2-->");
         }
@@ -198,26 +193,24 @@ if(obj[0].roles!="nonMember"){
                                     "<div>"+
                                         "<b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>"+obj[i].details+"</p></b>"+
                                     "</div>"+
-                                    "<div>"+
-                                        "<table style='width: 100%;'>"+
-                                        "<tr>"+
-                                            "<td  style='width: 60%;'>"+
-                                            "<div class='container' >"+
-                                                "<div class='progress' style='height: 0.6cm;'>"+
-                                                    "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
-                                                    +obj[i].sumDonate+" บาท"+
-                                                    "</div>"+
-                                                "</div>"+
-                                            "</div>"+
-                                        "</td>"+
-                                        "<td style='width: 40%;'>"+
-                                        "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
-                                        "</td>"+
-                                        "</tr>"+
-                                        "</table>"+
-                                    "</div>"+
                                 "</div>"+
                             "</div>"+
+                            "<table style='width: 100%;'>"+
+                                    "<tr>"+
+                                        "<td  style='width: 60%;'>"+
+                                        "<div class='container' >"+
+                                            "<div class='progress' style='height: 0.6cm;'>"+
+                                                "<div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:"+obj[i].presen+"% ;''>"+
+                                                +obj[i].sumDonate+" บาท"+
+                                                "</div>"+
+                                            "</div>"+
+                                        "</div>"+
+                                    "</td>"+
+                                    "<td style='width: 40%;'>"+
+                                    "<button onclick=document.getElementById('"+obj[i].donateID+"').style.display='block'   class='btnEdit'style='width:80%'>บริจาค</button>"+
+                                    "</td>"+
+                                    "</tr>"+
+                                    "</table>"+
                         "<!-- end of img and text side by side-->"+
                 "</div> <!-- end of row  half right side1-->");
         }else{
@@ -242,8 +235,9 @@ if(obj[0].roles!="nonMember"){
                                 "<div>"+
                                     "<b><p style='padding:10px;word-break: break-all; font-size: 15px;clear: both;'>"+obj[i].details+"</p></b>"+
                                 "</div>"+
-                                "<div>"+
-                                    "<table style='width: 100%;'>"+
+                            "</div>"+
+                        "</div>"+
+                        "<table style='width: 100%;'>"+
                                     "<tr>"+
                                         "<td  style='width: 60%;'>"+
                                         "<div class='container' >"+
@@ -259,9 +253,6 @@ if(obj[0].roles!="nonMember"){
                                     "</td>"+
                                     "</tr>"+
                                     "</table>"+
-                                "</div>"+
-                            "</div>"+
-                        "</div>"+
                     "<!-- end of img and text side by side-->"+
             "</div> <!-- end of row  half right side2-->");
         }
