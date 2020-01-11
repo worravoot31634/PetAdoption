@@ -56,6 +56,7 @@
         <tr>
             <td>
                 <div class="w3-half">
+
                     <div class="w3-container w3-mobile">
                         <input class="advanceSearch" placeholder="ค้นหา" style="font-size: 20px;" size="100" type="text" id="textSearch" name="textSearch" />
                         <a href="#" style="font-size:18px; background-color: #726292; color: white;" class="w3-right w3-button w3-circle" title="Search" id="bntSearch"><i class="fa fa-search"></i></a>
@@ -90,7 +91,7 @@
                         </div>
                         <div style="font-size: 20px;" class="w3-half" style="width: 50%;">
                             <select class="w3-border w3-rest  w3-select" name="typePet" id="typePetSelect" required>
-                                <option style="font-size: 20px;" value="">ทั้งหมด</option>
+                                <option style="font-size: 20px;" value="0">ทั้งหมด</option>
                                 <option style="font-size: 20px;" value="หมา">หมา</option>
                                 <option style="font-size: 20px;" value="แมว">แมว</option>
                             </select>
@@ -367,7 +368,7 @@
 
             var url = "jsonPet.php?textSearch=" + textSearch;
             //url = "greeting.php?day=Monday"
-            // alert(url);
+            //  alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }
@@ -386,8 +387,9 @@
         var cats = ['บาลินีส', 'เบอร์แมน', 'บริติชขนยาว', 'ชานทิลลี', 'จาวานีส', 'หิมาลายัน', 'เนบีลัง', 'เปอร์เซีย', 'แร็กดอลล์ ', 'เทอร์คิชแวน'];
         var lenDog = dogs.length;
         var lenCat = cats.length;
-        $('#typePetSelect').change(function() {
+        $('#typePetSelect').click(function() {
             var type = $(this).val();
+
             if (type == "หมา") {
                 $('#speciesSelect').empty();
 
@@ -418,7 +420,7 @@
             fromSelect = "",
             textSearch = "",
             bntSearch = "";
-        $("#typePetSelect").change(function() {
+        $("#typePetSelect").click(function() {
             typePetSelect = $(this).val();
             $("#speciesSelect").removeAttr("disabled");
             $("#provinceSelect").removeAttr("disabled");
@@ -456,7 +458,7 @@
 
         $("#bntSearch").click(function() {
 
-            if (typePetSelect == "" || typePetSelect == 0) {
+            if (typePetSelect == "") {
                 jsonPet();
                 /* } else if ((typePetSelect == "" || typePetSelect == 0) && (speciesSelect == "" || speciesSelect == 0) && (fromSelect == "" || fromSelect == 0) && (provinceSelect != 0 || provinceSelect != "")) {
                      jsonPetFilter();*/
@@ -515,7 +517,7 @@
             xmlHttp.onreadystatechange = stateChangeFilter;
             var url = "jsonPetFilter.php?typePet=" + typePetSelect + "&species=" + speciesSelect + "&province=" + provinceSelect + "&from=" + fromSelect + "&text=" + textSearch;
             //url = "greeting.php?day=Monday"
-            alert(url);
+            // alert(url);
             xmlHttp.open("GET", url, true);
             xmlHttp.send(null);
         }

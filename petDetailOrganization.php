@@ -227,7 +227,7 @@
 
               <textarea placeholder="พิมพ์ข้อความ.." name="msg" required id="msg"></textarea>
 
-              <a href="#" style="border-radius:10px; font-size: 1.2em; background-color: #373143;" class="btn" onclick="sendMessage(<?php echo $_SESSION['accountID'] ?>,<?php echo $posterID ?>);" id="sendAlert">ส่งข้อความ</a>
+              <a href="#" style="border-radius:10px; font-size: 1.2em; background-color: #373143;" class="btn" onclick="sendMessage(<?php echo $_SESSION['userAccountID'] ?>,<?php echo $posterID ?>);" id="sendAlert">ส่งข้อความ</a>
               <button style="border-radius:10px; font-size: 1.2em; background-color: darkgray;" type="button" class="btn" onclick="closeForm()">ปิด</button>
             </form>
           </div>
