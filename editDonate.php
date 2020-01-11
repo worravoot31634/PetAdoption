@@ -1,3 +1,19 @@
+<?php
+// Start the session
+session_start();
+include_once('connectDB.php');
+$sql = "SELECT statusLogin FROM account WHERE accountID = '" . $_SESSION['userAccountID'] . "'";
+
+$rs = $conn->query($sql);
+$row = $rs->fetch_assoc();
+
+if ($row["statusLogin"] == 0) {
+    session_destroy();
+    session_unset();
+    $_SESSION['message'] = 'Please login first';
+    header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -8,15 +24,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
@@ -58,45 +68,45 @@
 
 <body id="myPage">
 
-<?php
+    <?php
     include('NavbarOrganization.php');
     ?>
 
     <?php
-        include('connectDB.php');
+    include('connectDB.php');
 
 
-                $id = $_GET["id"];
-                $sql="SELECT * FROM donate WHERE donateID = $id";
-                $rs=$conn->query($sql);
-                //define get value
-                while($row = $rs->fetch_assoc()) {
+    $id = $_GET["id"];
+    $sql = "SELECT * FROM donate WHERE donateID = $id";
+    $rs = $conn->query($sql);
+    //define get value
+    while ($row = $rs->fetch_assoc()) {
 
-                  $id = $row['donateID'];
-                  $Title = $row['donateTitle'];
-                  $Detils = $row['details'];
-                  $Province = $row['donateProvince'];
-                  $Required = $row['donateRequired'];
-                  $Image = $row['Image'];
+        $id = $row['donateID'];
+        $Title = $row['donateTitle'];
+        $Detils = $row['details'];
+        $Province = $row['donateProvince'];
+        $Required = $row['donateRequired'];
+        $Image = $row['Image'];
+    }
 
-
-                }
-
-        ?>
+    ?>
 
     <!--Content-->
     <div>
         <br>
         <br><br>
-        <center><b><p style="font-size:35px;">แก้ไขข้อมูลบริจาค</p></b></center>
+        <center><b>
+                <p style="font-size:35px;">แก้ไขข้อมูลบริจาค</p>
+            </b></center>
     </div>
     <form action="editDonatevalue.php" method="post" enctype="multipart/form-data">
         <div class="container" style="width: 80%;">
             <div class="row w3-border" style="margin-top: 50px;margin-bottom: 50px;">
                 <div class="w3-half w3-center">
-                    <img src="./Images/<?php echo $Image;?>" alt="" srcset="" width="70%" height="50%">
+                    <img src="./Images/<?php echo $Image; ?>" alt="" srcset="" width="70%" height="50%">
                     <div style="clear:both;">
-                        <input type="file" value="โพสต์"  name="img" class="submitClass" style="margin-bottom: 10px;">
+                        <input type="file" value="โพสต์" name="img" class="submitClass" style="margin-bottom: 10px;">
                     </div>
 
                 </div>
@@ -106,15 +116,16 @@
 
 
                     <div>
-                       <b> <p class="w3-left" style="font-size: 25px;margin-left: 30px;">เรื่อง</p></b>
+                        <b>
+                            <p class="w3-left" style="font-size: 25px;margin-left: 30px;">เรื่อง</p>
+                        </b>
                     </div>
 
-                       <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                     <center>
                         <div class="w3-row" style="width: 80%;">
-                            <p><input type="text" style="width: 100%;border-radius: 5px;" class="w3-border" rows="15"
-                                    name="donateTitle" value="<?php  echo  $Title; ?>"></textarea>
+                            <p><input type="text" style="width: 100%;border-radius: 5px;" class="w3-border" rows="15" name="donateTitle" value="<?php echo  $Title; ?>"></textarea>
                             </p>
 
 
@@ -124,44 +135,46 @@
 
 
                     <div>
-                        <b><p class="w3-left" style="font-size: 25px;margin-left: 30px;">รายละเอียด</p></b>
+                        <b>
+                            <p class="w3-left" style="font-size: 25px;margin-left: 30px;">รายละเอียด</p>
+                        </b>
                     </div>
                     <center>
                         <div class="w3-row" style="width: 80%;">
-                            <p><textarea style="width: 100%;border-radius: 5px;" class="w3-border" rows="10"
-                                    name="details"><?php  echo  $Detils; ?></textarea>
+                            <p><textarea style="width: 100%;border-radius: 5px;" class="w3-border" rows="10" name="details"><?php echo  $Detils; ?></textarea>
                             </p>
                         </div>
                     </center>
 
 
 
-                          <div>
-                            <b><p class="w3-left" style="font-size: 25px;margin-left: 30px;">จังหวัด</p></b>
-                            </div>
-                                <center>
-                                    <div class="w3-row" style="width: 80%;">
-                                      <p><input type="text" style="width: 100%;border-radius: 5px;" class="w3-border" rows="15"
-                                                        name="donateProvince" value="<?php  echo  $Province; ?>"></textarea>
-                                        </p>
-                                        </div>
-                              </center>
+                    <div>
+                        <b>
+                            <p class="w3-left" style="font-size: 25px;margin-left: 30px;">จังหวัด</p>
+                        </b>
+                    </div>
+                    <center>
+                        <div class="w3-row" style="width: 80%;">
+                            <p><input type="text" style="width: 100%;border-radius: 5px;" class="w3-border" rows="15" name="donateProvince" value="<?php echo  $Province; ?>"></textarea>
+                            </p>
+                        </div>
+                    </center>
 
 
 
 
                     <div>
-                       <b> <p class="w3-left" style="font-size: 25px;margin-left: 30px;">จำนวนเงิน</p></b>
+                        <b>
+                            <p class="w3-left" style="font-size: 25px;margin-left: 30px;">จำนวนเงิน</p>
+                        </b>
                     </div>
 
                     <center>
                         <div class="w3-row" style="width: 80%;">
-                            <p><input type="text" style="width: 100%;border-radius: 5px;" class="w3-border" rows="15"
-                                    name="donateRequired" value="<?php  echo    $Required; ?>"></textarea>
+                            <p><input type="text" style="width: 100%;border-radius: 5px;" class="w3-border" rows="15" name="donateRequired" value="<?php echo    $Required; ?>"></textarea>
                             </p>
 
-                            <input type="submit" value="โพสต์" class="submitClass"
-                                style="float:right;margin-bottom: 10px;">
+                            <input type="submit" value="โพสต์" class="submitClass" style="float:right;margin-bottom: 10px;">
 
                         </div>
                     </center>
@@ -173,55 +186,52 @@
 
     <style>
         .w3-8c71c0 {
-          background-color: #8c71c0;
+            background-color: #8c71c0;
         }
 
         .w3-564b6c {
-          background-color: #564b6c;
+            background-color: #564b6c;
         }
 
         .w3-373143 {
-          background-color: #373143;
+            background-color: #373143;
         }
-      </style>
-      <!-- Footer -->
-      <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
+    </style>
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-32  w3-center " style="background-image: url('./Images/footer.png');">
         <table align=center>
-          <tr>
-            <td style="height: 3cm;">
+            <tr>
+                <td style="height: 3cm;">
 
-            </td>
-          </tr>
+                </td>
+            </tr>
 
-          <tr style="width:100%;">
-            <td>
-              <p style="font-size: 30px;color: #E2E0E0;">
-                มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <td>
-          </tr>
-          <tr style="width:100%;">
+            <tr style="width:100%;">
+                <td>
+                    <p style="font-size: 30px;color: #E2E0E0;">
+                        มาร่วมเป็นส่วนหนึ่งกับเรา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <td>
+            </tr>
+            <tr style="width:100%;">
 
-            <td>
-              <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
-            </td>
-          </tr>
+                <td>
+                    <p style="font-size: 30px; color: #E2E0E0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;มีน้องๆมากมายรอคุณอยู่</p>
+                </td>
+            </tr>
         </table>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i
-            class="fa fa-facebook "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i
-            class="fa fa-twitter "></i></a>
-        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i
-            class="fa fa-google-plus "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Facebook "><i class="fa fa-facebook "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Twitter "><i class="fa fa-twitter "></i></a>
+        <a class="w3-button w3-8c71c0 w3-round-xxlarge" href="javascript:void(0) " title="Google + "><i class="fa fa-google-plus "></i></a>
         <p></p>
 
         <div style="position:relative;bottom:100px;z-index:1; " class="w3-tooltip w3-right ">
-          <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
-          <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
-              <i class="fa fa-chevron-circle-up "></i></span></a>
+            <span class="w3-text w3-padding  w3-8c71c0 w3-hide-small  " style="color: #E2E0E0;">Go To Top</span>
+            <a class="w3-button w3-theme " href="#myPage "><span class="w3-xlarge ">
+                    <i class="fa fa-chevron-circle-up "></i></span></a>
         </div>
-      </footer>
+    </footer>
 
     <script>
         // Script for side navigation

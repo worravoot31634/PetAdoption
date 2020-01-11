@@ -20,7 +20,7 @@
             $_SESSION['username'] = $_POST["username"];
             $_SESSION['userAccountID'] = $row['accountID'];
             $_SESSION['roles'] = $row['roles'];
-            $_SESSION['loginStatus'] = true;
+            $_SESSION['loginStatus'] = 1;
             switch ($row['roles']) {
 
                 case "member":

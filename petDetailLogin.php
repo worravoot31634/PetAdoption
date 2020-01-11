@@ -1,3 +1,20 @@
+<?php
+// Start the session
+session_start();
+include_once('connectDB.php');
+$sql = "SELECT statusLogin FROM account WHERE accountID = '" . $_SESSION['userAccountID'] . "'";
+
+$rs = $conn->query($sql);
+$row = $rs->fetch_assoc();
+
+echo "asdf" . $row["statusLogin"];
+if ($row["statusLogin"] == 0) {
+  session_destroy();
+  session_unset();
+  $_SESSION['message'] = 'Please login first';
+  header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>

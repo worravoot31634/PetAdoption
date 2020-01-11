@@ -1,13 +1,19 @@
 <?php
 // Start the session
 session_start();
-$_SESSION['ID'] = $_GET['id'];
-if (!$_SESSION['loginStatus']) {
+include_once('connectDB.php');
+$sql = "SELECT statusLogin FROM account WHERE accountID = '" . $_SESSION['userAccountID'] . "'";
+
+$rs = $conn->query($sql);
+$row = $rs->fetch_assoc();
+
+if ($row["statusLogin"] == 0) {
+    session_destroy();
+    session_unset();
     $_SESSION['message'] = 'Please login first';
     header("Location: login.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
@@ -203,15 +209,15 @@ if (!$_SESSION['loginStatus']) {
 
                 <div class="w3-container" style="padding:10px;background-color: #373143; color: white;">
 
-                <div class="w3-half">
+                    <div class="w3-half">
 
-<div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
-  <img width="35px" src="./Images/one.png">
-  <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">One</a>
+                        <div class="w3-container" style="padding-top: 5px;padding-bottom: 5px;">
+                            <img width="35px" src="./Images/one.png">
+                            <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">One</a>
 
 
-</div>
-</div>
+                        </div>
+                    </div>
                 </div>
                 <!--Detail Pet-->
                 <div class="w3-container">
@@ -235,8 +241,8 @@ if (!$_SESSION['loginStatus']) {
                         </div>
                         <div class="w3-twothird">
                             <select class="w3-border w3-rest  w3-select" name="species" id="speciesSelect" required>
-                              <option style="font-size: 20px;" <?php if ($row['species'] == "บีเกิล") echo "selected='selected'"; ?> value="บีเกิล">บีเกิล</option>
-                              <option style="font-size: 20px;" <?php if ($row['species'] == "บางแก้ว") echo "selected='selected'"; ?> value="บางแก้ว">บางแก้ว</option>
+                                <option style="font-size: 20px;" <?php if ($row['species'] == "บีเกิล") echo "selected='selected'"; ?> value="บีเกิล">บีเกิล</option>
+                                <option style="font-size: 20px;" <?php if ($row['species'] == "บางแก้ว") echo "selected='selected'"; ?> value="บางแก้ว">บางแก้ว</option>
 
                             </select>
                         </div>
