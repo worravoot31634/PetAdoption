@@ -772,7 +772,7 @@ body {
                       }else if($row['fromUserID'] == $_SESSION["userIDLogin"]){
                         $contactSend[$j++] = $row['toUserID'];
                       }else{
-                        echo 'แชทว่าง';
+                        //echo 'แชทว่าง';
                       }
 
                       

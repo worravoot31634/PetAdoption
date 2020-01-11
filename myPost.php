@@ -107,7 +107,7 @@ if (!$_SESSION['loginStatus']) {
     </div>
 
     <div class="w3-container" style="width:80%;margin-left: auto;margin-right: auto;">
-        <div class="w3-container w3-border">
+        <div class="w3-container">
         <?php
         include 'connectDB.php';
         $sql = "SELECT * FROM account join pet where accountID=posterID and username='".$_SESSION['username']."'";
@@ -161,7 +161,7 @@ if (!$_SESSION['loginStatus']) {
 
 
 
-    <div class="w3-container w3-border" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
+    <div class="w3-container" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
 
       <?php
 
@@ -195,9 +195,9 @@ if (!$_SESSION['loginStatus']) {
                             </div></a>
                         </div><!-- end of img and text side by side-->
 <div class="w3-container" style="padding-right:15px;">
-                        <p style="font-size: 14px;clear: both;">'. $row['details'] .'
+                        <b><p style="padding:10px;word-break: break-all; font-size: 1em;clear: both;">'. $row['details'] .'
 
-                        </p>
+                        </p></b>
                         </div>
                         <div class="w3-row w3-center">
                         <form action="reportChart.php" method="Post">
@@ -228,7 +228,7 @@ if (!$_SESSION['loginStatus']) {
         </div>
     </div>
 
-    <div class="w3-container w3-border" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
+    <div class="w3-container" style="margin: 1%; position:relative;width:80%;margin-left: auto;margin-right: auto;">
 
         <!--row of half content activity-->
 

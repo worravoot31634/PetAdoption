@@ -53,7 +53,7 @@ if(obj[0].roles!="nonMember"){
                             "</div>"+
                         " <!-- end of img and text side by side-->"+
                             "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
-                            "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p></b>"+
+                            "<b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>"+obj[i].details+"</p></b>"+
 
                             "<table style='width: 100%;'>"+
                                 "<tr>"+
@@ -96,7 +96,7 @@ if(obj[0].roles!="nonMember"){
                         "</div><!-- end of img and text side by side-->"+
 
                         "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
-                        "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p></b>"+
+                        "<b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>"+obj[i].details+"</p></b>"+
                         "<table style='width: 100%;''>"+
                             "<tr>"+
                                 "<td  style='width: 60%;'>"+
@@ -192,7 +192,7 @@ if(obj[0].roles!="nonMember"){
                             "</div>"+
                         " <!-- end of img and text side by side-->"+
                             "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
-                            "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p></b>"+
+                            "<b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>"+obj[i].details+"</p></b>"+
 
                             "<table style='width: 100%;'>"+
                                 "<tr>"+
@@ -235,7 +235,7 @@ if(obj[0].roles!="nonMember"){
                         "</div><!-- end of img and text side by side-->"+
 
                         "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
-                        "<b><p style='font-size: 1vw;clear: both;'>"+obj[i].details+"</p></b>"+
+                        "<b><p style='padding:10px;word-break: break-all; font-size: 1em;clear: both;'>"+obj[i].details+"</p></b>"+
                         "<table style='width: 100%;''>"+
                             "<tr>"+
                                 "<td  style='width: 60%;'>"+
