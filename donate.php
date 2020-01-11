@@ -291,7 +291,7 @@
                                                 </div>
                                                 <div >
                                                     <table style='width: 100%;'>
-                                                    <tr>
+                                                    <tr style='width: 100%;>
                                                         <td  style='width: 60%;'>
                                                         <div class='container' >
                                                             <div class='progress' style='height: 0.6cm;'>
@@ -323,7 +323,7 @@
                                 </div> <!-- end of img -->
 
                                 <div class='w3-half colorActivity' style='height: 220px;'>
-                                
+
                                 <!--img and text side by side-->
                                     <div style='margin-top: 10px;float: left;'>
                                         <div style='display:inline-block;padding:10px; height:10px'>
@@ -339,7 +339,7 @@
                                             </div>
                                             <div >
                                                 <table style='width: 100%;'>
-                                                <tr>
+                                                <tr style='width: 100%;>
                                                     <td  style='width: 60%;'>
                                                     <div class='container' >
                                                         <div class='progress' style='height: 0.6cm;'>
