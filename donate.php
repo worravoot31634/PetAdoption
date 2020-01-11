@@ -291,7 +291,7 @@
                                                 </div>
                                                 <div >
                                                     <table style='width: 100%;'>
-                                                    <tr style='width: 100%;>
+                                                    <tr>
                                                         <td  style='width: 60%;'>
                                                         <div class='container' >
                                                             <div class='progress' style='height: 0.6cm;'>
@@ -339,7 +339,7 @@
                                             </div>
                                             <div >
                                                 <table style='width: 100%;'>
-                                                <tr style='width: 100%;>
+                                                <tr>
                                                     <td  style='width: 60%;'>
                                                     <div class='container' >
                                                         <div class='progress' style='height: 0.6cm;'>
