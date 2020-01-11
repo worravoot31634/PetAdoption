@@ -1,16 +1,15 @@
 <?php
-	session_start();
+session_start();
 
-	include 'connectDB.php';
+include 'connectDB.php';
 
 
-	$sqlUpdateStatusLogin = $conn->query("UPDATE account 
-	SET statusLogin = 0 
-	WHERE accountID = " . $_SESSION['userAccountID'] ); 
+$sql = "UPDATE account 
+SET statusLogin = 0 
+WHERE accountID = '" . $_SESSION['userAccountID'] . "'";
+$sqlUpdateStatusLogin = $conn->query($sql);
+session_unset();
+session_destroy();
 
-	session_unset();
-	session_destroy();
-	
-    $conn->close();
-	header("Location:login.php");
-?>
+$conn->close();
+	//header("Location:login.php");
