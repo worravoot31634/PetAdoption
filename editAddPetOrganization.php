@@ -30,6 +30,7 @@ if (!$_SESSION['loginStatus']) {
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
+<script src="js/showUploadImg.js"></script>
 
 <style>
 .statusCircle {
@@ -194,7 +195,7 @@ background-color: #373143;
     margin-right: auto;width: 80%;padding: 10px;" height="200px">
 <!--Left side of Page-->
 <div class="w3-border w3-half w3-center" style="height: 600px;">
-    <img src="./Images/<?php echo $row['Image']?>" alt="" srcset="" width="70%" height="50%">
+    <img id="Photo" src="./Images/<?php echo $row['Image']?>" alt="" srcset="" width="70%" height="50%">
     <div style="clear:both;">
         <input type="file" value="โพสต์" name="petPhoto" class="submitClass" style="margin-bottom: 10px;" required>
     </div>
@@ -512,3 +513,5 @@ function closeForm() {
   document.getElementById("btnChat").style.display = "block"
 }
 </script>
+
+

@@ -14,7 +14,7 @@
 <script src="./js/script.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
-
+<script src="js/showUploadImg.js"></script>
 <style>
     .statusCircle {
         height: 30px;
@@ -168,7 +168,7 @@
     margin-right: auto;width: 80%;padding: 10px;" height="200px">
             <!--Left side of Page-->
             <div class="w3-border w3-half w3-center" style="height: 600px;">
-                <img src="./Images/source/picture.png" alt="" srcset="" width="50%">
+                <img id="Photo" src="./Images/source/picture.png" alt="" srcset="" width="50%">
                 <div style="clear:both;">
                     <input type="file" value="โพสต์" name="filePet" class="submitClass" style="margin-bottom: 10px;">
                 </div>

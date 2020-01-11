@@ -6,7 +6,7 @@
 
 	$sqlUpdateStatusLogin = $conn->query("UPDATE account 
 	SET statusLogin = 0 
-	WHERE accountID = " . $_SESSION['accountID'] ); 
+	WHERE accountID = " . $_SESSION['userAccountID'] ); 
 
 	session_unset();
 	session_destroy();

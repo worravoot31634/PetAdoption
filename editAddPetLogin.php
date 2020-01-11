@@ -24,7 +24,7 @@ if (!$_SESSION['loginStatus']) {
 
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
-
+<script src="js/showUploadImg.js"></script>
 <style>
     .statusCircle {
         height: 30px;
@@ -192,7 +192,7 @@ if (!$_SESSION['loginStatus']) {
             ?>
             <input type="hidden" name="fileHidden" value="<?php echo $changeImage ?>">
             <div class="w3-border w3-half w3-center" style="height: 600px;">
-                <img src="./Images/<?php echo $row['Image'] ?>" alt="" srcset="" width="100%" height="560px">
+                <img id="Photo" src="./Images/<?php echo $row['Image'] ?>" alt="" srcset="" width="100%" height="560px">
                 <div style="clear:both;">
                     <input type="file" name="petPhoto" value="โพสต์" class="submitClass" style="margin-bottom: 10px;" id="fileChange">
                 </div>

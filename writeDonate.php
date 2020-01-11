@@ -20,7 +20,7 @@ if (!$_SESSION['loginStatus']) {
 <link rel="stylesheet" href="./CSS/W3S/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./CSS/Bootstrap/css/bootstrap.min.css">
-
+<script src="js/showUploadImg.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -87,9 +87,9 @@ if (!$_SESSION['loginStatus']) {
         <div class="container" style="width: 80%;">
             <div class="row w3-border" style="margin-top: 50px;margin-bottom: 50px;">
                 <div class="w3-half w3-center">
-                    <img src="./Images/source/picture.png" alt="" srcset="" width="50%">
+                    <img id="Photo" src="./Images/source/picture.png" alt="" srcset="" width="50%">
                     <div style="clear:both;">
-                        <input type="file" value="โพสต์" name="filedonate" class="submitClass" style="margin-bottom: 10px;">
+                        <input type="file" value="โพสต์" name="filedonate" class="submitClass" style="margin-bottom: 10px;" required>
                     </div>
 
                 </div>
