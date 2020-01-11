@@ -12,4 +12,4 @@ session_unset();
 session_destroy();
 
 $conn->close();
-	//header("Location:login.php");
+header("Location:login.php");
