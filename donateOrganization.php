@@ -13,7 +13,9 @@ if ($row["statusLogin"] == 0) {
     $_SESSION['message'] = 'Please login first';
     header("Location: login.php");
 }
-?>OCTYPE html>
+?>
+
+<!DOCTYPE html>
 <html>
 <title>Pet Adoption</title>
 <meta charset="UTF-8">
