@@ -47,7 +47,7 @@ if(obj[0].roles!="nonMember"){
                                     "<b><p class='w3-left' style='font-size: 20px;'>&nbsp;"+obj[i].fname+" "+obj[i].lname+"</p></b>"+
                             "</div>"+
                             "<div style='padding:10px;height:70%;'>"+
-                                "<div style='height:30px'>"+
+                                "<div style='height:100%'>"+
                                     "<b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
                                 "</div>"+
                                 "<div>"+
@@ -89,7 +89,7 @@ if(obj[0].roles!="nonMember"){
                             "<b><p class='w3-left' style='font-size: 20px;'>&nbsp;"+obj[i].fname+" "+obj[i].lname+"</p></b>"+
                     "</div>"+
                     "<div style='padding:10px;height:70%;'>"+
-                        "<div style='height:30px'>"+
+                        "<div style='height:100%'>"+
                             "<b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
                         "</div>"+
                         "<div>"+
@@ -187,7 +187,7 @@ if(obj[0].roles!="nonMember"){
                                         "<b><p class='w3-left' style='font-size: 20px;'>&nbsp;"+obj[i].fname+" "+obj[i].lname+"</p></b>"+
                                 "</div>"+
                                 "<div style='padding:10px;height:70%;'>"+
-                                    "<div style='height:30px'>"+
+                                    "<div style='height:100%'>"+
                                         "<b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
                                     "</div>"+
                                     "<div>"+
@@ -229,7 +229,7 @@ if(obj[0].roles!="nonMember"){
                                     "<b><p class='w3-left' style='font-size: 20px;'>&nbsp;"+obj[i].fname+" "+obj[i].lname+"</p></b>"+
                             "</div>"+
                             "<div style='padding:10px;height:70%;'>"+
-                                "<div style='height:30px'>"+
+                                "<div style='height:100%'>"+
                                     "<b><p style='padding:10px;word-break: break-all; font-size: 20px;clear: both;'>"+obj[i].donateTitle+"</p></b>"+
                                 "</div>"+
                                 "<div>"+
