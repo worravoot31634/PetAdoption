@@ -92,7 +92,7 @@ pre {
     <div class="w3-container ">
       <div class="w3-threequarter  w3-row ">
         <div class="w3-card-4 w3-" style="margin-right:2%; ">
-          <img img src="./Images/news_1.png" alt="Alps" width="100%" >
+          <img img src="./Images/news_1.png" alt="Alps" width="100%"  >
           <div class="w3-container w3-center">
             <pre style="font-size:1vw;">น้องหมาพันธุ์บีเกิ้ลถูกทิ้ง
             น้องหมาพันธุ์บีเกิ้ลตัวนี้ ถูกทิ้งไว้บริเวณหน้าวัดป่าสารวัล น้องมีต้องการผู้ดูแลใครสนใจติดต่อ 083-659-48796</pre>
@@ -102,7 +102,7 @@ pre {
 
       <div class="w3-quarter w3-row ">
         <div class="w3-card-4" style="margin-right:2%; ">
-          <img img src="./Images/news_2.png" alt="Alps" width="365px" height="200px">
+          <img img src="./Images/news_2.png" alt="Alps" width="100%">
           <div class="w3-container w3-center">
           <p style="font-size:1vw;">ร่วมด้วยช่วยน้อง
             ร่วมบริจาคเงินสมทบทุนค่าอาหารน้องๆได้ที่นี้ สนใจติดต่อ 098-569-3545</pr>
@@ -112,7 +112,7 @@ pre {
 
       <div class="w3-quarter  w3-row">
         <div class="w3-card-4" style="margin-right:2%; margin-top:4%;">
-          <img img src="./Images/news_3.png" alt="Alps" width="365px" height="200px">
+          <img img src="./Images/news_3.png" alt="Alps" width="100%" >
           <div class="w3-container w3-center">
             <p style="font-size:1vw;">ร่วมเป็นอาสาสมัครีดวัคซีนให้แมว ณ มหาวิทยาลัยเทคโนโลยีสุรนารี
             </p>
