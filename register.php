@@ -87,7 +87,7 @@
                         <td>
                             <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">รหัสผ่าน</p>
                             <center>
-                                <input type=text style="width:80%;border: none;border-radius: 2px;" name="password" placeholder="รหัสผ่าน" required>
+                                <input type="password" style="width:80%;border: none;border-radius: 2px;" name="password" placeholder="รหัสผ่าน" required>
                             </center>
                         </td>
                     </tr>
@@ -95,7 +95,7 @@
                         <td>
                             <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">อีเมล</p>
                             <center>
-                                <input type=email style="width:80%;border: none;border-radius: 2px;" name="email" placeholder="xxxx@gmail.com" required>
+                                <input type="email" style="width:80%;border: none;border-radius: 2px;" name="email" placeholder="xxxx@gmail.com" required>
                             </center>
                         </td>
                         <td>
@@ -117,7 +117,7 @@
                     </table>
                     
                 <br><br>
-                <center><button type="submit" name="register"
+                <center><button class="w3-button" type="submit" name="register"
                     style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">สมัครสมาชิก</button>
             </center>
             </form>
@@ -156,7 +156,7 @@
                     <td>
                         <p style="font-size: 18px;left: 10%;position:relative;color: #FFFFFF;">รหัสผ่าน</p>
                         <center>
-                            <input type=text style="width:80%;border: none;border-radius: 2px;" name="password" placeholder="รหัสผ่าน" required>
+                            <input type="password" style="width:80%;border: none;border-radius: 2px;" name="password" placeholder="รหัสผ่าน" required>
                         </center>
                     </td>
                 </tr>
@@ -186,7 +186,7 @@
                 </table>
                 
             <br><br>
-            <center><button type="submit" name="register"
+            <center><button class="w3-button" type="submit" name="register"
                 style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">สมัครสมาชิก</button>
         </center>
         </form>

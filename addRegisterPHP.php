@@ -40,6 +40,7 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["myPhoto"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["myPhoto"]["name"]). " has been uploaded.";
+        
         header('Location:register.php');
     } else {
         echo "Sorry, there was an error uploading your file.";
@@ -74,5 +75,8 @@ VALUES('" . $firstname . "',
 $rs=$conn->query($sqlMember); 
 
 $conn->close();
+
+
+
 
 ?>

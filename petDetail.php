@@ -215,23 +215,7 @@
         </div>
 
 
-        <div class="w3-row w3-padding">
-          <button style="border-radius: 14px;" class="w3-animate-opacity open-button" id="btnChat" onclick="openForm()"><img width="35px" src="./Images/icon/chatIcon.png">
-            <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;">แชทสนทนา</a></button>
-
-          <div class="w3-animate-bottom chat-popup" id="myForm">
-            <form action="" class="form-container" method="POST">
-              <img width="35px" src="./Images/<?php echo $memImage; ?>">
-              <a style="padding-left: 4px ;font-size: 1.3em;font-weight: bold;color: white;padding-right: 10px;"><?php echo $memName; ?><a style="background-color: #28a745;height:10px;width:10px" class="statusCircle"></a></a>
-
-
-              <textarea placeholder="พิมพ์ข้อความ.." name="msg" required id="msg"></textarea>
-
-              <a href="#" style="border-radius:10px; font-size: 1.2em; background-color: #373143;" class="btn" onclick="sendMessage(<?php echo $_SESSION['accountID'] ?>,<?php echo $posterID ?>);" id="sendAlert">ส่งข้อความ</a>
-              <button style="border-radius:10px; font-size: 1.2em; background-color: darkgray;" type="button" class="btn" onclick="closeForm()">ปิด</button>
-            </form>
-          </div>
-        </div>
+        
 
 
       </div>

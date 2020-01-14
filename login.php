@@ -71,7 +71,7 @@ session_start();
                             echo "<center>" . "<p style='font-size: 18px;position:relative;color: #FFFFFF;'>" . $_SESSION['message'] . "</p>" . "</center>";
                             unset($_SESSION['message']);
                         } ?>
-                        <center><button type="submit" name="login" style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
+                        <center><button class="w3-button" type="submit" name="login" style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
                         </center>
 
                     </form>
@@ -94,7 +94,7 @@ session_start();
                     <center><input type="password" style="width:80%;border: none;border-radius: 2px;" name="password">
                     </center>
                     <br>
-                    <center><button type="submit" name="login" style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
+                    <center><button class="w3-button" type="submit" name="login" style="margin-bottom: 20%;width: 60%;border:none;font-size: 20px;border-radius: 3px;color: #FFFFFF;background-color: #564B6C;">เข้าสู่ระบบ</button>
                     </center>
                 </form>
             </div>
