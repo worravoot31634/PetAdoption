@@ -1089,8 +1089,7 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
         </div>
       </div>
       <div id="search">
-        <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-        <input type="text" placeholder="ค้นหาผู้ติดต่อ..." />
+        
       </div>
       <div id="contacts">
         <ul>
@@ -1165,8 +1164,7 @@ while($rowCheckImages = $rsImage->fetch_assoc()) {
       </div>
 
       <div id="bottom-bar">
-        <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-        <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+        
       </div>
     </div>
 
