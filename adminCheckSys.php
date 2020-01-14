@@ -132,7 +132,7 @@
                                 echo '<td>' . $row["deviceInfo"] . '</td>';
                                 echo '<td>Online</td>';
                                 echo '<td><a  class="btnCloseStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" onclick="CheckSys(' . $row["accountID"] . ')">ปิดการใช้งานระบบ</a></td>';
-                                echo '<td><a  href="adminDelete.php?id='.$row["adminID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
+                                echo '<td><a  href="adminDelete.php?id='.$row["accountID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
                                 echo  '</tr>';
                             } else {
                                 echo '<td>' . $row["deviceInfo"] . '</td>';
@@ -159,13 +159,13 @@
                                 echo '<td>' . $rowMem["deviceInfo"] . '</td>';
                                 echo '<td>Online</td>';
                                 echo '<td><a  class="btnCloseStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" onclick="CheckSys(' . $rowMem["accountID"] . ')">ปิดการใช้งานระบบ</a></td>';
-                                echo '<td><a  href="adminDelete.php?id='.$rowMem["memberID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
+                                echo '<td><a  href="adminDelete.php?id='.$rowMem["accountID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
                                 echo  '</tr>';
                             } else {
                                 echo '<td>' . $rowMem["deviceInfo"] . '</td>';
                                 echo '<td>Offline</td>';
                                 echo '<td><a  class="btnClosedStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" disabled">ออกจากระบบแล้ว</a></td>';
-                                echo '<td><a  href="adminDelete.php?id='.$rowMem["memberID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
+                                echo '<td><a  href="adminDelete.php?id='.$rowMem["accountID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
                                 echo  '</tr>';
                             }
                         }
