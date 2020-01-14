@@ -72,6 +72,16 @@
         border: none;
         color: #ffffff;
     }
+    .btnDelete {
+        background-color: red;
+        border-radius: 5px;
+        border: none;
+        color: #ffffff;
+    }
+
+    .btnDelete:hover {
+        background-color: #373143;
+    }
 </style>
 
 
@@ -100,13 +110,14 @@
                         <th>ระบบที่ใช้</th>
                         <th>สถานะ</th>
                         <th>ปิดการใช้งานระบบ</th>
+                        <th>ลบผู้ใช้งาน</th>
                     </tr>
 
                     <?php
 
                     include "connectDB.php";
 
-                    $sql = "SELECT ac.accountID,organ.Image,organ.firstname,ac.roles,ac.statusLogin , ac.deviceInfo FROM  account as ac  JOIN organization as organ on ac.accountID = organ.accountID";
+                    $sql = "SELECT organ.organizationID, ac.accountID,organ.Image,organ.firstname,ac.roles,ac.statusLogin , ac.deviceInfo FROM  account as ac  JOIN organization as organ on ac.accountID = organ.accountID";
 
                     $res = $conn->query($sql);
 
@@ -121,18 +132,20 @@
                                 echo '<td>' . $row["deviceInfo"] . '</td>';
                                 echo '<td>Online</td>';
                                 echo '<td><a  class="btnCloseStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" onclick="CheckSys(' . $row["accountID"] . ')">ปิดการใช้งานระบบ</a></td>';
+                                echo '<td><a  href="adminDelete.php?id='.$row["adminID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
                                 echo  '</tr>';
                             } else {
                                 echo '<td>' . $row["deviceInfo"] . '</td>';
                                 echo '<td>Offline</td>';
                                 echo '<td><a  class="btnClosedStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" disabled">ออกจากระบบแล้ว</a></td>';
+                                echo '<td><a  href="adminDelete.php?id='.$row["accountID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
                                 echo  '</tr>';
                             }
                         }
                     }
 
 
-                    $sqlMem = "SELECT ac.accountID,mem.Image,mem.firstname,ac.roles,ac.statusLogin ,ac.deviceInfo FROM  account as ac  JOIN member as mem on ac.accountID = mem.accountID";
+                    $sqlMem = "SELECT mem.memberID,ac.accountID,mem.Image,mem.firstname,ac.roles,ac.statusLogin ,ac.deviceInfo FROM  account as ac  JOIN member as mem on ac.accountID = mem.accountID";
                     $resMem = $conn->query($sqlMem);
 
                     if ($resMem->num_rows > 0) {
@@ -146,11 +159,13 @@
                                 echo '<td>' . $rowMem["deviceInfo"] . '</td>';
                                 echo '<td>Online</td>';
                                 echo '<td><a  class="btnCloseStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" onclick="CheckSys(' . $rowMem["accountID"] . ')">ปิดการใช้งานระบบ</a></td>';
+                                echo '<td><a  href="adminDelete.php?id='.$rowMem["memberID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
                                 echo  '</tr>';
                             } else {
                                 echo '<td>' . $rowMem["deviceInfo"] . '</td>';
                                 echo '<td>Offline</td>';
                                 echo '<td><a  class="btnClosedStatus" style="cursor:pointer;padding:3px;color:#FFFFFF;" disabled">ออกจากระบบแล้ว</a></td>';
+                                echo '<td><a  href="adminDelete.php?id='.$rowMem["memberID"].'" class="btnDelete" style="cursor:pointer;padding:3px;color:#FFFFFF;">ลบบัญชีผู้ใช้งาน</a></td>';
                                 echo  '</tr>';
                             }
                         }
