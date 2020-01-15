@@ -103,8 +103,10 @@ if ($row["statusLogin"] == 0) {
                     <div class="w3-container ">
                         <?php
                         include 'connectDB.php';
-                        $sql = "SELECT *,pet.image as pimage,member.image as mimage FROM pet join member on posterID=memberID where (type like '%" . $_POST["keyword"] . "%' or species like '%" . $_POST["keyword"] . "%' or province like '%" . $_POST["keyword"] . "%'or firstname like '%" . $_POST["keyword"] . "%' or lastname like '%" . $_POST["keyword"] . "%') and not petStatus = 2";
-                        $rs = $conn->query($sql);
+                      //  $sql = "SELECT *,pet.image as pimage,member.image as mimage FROM pet join member on posterID=memberID where (type like '%" . $_POST["keyword"] . "%' or species like '%" . $_POST["keyword"] . "%' or province like '%" . $_POST["keyword"] . "%'or firstname like '%" . $_POST["keyword"] . "%' or lastname like '%" . $_POST["keyword"] . "%') and not petStatus = 2";
+                      $sql = "SELECT *,pet.image as pimage,mem.Image as mimage FROM pet join account as ac on posterID=ac.accountID join member as mem on mem.accountID = ac.accountID   where (type like '%" . $_POST["keyword"] . "%' or species like '%" . $_POST["keyword"] . "%' or province like '%" . $_POST["keyword"] . "%'or firstname like '%" . $_POST["keyword"] . "%' or lastname like '%" . $_POST["keyword"] . "%') and not petStatus = 2";  
+ 
+                      $rs = $conn->query($sql);
 
                         if ($rs->num_rows != 0) { //Check that it's have in DB or not
                             while ($row = $rs->fetch_assoc()) {
