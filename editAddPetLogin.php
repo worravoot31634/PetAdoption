@@ -194,13 +194,15 @@ if ($row["statusLogin"] == 0) {
             $typeCheck = $row["type"];
             $speciesCheck = $row["species"];
             $changeImage = $row["Image"];
+            $petID = $row["petID"];
 
             ?>
+            <input type="hidden" name="id" value="<?php echo $petID ?>">
             <input type="hidden" name="fileHidden" value="<?php echo $changeImage ?>">
             <div class="w3-border w3-half w3-center" style="height: 600px;">
                 <img id="Photo" src="./Images/<?php echo $row['Image'] ?>" alt="" srcset="" width="100%" height="560px">
                 <div style="clear:both;">
-                    <input type="file" name="petPhoto" value="โพสต์" class="submitClass" style="margin-bottom: 10px;" id="fileChange">
+                    <input type="file" name="petPhoto" value="โพสต์" class="submitClass" style="margin-bottom: 10px;">
                 </div>
 
             </div>

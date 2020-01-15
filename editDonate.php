@@ -31,7 +31,7 @@ if ($row["statusLogin"] == 0) {
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<script src="js/showUploadImg.js"></script>
 <style>
     .activity-content-link {
         text-decoration: none;
@@ -104,8 +104,9 @@ if ($row["statusLogin"] == 0) {
         <div class="container" style="width: 80%;">
             <div class="row w3-border" style="margin-top: 50px;margin-bottom: 50px;">
                 <div class="w3-half w3-center">
-                    <img src="./Images/<?php echo $Image; ?>" alt="" srcset="" width="70%" height="50%">
+                    <img id="Photo" src="./Images/<?php echo $Image; ?>" alt="" srcset="" width="70%" height="50%">
                     <div style="clear:both;">
+                        <input type="hidden" name="imgHidden" value="<?php echo $Image; ?>">
                         <input type="file" value="โพสต์" name="img" class="submitClass" style="margin-bottom: 10px;">
                     </div>
 

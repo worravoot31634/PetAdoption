@@ -31,6 +31,7 @@ if ($row["statusLogin"] == 0) {
 <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/CustomCss.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="js/showUploadImg.js"></script>
 
 <style>
     .activity-content-link {
@@ -101,13 +102,25 @@ if ($row["statusLogin"] == 0) {
     </div>
 
     <form action="editPostvalue.php" method="post" enctype="multipart/form-data">
+        <?php
+        include 'connectDB.php';
 
+        $sql = "SELECT * FROM activity where activityID = '" . $_GET['id'] . "'";
+        $rs = $conn->query($sql);
+        $row = $rs->fetch_assoc();
+
+
+        $changeImage = $row["Image"];
+
+
+        ?>
         <div class="container" style="width: 80%;">
             <div class="row w3-border" style="margin-top: 50px;margin-bottom: 50px;">
                 <div class="w3-half w3-center">
-                    <img src="./Images/<?php echo $Image; ?>" alt="" srcset="" width="70%" height="50%">
+                    <img id="Photo" src="./Images/<?php echo $Image; ?>" alt="" srcset="" width="70%" height="50%">
                     <div style="clear:both;">
-                        <input type="file" value="โพสต์" name="img" class="submitClass" style="margin-bottom: 10px;" required>
+                        <input type="hidden" value="<?php echo $changeImage ?>" name="imgHidden" class="submitClass" style="margin-bottom: 10px;">
+                        <input type="file" value="โพสต์" name="img" class="submitClass" style="margin-bottom: 10px;">
                     </div>
 
                 </div>

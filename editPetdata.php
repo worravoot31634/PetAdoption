@@ -1,7 +1,7 @@
  <?php
     // Start the session
     session_start();
-    $petID = $_SESSION['ID'];
+    $petID = $_POST['id'];
     include 'connectDB.php';
     $type = $_POST['type'];
     $species = $_POST['species'];
@@ -35,19 +35,26 @@
     } else {
         if (move_uploaded_file($_FILES["petPhoto"]["tmp_name"], $target_file)) {
             echo "The file " . basename($_FILES["myPhoto"]["name"]) . " has been uploaded.";
-            header('Location:register.php');
+            $sql = "UPDATE pet SET species='" . $species . "', province='" . $province . "',phoneNumber='" . $phoneNumber . "',details='" . $details . "',Image='" . $myPhoto . "' WHERE petID = '" . $petID . "'";
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            // echo "Sorry, there was an error uploading your file.";
+            $sql = "UPDATE pet SET species='" . $species . "', province='" . $province . "',phoneNumber='" . $phoneNumber . "',details='" . $details . "',Image='" . $fileHidden . "' WHERE petID = '" . $petID . "'";
         }
     }
 
-    if ($_FILES['petPhoto']['size'] == 0 && $_FILES['petPhoto']['error'] == 0) {
-        $sql = "UPDATE pet SET species='" . $species . "', province='" . $province . "',phoneNumber='" . $phoneNumber . "',details='" . $details . "',Image='" . $fileHidden . "' WHERE petID = '" . $petID . "'";
+    /*if ($_FILES['petPhoto']['size'] == 0 && $_FILES['petPhoto']['error'] == 0) {
+       
     } else if (!$_FILES['petPhoto']['size'] == 0 && $_FILES['petPhoto']['error'] == 0) {
-        $sql = "UPDATE pet SET species='" . $species . "', province='" . $province . "',phoneNumber='" . $phoneNumber . "',details='" . $details . "',Image='" . $myPhoto . "' WHERE petID = '" . $petID . "'";
+       
+    }*/
+
+    if ($conn->query($sql) === TRUE) {
+        header("Location: myPostLogin.php");
+    } else {
+        echo $sql;
     }
 
-    $rs = $conn->query($sql);
-    header("Location: myPostLogin.php");
+
+
     $conn->close();
     ?>
